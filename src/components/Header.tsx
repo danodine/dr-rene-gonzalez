@@ -6,44 +6,96 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const frameCount = 192;
+
+const currentFrame = (index: number) =>
+  `/Images/HeaderAnimation/frame_${index.toString().padStart(4, "0")}.jpg`;
+
+const drawCoverImage = (
+  context: CanvasRenderingContext2D,
+  image: HTMLImageElement,
+  width: number,
+  height: number,
+) => {
+  const imageRatio = image.width / image.height;
+  const canvasRatio = width / height;
+  const drawWidth = imageRatio > canvasRatio ? height * imageRatio : width;
+  const drawHeight = imageRatio > canvasRatio ? height : width / imageRatio;
+  const x = (width - drawWidth) / 2;
+  const y = (height - drawHeight) / 2;
+
+  context.clearRect(0, 0, width, height);
+  context.drawImage(image, x, y, drawWidth, drawHeight);
+};
+
 export default function Header() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const ambientGlowRef = useRef<HTMLDivElement | null>(null);
-  const leftLineRef = useRef<HTMLDivElement | null>(null);
-  const rightLineRef = useRef<HTMLDivElement | null>(null);
-  const coreRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const activeFrameRef = useRef(0);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
-    const ambientGlow = ambientGlowRef.current;
-    const leftLine = leftLineRef.current;
-    const rightLine = rightLineRef.current;
-    const core = coreRef.current;
+    const canvas = canvasRef.current;
     const text = textRef.current;
+    const context = canvas?.getContext("2d");
 
-    if (!section || !ambientGlow || !leftLine || !rightLine || !core || !text) {
+    if (!section || !canvas || !context || !text) {
       return;
     }
 
+    const renderFrame = (index: number) => {
+      const image = imagesRef.current[index];
+
+      if (!image || !image.complete || image.naturalWidth === 0) {
+        return;
+      }
+
+      drawCoverImage(context, image, canvas.width, canvas.height);
+    };
+
+    const resizeCanvas = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const { width, height } = canvas.getBoundingClientRect();
+
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      renderFrame(activeFrameRef.current);
+    };
+
+    imagesRef.current = [];
+
+    for (let index = 1; index <= frameCount; index += 1) {
+      const image = new Image();
+      image.src = currentFrame(index);
+      imagesRef.current.push(image);
+
+      if (index === 1) {
+        image.onload = () => {
+          resizeCanvas();
+          renderFrame(0);
+        };
+      }
+    }
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
     const ctx = gsap.context(() => {
-      gsap.set(ambientGlow, {
-        opacity: 0.18,
-      });
+      const scrollState = {
+        frame: 0,
+      };
 
-      gsap.set([leftLine, rightLine], {
-        boxShadow: "0 0 14px rgba(255,255,255,0.18), 0 0 0 rgba(212,175,55,0)",
-        filter: "brightness(0.78)",
-      });
-
-      gsap.set(core, {
-        backgroundColor: "#ffffff",
-        boxShadow: "0 0 10px rgba(255,255,255,0.35), 0 0 0 rgba(212,175,55,0)",
-        scale: 0.8,
+      gsap.set(canvas, {
+        autoAlpha: 1,
+        filter: "contrast(1.12) brightness(0.88)",
       });
 
       gsap.set(text, {
         autoAlpha: 0,
+        filter: "brightness(0.58)",
+        textShadow: "0 0 0 rgba(212,175,55,0)",
         y: 28,
       });
 
@@ -60,85 +112,58 @@ export default function Header() {
       });
 
       timeline
-        .to(leftLine, {
-          xPercent: -18,
-          yPercent: -80,
-          rotate: -8,
-        })
         .to(
-          rightLine,
+          scrollState,
           {
-            xPercent: 18,
-            yPercent: 80,
-            rotate: 8,
+            frame: frameCount - 1,
+            snap: "frame",
+            duration: 1.3,
+            onUpdate: () => {
+              activeFrameRef.current = Math.round(scrollState.frame);
+              renderFrame(activeFrameRef.current);
+            },
           },
           0,
-        )
-        .to(
-          ambientGlow,
-          {
-            opacity: 1,
-          },
-          0.14,
-        )
-        .to(
-          [leftLine, rightLine],
-          {
-            boxShadow:
-              "0 0 22px rgba(255,255,255,0.4), 0 0 48px rgba(212,175,55,0.26)",
-            filter: "brightness(1.15)",
-          },
-          0.18,
-        )
-        .to(
-          core,
-          {
-            backgroundColor: "#f3d48b",
-            boxShadow:
-              "0 0 18px rgba(255,255,255,0.7), 0 0 36px rgba(212,175,55,0.5)",
-            scale: 1,
-          },
-          0.18,
         )
         .to(
           text,
           {
             autoAlpha: 1,
+            filter: "brightness(1.18)",
+            textShadow:
+              "0 0 20px rgba(255,255,255,0.18), 0 0 46px rgba(212,175,55,0.18)",
             y: 0,
+            duration: 0.5,
           },
-          0.5,
+          0.55,
         );
     }, section);
 
-    return () => ctx.revert();
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      ctx.revert();
+    };
   }, []);
 
   return (
     <section ref={sectionRef} className="relative h-[220vh] bg-black">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
-        <div
-          ref={ambientGlowRef}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_30%),radial-gradient(circle_at_center,rgba(212,175,55,0.14),transparent_54%)]"
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{
+            mixBlendMode: "screen",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)",
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)",
+          }}
         />
-
-        <div className="relative flex w-[min(88vw,72rem)] -rotate-[28deg] items-center justify-center">
-          <div
-            ref={leftLineRef}
-            className="h-px flex-1 origin-right bg-gradient-to-r from-transparent via-white/75 to-[#f3d48b]"
-          />
-          <div
-            ref={coreRef}
-            className="h-2 w-2 rounded-full"
-          />
-          <div
-            ref={rightLineRef}
-            className="h-px flex-1 origin-left bg-gradient-to-l from-transparent via-white/75 to-[#f3d48b]"
-          />
-        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.025),transparent_62%)]" />
 
         <div
           ref={textRef}
-          className="relative z-10 flex max-w-3xl flex-col items-center gap-4 px-6 text-center"
+          className="absolute right-[3vw] top-1/2 z-20 flex max-w-3xl -translate-y-1/2 flex-col items-center gap-4 px-6 text-center sm:right-[10vw] lg:right-[12vw]"
         >
           <p className="text-[0.68rem] uppercase tracking-[0.5em] text-[#d8bc7d]/80 sm:text-xs">
             Aesthetic Surgery
@@ -147,7 +172,7 @@ export default function Header() {
             DR Rene Gonzalez
           </h1>
           <p className="text-sm font-light uppercase tracking-[0.42em] text-white/60 sm:text-base">
-            Cirujano estético
+            Cirujano est&eacute;tico
           </p>
         </div>
       </div>
