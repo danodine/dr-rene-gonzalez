@@ -9,7 +9,6 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-black text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
-      <div className="absolute left-1/2 top-0 h-40 w-[34rem] -translate-x-1/2 rounded-full bg-[#d4af37]/10 blur-3xl" />
 
       <div className="relative mx-auto flex min-h-[22rem] w-full max-w-7xl flex-col justify-between gap-16 px-6 py-16 sm:px-10 lg:px-16">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
