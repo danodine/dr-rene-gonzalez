@@ -13,7 +13,14 @@
 }
 
 html {
+  cursor: url("/Images/mouse-cursor.png") 2 2, auto;
   scroll-behavior: auto;
+}
+
+body,
+a,
+button {
+  cursor: url("/Images/mouse-cursor.png") 2 2, auto;
 }
 
 body {
