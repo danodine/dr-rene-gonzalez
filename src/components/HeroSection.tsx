@@ -182,7 +182,7 @@ export default function HeroSection() {
       <div className="sticky top-0 h-screen overflow-hidden">
         <div
           className="absolute inset-0 scale-[1.02] bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url("/Images/section_1_image.png")' }}
+          style={{ backgroundImage: 'url("/images/section_1_image.png")' }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/25" />
 
@@ -240,7 +240,7 @@ export default function HeroSection() {
           <div
             ref={secondImageRef}
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: 'url("/Images/section_2_image.png")' }}
+            style={{ backgroundImage: 'url("/images/section_2_image.png")' }}
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_36%),linear-gradient(180deg,rgba(0,0,0,0.24),rgba(0,0,0,0.42))]" />
 
