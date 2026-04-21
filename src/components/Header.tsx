@@ -169,7 +169,7 @@ export default function Header() {
             Aesthetic Surgery
           </p>
           <h1 className="text-4xl font-light uppercase tracking-[0.24em] text-white sm:text-6xl lg:text-7xl">
-            DR Rene Gonzalez
+            DR. Rene Gonzalez
           </h1>
           <p className="text-sm font-light uppercase tracking-[0.42em] text-white/60 sm:text-base">
             Cirujano est&eacute;tico
