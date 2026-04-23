@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const frameCount = 192;
 
 const currentFrame = (index: number) =>
-  `/images/servicesAnimation/frame_${index.toString().padStart(4, "0")}.jpg`;
+  `/images/servicesAnimationImages/frame_${index.toString().padStart(4, "0")}.jpg`;
 
 const drawCoverImage = (
   context: CanvasRenderingContext2D,
@@ -34,7 +34,7 @@ const services = [
   {
     label: "Rejuvenecimiento",
     title: "Facial Anti-edad",
-    image: "/images/servicesAnimation/frame_0018.jpg",
+    image: "/images/servicesAnimationImages/frame_0018.jpg",
     items: [
       "Aplicacion Botox facial",
       "Laser CO2 fraccionado",
@@ -45,7 +45,7 @@ const services = [
   {
     label: "Hidratacion",
     title: "Calidad de la Piel",
-    image: "/images/servicesAnimation/frame_0046.jpg",
+    image: "/images/servicesAnimationImages/frame_0046.jpg",
     items: [
       "Hidratacion con acido hialuronico",
       "Aplicacion acido hialuronico",
@@ -55,7 +55,7 @@ const services = [
   {
     label: "Armonizacion",
     title: "Facial y Perfil",
-    image: "/images/servicesAnimation/frame_0074.jpg",
+    image: "/images/servicesAnimationImages/frame_0074.jpg",
     items: [
       "Rinoplastia",
       "Mentoplastia",
@@ -67,7 +67,7 @@ const services = [
   {
     label: "Moldeo",
     title: "Corporal y Reduccion",
-    image: "/images/servicesAnimation/frame_0108.jpg",
+    image: "/images/servicesAnimationImages/frame_0108.jpg",
     items: [
       "Liposuccion",
       "Mini lipo",
@@ -78,13 +78,13 @@ const services = [
   {
     label: "Remodelacion",
     title: "Corporal",
-    image: "/images/servicesAnimation/frame_0142.jpg",
+    image: "/images/servicesAnimationImages/frame_0142.jpg",
     items: ["Aumento de mamas"],
   },
   {
     label: "Medico Estetico",
     title: "Tratamientos Funcionales",
-    image: "/images/servicesAnimation/frame_0176.jpg",
+    image: "/images/servicesAnimationImages/frame_0176.jpg",
     items: [
       "Botox (hiperhidrosis)",
       "Depilacion definitiva (IPL)",
