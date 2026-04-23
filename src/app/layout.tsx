@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CursorSparkle from "@/components/CursorSparkle";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <CursorSparkle />
         <Navbar />
+        <WhatsAppButton />
         {children}
         <Footer />
       </body>

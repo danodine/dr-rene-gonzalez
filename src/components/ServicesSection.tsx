@@ -13,7 +13,7 @@ const frameCount = 192;
 const currentFrame = (index: number) =>
   `/images/servicesAnimationImages/frame_${index.toString().padStart(4, "0")}.jpg`;
 
-const drawCoverImage = (
+const drawTopCoverImage = (
   context: CanvasRenderingContext2D,
   image: HTMLImageElement,
   width: number,
@@ -24,7 +24,7 @@ const drawCoverImage = (
   const drawWidth = imageRatio > canvasRatio ? height * imageRatio : width;
   const drawHeight = imageRatio > canvasRatio ? height : width / imageRatio;
   const x = (width - drawWidth) / 2;
-  const y = (height - drawHeight) / 2;
+  const y = 0;
 
   context.clearRect(0, 0, width, height);
   context.drawImage(image, x, y, drawWidth, drawHeight);
@@ -32,8 +32,8 @@ const drawCoverImage = (
 
 const services = [
   {
-    label: "Rejuvenecimiento",
-    title: "Facial Anti-edad",
+    label: "Rejuvenecimiento Facial",
+    title: "Rejuvenecimiento Facial",
     image: "/images/servicesAnimationImages/frame_0018.jpg",
     items: [
       "Aplicacion Botox facial",
@@ -43,8 +43,8 @@ const services = [
     ],
   },
   {
-    label: "Hidratacion",
-    title: "Calidad de la Piel",
+    label: "Hidratacion y Calidad de la Piel",
+    title: "Hidratacion y Calidad de la Piel",
     image: "/images/servicesAnimationImages/frame_0046.jpg",
     items: [
       "Hidratacion con acido hialuronico",
@@ -53,8 +53,8 @@ const services = [
     ],
   },
   {
-    label: "Armonizacion",
-    title: "Facial y Perfil",
+    label: "Armonizacion Facial",
+    title: "Armonizacion Facial",
     image: "/images/servicesAnimationImages/frame_0074.jpg",
     items: [
       "Rinoplastia",
@@ -65,8 +65,8 @@ const services = [
     ],
   },
   {
-    label: "Moldeo",
-    title: "Corporal y Reduccion",
+    label: "Reduccion de Grasa y Moldeo Corporal",
+    title: "Reduccion de Grasa y Moldeo Corporal",
     image: "/images/servicesAnimationImages/frame_0108.jpg",
     items: [
       "Liposuccion",
@@ -76,14 +76,14 @@ const services = [
     ],
   },
   {
-    label: "Remodelacion",
-    title: "Corporal",
+    label: "Aumento y Remodelacion Corporal",
+    title: "Aumento y Remodelacion Corporal",
     image: "/images/servicesAnimationImages/frame_0142.jpg",
     items: ["Aumento de mamas"],
   },
   {
-    label: "Medico Estetico",
-    title: "Tratamientos Funcionales",
+    label: "Tratamientos Funcionales / Medicos Esteticos",
+    title: "Tratamientos Funcionales / Medicos Esteticos",
     image: "/images/servicesAnimationImages/frame_0176.jpg",
     items: [
       "Botox (hiperhidrosis)",
@@ -93,18 +93,17 @@ const services = [
 ] as const;
 
 const desktopPositions = [
-  { top: "16%", side: "left" as const },
-  { top: "40%", side: "left" as const },
-  { top: "64%", side: "left" as const },
-  { top: "16%", side: "right" as const },
-  { top: "40%", side: "right" as const },
-  { top: "64%", side: "right" as const },
+  { top: "clamp(7%, 10vh, 16%)", side: "left" as const },
+  { top: "clamp(28%, 34vh, 40%)", side: "left" as const },
+  { top: "clamp(56%, 60vh, 64%)", side: "left" as const },
+  { top: "clamp(6%, 9vh, 15%)", side: "right" as const },
+  { top: "clamp(23%, 29vh, 34%)", side: "right" as const },
+  { top: "clamp(52%, 58vh, 61%)", side: "right" as const },
 ];
 
 type ServiceNodeProps = {
   active: boolean;
   image: string;
-  label: string;
   title: string;
   onClick: () => void;
   className?: string;
@@ -114,7 +113,6 @@ type ServiceNodeProps = {
 function ServiceNode({
   active,
   image,
-  label,
   title,
   onClick,
   className = "",
@@ -138,16 +136,14 @@ function ServiceNode({
           alt={title}
           fill
           sizes="(max-width: 1024px) 33vw, 14vw"
-          className="object-cover object-center opacity-80 transition-transform duration-500 group-hover:scale-105"
+          className="hidden object-cover object-center opacity-80 transition-transform duration-500 group-hover:scale-105 lg:block"
         />
-        <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.16),transparent_34%),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.48))]" />
+        <span className="absolute inset-0 hidden bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.16),transparent_34%),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.48))] lg:block" />
+        <span className="absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03)_22%,rgba(0,0,0,0.22)_100%)] lg:hidden" />
       </span>
-      <span className="absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.02)_26%,rgba(255,255,255,0.02)_74%,rgba(0,0,0,0.26))]" />
-      <span className="absolute inset-x-[18%] bottom-[18%] z-10 text-center">
-        <span className="block text-[0.58rem] uppercase tracking-[0.32em] text-[#d4af37]/80">
-          {label}
-        </span>
-        <span className="mt-2 block text-xs font-light uppercase tracking-[0.16em] text-white sm:text-sm">
+      <span className="absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.03)_26%,rgba(255,255,255,0.02)_74%,rgba(0,0,0,0.26))]" />
+      <span className="absolute inset-[12%] z-10 flex items-center justify-center text-center">
+        <span className="block max-w-full break-words text-[0.5rem] font-light uppercase leading-[1.14] tracking-[0.08em] text-white [overflow-wrap:anywhere] sm:text-[0.62rem] lg:text-[0.82rem]">
           {title}
         </span>
       </span>
@@ -199,7 +195,7 @@ export default function ServicesSection() {
         return;
       }
 
-      drawCoverImage(context, image, canvas.width, canvas.height);
+      drawTopCoverImage(context, image, canvas.width, canvas.height);
     };
 
     const resizeCanvas = () => {
@@ -244,18 +240,6 @@ export default function ServicesSection() {
         y: 24,
       });
 
-      const floatTweens = nodes.map((node, index) =>
-        gsap.to(node, {
-          y: index % 2 === 0 ? "-=12" : "+=12",
-          x: index % 3 === 0 ? "-=6" : "+=6",
-          duration: 2.8 + index * 0.22,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-          delay: index * 0.08,
-        }),
-      );
-
       const timeline = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
@@ -292,9 +276,6 @@ export default function ServicesSection() {
           0.16,
         );
 
-      return () => {
-        floatTweens.forEach((tween) => tween.kill());
-      };
     }, section);
 
     return () => {
@@ -317,16 +298,20 @@ export default function ServicesSection() {
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/88 via-black/44 to-transparent" />
 
         <div className="absolute inset-x-0 top-10 z-20 px-6 text-center sm:top-14 lg:left-auto lg:right-[6vw] lg:w-[min(40rem,38vw)] lg:px-0 lg:text-right">
-          <p className="text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
+          <p className="text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80 lg:text-[0.9rem] lg:tracking-[0.5em]">
             Servicios
           </p>
-          <h2 className="mt-4 text-3xl font-light uppercase tracking-[0.16em] text-white sm:text-5xl">
-            Procedimientos
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/62 sm:text-base">
-            Seis especialidades dispuestas como una constelacion de tratamientos.
-            Toca cada circulo para descubrir sus procedimientos.
-          </p>
+          <div
+            className={`hidden transition-all duration-300 lg:block ${
+              detailVisible
+                ? "pointer-events-auto mt-4 opacity-100"
+                : "pointer-events-none mt-2 opacity-0"
+            }`}
+          >
+            <h2 className="text-[clamp(1.55rem,4.2vw,3.4rem)] font-light uppercase leading-[1.08] tracking-[0.13em] text-white">
+              {active.title}
+            </h2>
+          </div>
         </div>
 
         <div className="absolute inset-0 z-20 hidden lg:block">
@@ -337,63 +322,78 @@ export default function ServicesSection() {
                 key={service.title}
                 active={activeService === index}
                 image={service.image}
-                label={service.label}
                 title={service.title}
                 onClick={() => {
                   setActiveService(index);
                   setDetailVisible(true);
                 }}
-                className="absolute h-[11.5rem] w-[11.5rem] xl:h-[13rem] xl:w-[13rem]"
+                className="absolute"
                 style={
                   position.side === "left"
-                    ? { top: position.top, left: "3.5vw" }
-                    : { top: position.top, right: "3.5vw" }
+                    ? {
+                        top: position.top,
+                        left: "3.5vw",
+                        width: "clamp(7rem, 10vw, 11.5rem)",
+                        height: "clamp(7rem, 10vw, 11.5rem)",
+                      }
+                    : {
+                        top: position.top,
+                        right: "3.5vw",
+                        width: "clamp(7rem, 10vw, 11.5rem)",
+                        height: "clamp(7rem, 10vw, 11.5rem)",
+                      }
                 }
               />
             );
           })}
         </div>
 
-        <div className="absolute inset-x-4 bottom-6 z-20 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:hidden">
+        <div className="absolute bottom-[6%] left-[0.125rem] top-[6%] z-20 flex flex-col justify-between lg:hidden">
           {services.map((service, index) => (
             <ServiceNode
               key={service.title}
               active={activeService === index}
               image={service.image}
-              label={service.label}
               title={service.title}
               onClick={() => {
                 setActiveService(index);
                 setDetailVisible(true);
               }}
-              className="aspect-square w-full min-w-0"
+              className="h-[4.6rem] w-[7.9rem] sm:h-[5.1rem] sm:w-[8.9rem]"
             />
           ))}
         </div>
 
         <div
-          className={`absolute left-1/2 top-1/2 z-20 w-[min(34rem,calc(100vw-2.5rem))] -translate-x-1/2 -translate-y-1/2 rounded-[2rem] border border-white/10 bg-black/58 p-6 shadow-[0_28px_90px_rgba(0,0,0,0.48)] backdrop-blur-xl transition-all duration-300 sm:p-8 lg:left-auto lg:right-[8vw] lg:-translate-x-0 ${
+          className={`absolute right-[0.125rem] top-[54%] z-20 h-fit w-[min(18.625rem,calc(54vw+1.625rem))] -translate-y-1/2 rounded-[2rem] border border-white/10 bg-black/58 px-5 pb-5 pt-11 shadow-[0_28px_90px_rgba(0,0,0,0.48)] backdrop-blur-xl transition-all duration-300 sm:right-[0.125rem] sm:top-1/2 sm:h-auto sm:w-[min(21.125rem,calc(64vw+0.625rem))] sm:px-6 sm:pb-6 sm:pt-12 md:w-[min(24.125rem,calc(60vw+0.125rem))] md:px-8 md:pb-8 md:pt-14 lg:left-auto lg:right-[8vw] lg:w-auto lg:-translate-x-0 lg:px-[clamp(1.25rem,1.8vw,2rem)] lg:pb-[clamp(1.25rem,1.8vw,2rem)] lg:pt-[clamp(2.8rem,3.2vw,3.6rem)] 2xl:w-[min(30rem,46vw)] ${
             detailVisible
               ? "pointer-events-auto opacity-100"
               : "pointer-events-none opacity-0"
           }`}
         >
-          <p className="text-[0.68rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
-            {active.label}
-          </p>
-          <h3 className="mt-4 text-2xl font-light uppercase tracking-[0.16em] text-white sm:text-4xl">
-            {active.title}
-          </h3>
-          <ul className="mt-6 space-y-3 text-sm leading-6 text-white/76 sm:text-base sm:leading-7">
-            {active.items.map((item) => (
-              <li
-                key={item}
-                className="border-b border-white/8 pb-3 last:border-b-0 last:pb-0"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
+          <div className="flex h-full w-full min-w-0 flex-col lg:max-w-[clamp(16rem,22vw,24rem)]">
+            <button
+              type="button"
+              aria-label="Cerrar detalles"
+              onClick={() => setDetailVisible(false)}
+              className="absolute right-4 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-[#d4af37]/35 bg-black/30 text-sm text-[#d4af37] transition-colors duration-300 hover:border-[#d4af37]/70 hover:bg-black/55 hover:text-[#f1d37a] sm:top-4"
+            >
+              ×
+            </button>
+            <h3 className="mt-2 max-w-full break-words text-[0.98rem] font-light uppercase leading-[1.18] tracking-[0.14em] text-[#d4af37] [overflow-wrap:anywhere] sm:text-[1.18rem] lg:text-[clamp(1.08rem,1.35vw,1.45rem)]">
+              {active.title}
+            </h3>
+            <ul className="mt-4 flex-1 space-y-2 overflow-y-auto pr-1 text-[0.92rem] leading-6 text-white/76 sm:mt-6 sm:space-y-3 sm:text-base sm:leading-7 lg:mt-5 lg:space-y-2.5 lg:text-[clamp(0.9rem,1vw,1rem)] lg:leading-[1.65]">
+              {active.items.map((item) => (
+                <li
+                  key={item}
+                  className="border-b border-white/8 pb-3 last:border-b-0 last:pb-0"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
