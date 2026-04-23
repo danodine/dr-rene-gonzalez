@@ -45,8 +45,22 @@ export default function HeroSection() {
       return;
     }
 
+    const aboutPanels = gsap.utils.toArray<HTMLElement>(
+      "[data-about-panel]",
+      secondText,
+    );
+
+    if (aboutPanels.length === 0) {
+      return;
+    }
+
     const ctx = gsap.context(() => {
       gsap.set([rightText, leftText, secondText], {
+        autoAlpha: 0,
+        y: 18,
+      });
+
+      gsap.set(aboutPanels, {
         autoAlpha: 0,
         y: 18,
       });
@@ -90,7 +104,7 @@ export default function HeroSection() {
           overlay,
           {
             xPercent: -100,
-            duration: 1.5,
+            duration: 1.95,
           },
           0.34,
         )
@@ -99,35 +113,35 @@ export default function HeroSection() {
           {
             autoAlpha: 0,
             y: -10,
-            duration: 0.2,
+            duration: 0.26,
           },
-          0.54,
+          0.78,
         )
         .to(
           leftText,
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.28,
+            duration: 0.36,
           },
-          1.8,
+          2.34,
         )
         .to(
           [leftText, rightText],
           {
             autoAlpha: 0,
             y: -10,
-            duration: 0.2,
+            duration: 0.26,
           },
-          2.12,
+          2.76,
         )
         .to(
           rightWash,
           {
             autoAlpha: 1,
-            duration: 0.38,
+            duration: 0.48,
           },
-          2.16,
+          2.86,
         )
         .to(
           ripStage,
@@ -135,7 +149,7 @@ export default function HeroSection() {
             autoAlpha: 1,
             duration: 0.02,
           },
-          2.48,
+          3.24,
         )
         .to(
           leftPanel,
@@ -144,7 +158,7 @@ export default function HeroSection() {
             rotate: -2.8,
             duration: 1.18,
           },
-          2.64,
+          3.42,
         )
         .to(
           rightPanel,
@@ -153,7 +167,7 @@ export default function HeroSection() {
             rotate: 2.8,
             duration: 1.18,
           },
-          2.64,
+          3.42,
         )
         .to(
           secondImage,
@@ -161,24 +175,48 @@ export default function HeroSection() {
             scale: 1,
             duration: 1.2,
           },
-          2.68,
+          3.48,
         )
         .to(
           secondText,
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.3,
+            duration: 0.24,
           },
-          3.36,
+          4.2,
         );
+
+      aboutPanels.forEach((panel, index) => {
+        const start = 4.42 + index * 1.05;
+
+        timeline
+          .to(
+            panel,
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.22,
+            },
+            start,
+          )
+          .to(
+            panel,
+            {
+              autoAlpha: 0,
+              y: -16,
+              duration: 0.22,
+            },
+            start + 0.82,
+          );
+      });
     }, section);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[360vh] bg-black">
+    <section ref={sectionRef} className="relative h-[760vh] bg-black">
       <div className="sticky top-0 h-screen overflow-hidden">
         <div
           className="absolute inset-0 scale-[1.02] bg-cover bg-center bg-no-repeat"
@@ -202,16 +240,18 @@ export default function HeroSection() {
           <div className="hidden sm:block" />
 
           <div className="flex items-center justify-center px-8 sm:px-12 lg:px-16">
-            <div ref={rightTextRef} className="max-w-sm text-left">
+            <div
+              ref={rightTextRef}
+              className="max-w-sm rounded-3xl border border-white/10 bg-black/62 p-5 text-left shadow-[0_18px_60px_rgba(0,0,0,0.36)] backdrop-blur-md sm:rounded-none sm:border-transparent sm:bg-transparent sm:p-0 sm:shadow-none sm:backdrop-blur-0"
+            >
               <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/75">
-                Precision
+                Visi&oacute;n
               </p>
-              <h2 className="text-3xl font-light uppercase tracking-[0.18em] text-white sm:text-4xl">
-                Refined Results
+              <h2 className="text-2xl font-light uppercase tracking-[0.16em] text-white sm:text-4xl sm:tracking-[0.18em]">
+                Belleza con Prop&oacute;sito
               </h2>
-              <p className="mt-6 text-sm leading-7 text-white/58 sm:text-base">
-                Subtle enhancement guided by proportion, calm detail, and a
-                considered surgical eye.
+              <p className="mt-5 text-xs leading-6 text-white/78 sm:mt-6 sm:text-base sm:leading-7 sm:text-white/58">
+                Convertirme en un referente en cirugía estética, reconocido por resultados elegantes, naturales y consistentes, así como por una atención humana y personalizada de alto nivel. Aspiramos a consolidar un consultorio de prestigio, donde la innovación, la ética y el detalle marquen la diferencia, creando experiencias que inspiren confianza y transformen positivamente la vida de nuestros pacientes.
               </p>
             </div>
           </div>
@@ -219,16 +259,18 @@ export default function HeroSection() {
 
         <div className="pointer-events-none absolute inset-0 z-10 grid grid-cols-1 sm:grid-cols-2">
           <div className="flex items-center justify-center px-8 sm:px-12 lg:px-16">
-            <div ref={leftTextRef} className="max-w-sm text-left">
+            <div
+              ref={leftTextRef}
+              className="max-w-sm rounded-3xl border border-white/10 bg-black/62 p-5 text-left shadow-[0_18px_60px_rgba(0,0,0,0.36)] backdrop-blur-md sm:rounded-none sm:border-transparent sm:bg-transparent sm:p-0 sm:shadow-none sm:backdrop-blur-0"
+            >
               <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/75">
-                Sculpture
+                Misi&oacute;n
               </p>
-              <h2 className="text-3xl font-light uppercase tracking-[0.18em] text-white sm:text-4xl">
-                Beauty In Balance
+              <h2 className="text-2xl font-light uppercase tracking-[0.16em] text-white sm:text-4xl sm:tracking-[0.18em]">
+                Confianza en Cada Detalle
               </h2>
-              <p className="mt-6 text-sm leading-7 text-white/58 sm:text-base">
-                The composition shifts with the scroll, letting the message live
-                only where shadow and focus meet.
+              <p className="mt-5 text-xs leading-6 text-white/78 sm:mt-6 sm:text-base sm:leading-7 sm:text-white/58">
+                Brindar una experiencia médica estética de excelencia, combinando precisión quirúrgica, sensibilidad artística y un profundo respeto por la individualidad de cada paciente. Mi compromiso es realzar la belleza natural de forma armónica y segura, generando confianza, bienestar y resultados que no solo transformen la imagen, sino también la seguridad y calidad de vida de quienes confían en mí.
               </p>
             </div>
           </div>
@@ -255,18 +297,71 @@ export default function HeroSection() {
             />
           </div>
 
-          <div className="absolute inset-0 z-20 flex items-end justify-start p-8 sm:p-12 lg:p-20">
-            <div ref={secondTextRef} className="max-w-xl">
-              <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
-                Signature Care
-              </p>
-              <h2 className="text-4xl font-light uppercase tracking-[0.16em] text-white sm:text-5xl lg:text-6xl">
-                Precision Revealed
-              </h2>
-              <p className="mt-6 max-w-lg text-sm leading-7 text-white/70 sm:text-base">
-                The composition opens from the center, revealing a new image
-                beneath it like a controlled cinematic tear.
-              </p>
+          <div className="absolute inset-0 z-20 flex items-end justify-start p-6 pb-16 sm:p-12 lg:p-20">
+            <div ref={secondTextRef} className="relative h-[25rem] w-full max-w-2xl sm:h-[24rem]">
+              <div data-about-panel className="absolute inset-x-0 bottom-0">
+                <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
+                  Sobre el Doctor
+                </p>
+                <h2 className="text-3xl font-light uppercase tracking-[0.16em] text-white sm:text-5xl">
+                  Formaci&oacute;n Acad&eacute;mica
+                </h2>
+                <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
+                  M&eacute;dico cirujano con s&oacute;lida formaci&oacute;n acad&eacute;mica y
+                  un firme compromiso con la excelencia profesional. Realiz&oacute;
+                  sus estudios de Medicina en la Pontificia Universidad
+                  Cat&oacute;lica del Ecuador, donde consolid&oacute; una base
+                  cient&iacute;fica rigurosa y competencias cl&iacute;nicas
+                  fundamentales.
+                </p>
+              </div>
+
+              <div data-about-panel className="absolute inset-x-0 bottom-0">
+                <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
+                  Visi&oacute;n Integral
+                </p>
+                <h2 className="text-3xl font-light uppercase tracking-[0.16em] text-white sm:text-5xl">
+                  Gerencia en Salud
+                </h2>
+                <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
+                  Ampli&oacute; su preparaci&oacute;n con estudios de posgrado y
+                  cuarto nivel en la Universidad de las Am&eacute;ricas, en el
+                  &aacute;rea de Gerencia en Salud, integrando calidad,
+                  gesti&oacute;n y una atenci&oacute;n centrada en el paciente.
+                </p>
+              </div>
+
+              <div data-about-panel className="absolute inset-x-0 bottom-0">
+                <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
+                  Actualizaci&oacute;n Continua
+                </p>
+                <h2 className="text-3xl font-light uppercase tracking-[0.16em] text-white sm:text-5xl">
+                  Cirug&iacute;a Est&eacute;tica
+                </h2>
+                <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
+                  Ha fortalecido su formaci&oacute;n mediante estudios de cuarto
+                  nivel, capacitaciones especializadas y actualizaci&oacute;n
+                  continua en instituciones como la Universidad del Conde,
+                  M&eacute;xico, y el IESM Instituto de Estudios Superiores en
+                  Medicina S. C.
+                </p>
+              </div>
+
+              <div data-about-panel className="absolute inset-x-0 bottom-0">
+                <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
+                  Excelencia Profesional
+                </p>
+                <h2 className="text-3xl font-light uppercase tracking-[0.16em] text-white sm:text-5xl">
+                  Seguridad y Naturalidad
+                </h2>
+                <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
+                  Su trayectoria se distingue por la formaci&oacute;n continua,
+                  la innovaci&oacute;n y el perfeccionamiento profesional, con el
+                  objetivo de ofrecer procedimientos basados en evidencia y
+                  desarrollados bajo altos est&aacute;ndares de calidad y
+                  seguridad.
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import NextImage from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -31,17 +32,21 @@ const drawCoverImage = (
 export default function Header() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const textRef = useRef<HTMLDivElement | null>(null);
+  const finalSceneRef = useRef<HTMLDivElement | null>(null);
+  const nameRef = useRef<HTMLDivElement | null>(null);
+  const portraitRef = useRef<HTMLDivElement | null>(null);
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const activeFrameRef = useRef(0);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
     const canvas = canvasRef.current;
-    const text = textRef.current;
+    const finalScene = finalSceneRef.current;
+    const name = nameRef.current;
+    const portrait = portraitRef.current;
     const context = canvas?.getContext("2d");
 
-    if (!section || !canvas || !context || !text) {
+    if (!section || !canvas || !context || !finalScene || !name || !portrait) {
       return;
     }
 
@@ -92,11 +97,14 @@ export default function Header() {
         filter: "contrast(1.12) brightness(0.88)",
       });
 
-      gsap.set(text, {
+      gsap.set(finalScene, {
         autoAlpha: 0,
-        filter: "brightness(0.58)",
-        textShadow: "0 0 0 rgba(212,175,55,0)",
-        y: 28,
+      });
+
+      gsap.set([name, portrait], {
+        autoAlpha: 0,
+        filter: "blur(10px) brightness(0.82)",
+        y: 34,
       });
 
       const timeline = gsap.timeline({
@@ -117,7 +125,7 @@ export default function Header() {
           {
             frame: frameCount - 1,
             snap: "frame",
-            duration: 1.3,
+            duration: 1.7,
             onUpdate: () => {
               activeFrameRef.current = Math.round(scrollState.frame);
               renderFrame(activeFrameRef.current);
@@ -126,16 +134,49 @@ export default function Header() {
           0,
         )
         .to(
-          text,
+          finalScene,
           {
             autoAlpha: 1,
-            filter: "brightness(1.18)",
-            textShadow:
-              "0 0 20px rgba(255,255,255,0.18), 0 0 46px rgba(212,175,55,0.18)",
-            y: 0,
-            duration: 0.5,
+            duration: 0.24,
           },
-          0.55,
+          1.1,
+        )
+        .to(
+          name,
+          {
+            autoAlpha: 1,
+            filter: "blur(0px) brightness(1.1)",
+            y: 0,
+            duration: 0.7,
+          },
+          1.22,
+        )
+        .fromTo(
+          portrait,
+          {
+            autoAlpha: 0,
+            filter: "blur(12px) brightness(0.74)",
+            x: 46,
+            y: 24,
+            scale: 0.985,
+          },
+          {
+            autoAlpha: 1,
+            filter: "blur(0px) brightness(0.94)",
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.78,
+          },
+          1.32,
+        )
+        .to(
+          finalScene,
+          {
+            autoAlpha: 1,
+            duration: 0.45,
+          },
+          2.24,
         );
     }, section);
 
@@ -146,7 +187,7 @@ export default function Header() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[220vh] bg-black">
+    <section ref={sectionRef} className="relative h-[300vh] bg-black">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         <canvas
           ref={canvasRef}
@@ -159,21 +200,36 @@ export default function Header() {
               "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)",
           }}
         />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.025),transparent_62%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.12),rgba(0,0,0,0.08)_42%,rgba(0,0,0,0.54)_100%)]" />
 
         <div
-          ref={textRef}
-          className="absolute right-[3vw] top-1/2 z-20 flex max-w-3xl -translate-y-1/2 flex-col items-center gap-4 px-6 text-center sm:right-[10vw] lg:right-[12vw]"
+          ref={finalSceneRef}
+          className="pointer-events-none absolute inset-0 z-20 overflow-hidden"
         >
-          <p className="text-[0.68rem] uppercase tracking-[0.5em] text-[#d8bc7d]/80 sm:text-xs">
-            Aesthetic Surgery
-          </p>
-          <h1 className="text-4xl font-light uppercase tracking-[0.24em] text-white sm:text-6xl lg:text-7xl">
-            DR. Rene Gonzalez
-          </h1>
-          <p className="text-sm font-light uppercase tracking-[0.42em] text-white/60 sm:text-base">
-            Cirujano est&eacute;tico
-          </p>
+          <div className="absolute left-1/2 top-[68%] z-20 flex w-[min(54rem,62vw)] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center max-md:top-[66%] max-md:w-[88vw]">
+            <div ref={nameRef}>
+              <h1 className="text-[clamp(1.05rem,1.75vw,1.9rem)] font-light tracking-[0.08em] text-white">
+                Ren&eacute; Gonz&aacute;lez D&aacute;vila
+              </h1>
+              <h2 className="mt-1 text-[0.58rem] uppercase tracking-[0.58em] text-white/54 sm:text-xs">
+                Cirug&iacute;a Est&eacute;tica
+              </h2>
+            </div>
+          </div>
+
+          <div
+            ref={portraitRef}
+            className="absolute bottom-0 right-[5vw] z-10 h-[86vh] w-[min(34rem,32vw)] max-md:hidden"
+          >
+            <NextImage
+              src="/images/Dr-Rene-Gonzales-2.png"
+              alt="Dr. Rene Gonzalez"
+              fill
+              priority
+              sizes="32vw"
+              className="object-contain object-bottom drop-shadow-[0_38px_90px_rgba(0,0,0,0.72)]"
+            />
+          </div>
         </div>
       </div>
     </section>
