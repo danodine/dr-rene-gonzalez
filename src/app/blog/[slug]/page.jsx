@@ -26,6 +26,7 @@ export default async function BlogPostPage({ params }) {
         <div style={{ paddingTop: "120px", marginBottom: "-100px" }}>
           <Link
             href="/blog"
+            prefetch={false}
             className="future-link"
             style={{
               gap: "10px",
@@ -197,6 +198,7 @@ export default async function BlogPostPage({ params }) {
             </h2>
             <Link
               href="/blog"
+              prefetch={false}
               style={{
                 color: "var(--muted)",
                 textDecoration: "none",
@@ -210,6 +212,7 @@ export default async function BlogPostPage({ params }) {
 
           <Link
             href={`/blog/${nextPost.slug}`}
+            prefetch={false}
             style={{ textDecoration: "none" }}
           >
             <div className="next-article-card" style={{ height: "500px" }}>

@@ -58,6 +58,7 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={false}
               className="block rounded-2xl px-4 py-3 text-xs uppercase tracking-[0.28em] text-white/70 transition-colors duration-300 hover:bg-white/10 hover:text-[#d4af37]"
               onClick={() => setIsOpen(false)}
             >

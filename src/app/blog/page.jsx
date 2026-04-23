@@ -136,6 +136,7 @@ export default function BlogPage() {
                 <div style={{ marginTop: "auto" }}>
                   <Link
                     href={`/blog/${post.slug}`}
+                    prefetch={false}
                     className="future-link"
                     style={{ width: "100%" }}
                   >
