@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const frameCount = 192;
 
 const currentFrame = (index: number) =>
-  `/images/HeaderAnimation/frame_${index.toString().padStart(4, "0")}.jpg`;
+  `/images/headerAnimation/frame_${index.toString().padStart(4, "0")}.jpg`;
 
 const drawCoverImage = (
   context: CanvasRenderingContext2D,
