@@ -53,10 +53,6 @@ export default function TestimoniosSection() {
           <h2 className="mt-5 text-[clamp(2rem,4.6vw,4.4rem)] font-light uppercase leading-[1.04] tracking-[0.14em] text-white">
             Historias Reales
           </h2>
-          <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-white/66 sm:text-base">
-            Cuatro testimonios seleccionados al azar en cada visita. Pulsa
-            cualquiera para verlo en grande.
-          </p>
         </div>
 
         <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-4 shadow-[0_28px_90px_rgba(0,0,0,0.38)] backdrop-blur-xl sm:p-6 lg:rounded-[2.4rem] lg:p-8">

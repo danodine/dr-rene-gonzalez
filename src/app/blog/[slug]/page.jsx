@@ -3,6 +3,43 @@ import BlogGoldDust from "@/components/BlogGoldDust";
 import { getAllPosts, getPostBySlug } from "@lib/posts";
 import Link from "next/link";
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Articulo no encontrado",
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.paragraph1,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.paragraph1,
+      type: "article",
+      url: `/blog/${post.slug}`,
+      images: [
+        {
+          url: post.image,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.paragraph1,
+      images: [post.image],
+    },
+  };
+}
+
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -10,14 +47,12 @@ export default async function BlogPostPage({ params }) {
 
   const currentIndex = allPosts.findIndex((p) => p.slug === slug);
   const nextPost = allPosts[currentIndex + 1] || allPosts[0];
-  const relatedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
   if (!post) notFound();
 
   return (
     <main className="blog-post-page-detail">
       <BlogGoldDust />
-      {/* Background System */}
       <div className="future-grid-bg" />
       <div className="future-orb one" />
       <div className="future-orb two" />
@@ -38,7 +73,6 @@ export default async function BlogPostPage({ params }) {
             <span style={{ fontSize: "1.2rem" }}>←</span> VOLVER
           </Link>
         </div>
-        {/* HEADER AREA */}
         <header className="blog-header-section">
           <div className="blog-post-meta">
             <span
@@ -65,7 +99,6 @@ export default async function BlogPostPage({ params }) {
           </div>
 
           <h1 className="blog-main-title">
-            {/* Highlight part of the title automatically or manually */}
             {post.title.split(".").map((part, i) => (
               <span key={i} className={i === 1 ? "text-cyan" : ""}>
                 {part}
@@ -75,9 +108,7 @@ export default async function BlogPostPage({ params }) {
           </h1>
         </header>
 
-        {/* MAIN GRID */}
         <div className="blog-article-grid">
-          {/* LEFT COLUMN: ARTICLE CONTENT */}
           <div className="blog-main-content">
             <p
               style={{
@@ -95,7 +126,6 @@ export default async function BlogPostPage({ params }) {
               {post.paragraph2}
             </p>
 
-            {/* Note Box (The Robotic Advantage style) */}
             <div className="blog-note-box">
               <h4>
                 <span style={{ color: "var(--cyan)" }}>✦</span>
@@ -134,7 +164,6 @@ export default async function BlogPostPage({ params }) {
               {post.subparagraph2}
             </p>
 
-            {/* List with checkmarks */}
             <ul className="blog-check-list">
               {post.list.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -142,7 +171,6 @@ export default async function BlogPostPage({ params }) {
             </ul>
           </div>
 
-          {/* RIGHT COLUMN: SIDEBAR */}
           <aside className="blog-sidebar">
             <div className="sidebar-reading-block">
               <div className="blog-author-strip">
@@ -157,26 +185,9 @@ export default async function BlogPostPage({ params }) {
                 </div>
               </div>
             </div>
-
-            {/* <div className="sidebar-share-block" style={{ marginTop: "50px" }}>
-              <span className="sidebar-section-title">Compartir</span>
-              <div
-                style={{
-                  display: "flex",
-                  gap: "15px",
-                  fontSize: "1.4rem",
-                  color: "rgba(255,255,255,0.4)",
-                }}
-              >
-                <FaFacebook style={{ cursor: "pointer" }} />
-                <FaLinkedin style={{ cursor: "pointer" }} />
-                <FaLink style={{ cursor: "pointer" }} />
-              </div>
-            </div> */}
           </aside>
         </div>
 
-        {/* FOOTER: NEXT ARTICLE */}
         <section
           className="next-article-hero"
           style={{

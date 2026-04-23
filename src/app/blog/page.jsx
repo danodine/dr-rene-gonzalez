@@ -10,7 +10,6 @@ import { getAllPosts } from "@lib/posts";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function BlogPage() {
-  // Get posts from the re-structured library
   const posts = useMemo(() => getAllPosts(), []);
   const heroRef = useRef(null);
 
@@ -122,7 +121,6 @@ export default function BlogPage() {
                 >
                   {post.title}
                 </h3>
-                {/* Use paragraph1 as a snippet */}
                 <p
                   style={{
                     color: "var(--muted)",

@@ -143,7 +143,6 @@ body {
   border-radius: 50%;
 }
 
-/* Blog pages: extracted futuristic editorial system */
 .container,
 .blog-editorial-container {
   width: min(100% - 40px, 1200px);
@@ -597,7 +596,6 @@ body {
   }
 }
 
-/* Blog luxury palette override: match main site */
 .blog-future-page,
 .blog-post-page-detail {
   background: #000000;
