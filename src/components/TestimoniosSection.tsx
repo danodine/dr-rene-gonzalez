@@ -86,7 +86,6 @@ export default function TestimoniosSection() {
                   <h3 className="text-sm font-light leading-[1.15] text-white sm:text-xl">
                     {video.title}
                   </h3>
-                  <p className="text-[0.72rem] text-white/72 sm:text-sm">{video.patient}</p>
                 </div>
               </button>
             ))}

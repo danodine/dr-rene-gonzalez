@@ -1,46 +1,46 @@
 export type TestimonialVideo = {
   id: string;
   title: string;
-  patient: string;
   treatment: string;
   youtubeUrl: string;
 };
 
 export const testimonialVideos: TestimonialVideo[] = [
   {
+    id: "botox-1",
+    title: "Aplicacion de Botox",
+    treatment: "Botox",
+    youtubeUrl: "https://www.youtube.com/embed/7NGLAnp-GYE",
+  },
+  {
+    id: "mentoplastia-otoplastia-1",
+    title: "Mentoplastia y Otoplastia",
+    treatment: "Mentoplastia y Otoplastia",
+    youtubeUrl: "https://www.youtube.com/embed/IL0Kwbg967Y",
+  },
+  {
+    id: "acido-hialuronico-1",
+    title: "Acido Hialuronico",
+    treatment: "Acido Hialuronico",
+    youtubeUrl: "https://www.youtube.com/embed/MHnb3Jz7Cig",
+  },
+  {
+    id: "procedimiento-1",
+    title: "Procedimiento",
+    treatment: "Procedimiento Estetico",
+    youtubeUrl: "https://www.youtube.com/embed/AR12DbGAZvA",
+  },
+  {
     id: "rinoplastia-1",
-    title: "Testimonio Rinoplastia",
-    patient: "Paciente 01",
+    title: "Rinoplastia",
     treatment: "Rinoplastia",
-    youtubeUrl: "https://www.youtube.com/watch?v=O2BSqDWaxb8",
+    youtubeUrl: "https://www.youtube.com/embed/RXzngr2R5hE",
   },
   {
-    id: "rinoplastia-2",
-    title: "Cambio Natural",
-    patient: "Paciente 02",
-    treatment: "Armonizacion Facial",
-    youtubeUrl: "https://www.youtube.com/watch?v=O2BSqDWaxb8",
-  },
-  {
-    id: "rinoplastia-3",
-    title: "Resultado Elegante",
-    patient: "Paciente 03",
-    treatment: "Blefaroplastia",
-    youtubeUrl: "https://www.youtube.com/watch?v=O2BSqDWaxb8",
-  },
-  {
-    id: "rinoplastia-4",
-    title: "Mi Nueva Confianza",
-    patient: "Paciente 04",
-    treatment: "Botox Facial",
-    youtubeUrl: "https://www.youtube.com/watch?v=O2BSqDWaxb8",
-  },
-  {
-    id: "rinoplastia-5",
-    title: "Experiencia Real",
-    patient: "Paciente 05",
-    treatment: "Bichectomia",
-    youtubeUrl: "https://www.youtube.com/watch?v=O2BSqDWaxb8",
+    id: "procedimiento-2",
+    title: "Procedimiento",
+    treatment: "Procedimiento Estetico",
+    youtubeUrl: "https://www.youtube.com/embed/_1U7fKq7ovU",
   },
 ];
 

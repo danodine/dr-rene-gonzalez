@@ -1,6 +1,5 @@
 'use client';
 
-import NextImage from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import gsap from "gsap";
@@ -8,10 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const frameCount = 192;
+const frameCount = 469;
 
 const currentFrame = (index: number) =>
-  `/images/servicesAnimationImages/frame_${index.toString().padStart(4, "0")}.jpg`;
+  `/images/servicesAnimationImages/frame_${index.toString().padStart(4, "0")}.png`;
 
 const drawTopCoverImage = (
   context: CanvasRenderingContext2D,
@@ -92,18 +91,8 @@ const services = [
   },
 ] as const;
 
-const desktopPositions = [
-  { top: "clamp(7%, 10vh, 16%)", side: "left" as const },
-  { top: "clamp(28%, 34vh, 40%)", side: "left" as const },
-  { top: "clamp(56%, 60vh, 64%)", side: "left" as const },
-  { top: "clamp(6%, 9vh, 15%)", side: "right" as const },
-  { top: "clamp(23%, 29vh, 34%)", side: "right" as const },
-  { top: "clamp(52%, 58vh, 61%)", side: "right" as const },
-];
-
 type ServiceNodeProps = {
   active: boolean;
-  image: string;
   title: string;
   onClick: () => void;
   className?: string;
@@ -112,7 +101,6 @@ type ServiceNodeProps = {
 
 function ServiceNode({
   active,
-  image,
   title,
   onClick,
   className = "",
@@ -131,15 +119,7 @@ function ServiceNode({
       } ${className}`}
     >
       <span className="absolute inset-[7%] overflow-hidden rounded-full">
-        <NextImage
-          src={image}
-          alt={title}
-          fill
-          sizes="(max-width: 1024px) 33vw, 14vw"
-          className="hidden object-cover object-center opacity-80 transition-transform duration-500 group-hover:scale-105 lg:block"
-        />
-        <span className="absolute inset-0 hidden bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.16),transparent_34%),linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.48))] lg:block" />
-        <span className="absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03)_22%,rgba(0,0,0,0.22)_100%)] lg:hidden" />
+        <span className="absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03)_22%,rgba(0,0,0,0.22)_100%)]" />
       </span>
       <span className="absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.03)_26%,rgba(255,255,255,0.02)_74%,rgba(0,0,0,0.26))]" />
       <span className="absolute inset-[12%] z-10 flex items-center justify-center text-center">
@@ -246,7 +226,7 @@ export default function ServicesSection() {
           trigger: section,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.1,
+          scrub: 1.5,
         },
       });
 
@@ -256,7 +236,7 @@ export default function ServicesSection() {
           {
             frame: frameCount - 1,
             snap: "frame",
-            duration: 1.35,
+            duration: 1.8,
             onUpdate: () => {
               activeFrameRef.current = Math.round(scrollState.frame);
               renderFrame(activeFrameRef.current);
@@ -287,7 +267,7 @@ export default function ServicesSection() {
   const active = services[activeService];
 
   return (
-    <section ref={sectionRef} className="relative h-[360vh] bg-black">
+    <section ref={sectionRef} className="relative h-[420vh] bg-black">
       <div className="sticky top-0 h-screen overflow-hidden bg-black">
         <canvas
           ref={canvasRef}
@@ -297,55 +277,25 @@ export default function ServicesSection() {
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/82 via-black/38 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/88 via-black/44 to-transparent" />
 
-        <div className="absolute inset-x-0 top-10 z-20 px-6 text-center sm:top-14 lg:left-auto lg:right-[6vw] lg:w-[min(40rem,38vw)] lg:px-0 lg:text-right">
+        <div className="absolute inset-x-0 top-10 z-20 px-6 text-center sm:top-14 lg:left-auto lg:right-[10vw] lg:w-[min(40rem,38vw)] lg:px-0 lg:text-right">
           <p className="text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80 lg:text-[0.9rem] lg:tracking-[0.5em]">
             Servicios
           </p>
-          <div
-            className={`hidden transition-all duration-300 lg:block ${
-              detailVisible
-                ? "pointer-events-auto mt-4 opacity-100"
-                : "pointer-events-none mt-2 opacity-0"
-            }`}
-          >
-            <h2 className="text-[clamp(1.55rem,4.2vw,3.4rem)] font-light uppercase leading-[1.08] tracking-[0.13em] text-white">
-              {active.title}
-            </h2>
-          </div>
         </div>
 
-        <div className="absolute inset-0 z-20 hidden lg:block">
-          {services.map((service, index) => {
-            const position = desktopPositions[index];
-            return (
-              <ServiceNode
-                key={service.title}
-                active={activeService === index}
-                image={service.image}
-                title={service.title}
-                onClick={() => {
-                  setActiveService(index);
-                  setDetailVisible(true);
-                }}
-                className="absolute"
-                style={
-                  position.side === "left"
-                    ? {
-                        top: position.top,
-                        left: "3.5vw",
-                        width: "clamp(7rem, 10vw, 11.5rem)",
-                        height: "clamp(7rem, 10vw, 11.5rem)",
-                      }
-                    : {
-                        top: position.top,
-                        right: "3.5vw",
-                        width: "clamp(7rem, 10vw, 11.5rem)",
-                        height: "clamp(7rem, 10vw, 11.5rem)",
-                      }
-                }
-              />
-            );
-          })}
+        <div className="absolute bottom-[10%] left-[3.5vw] top-[10%] z-20 hidden lg:grid lg:grid-cols-2 lg:grid-rows-3 lg:content-between lg:gap-x-[clamp(1rem,1.8vw,1.9rem)]">
+          {services.map((service, index) => (
+            <ServiceNode
+              key={service.title}
+              active={activeService === index}
+              title={service.title}
+              onClick={() => {
+                setActiveService(index);
+                setDetailVisible(true);
+              }}
+              className="h-[clamp(6.6rem,9vw,8.6rem)] w-[clamp(11rem,15vw,14rem)]"
+            />
+          ))}
         </div>
 
         <div className="absolute bottom-[6%] left-[0.125rem] top-[6%] z-20 flex flex-col justify-between lg:hidden">
@@ -353,7 +303,6 @@ export default function ServicesSection() {
             <ServiceNode
               key={service.title}
               active={activeService === index}
-              image={service.image}
               title={service.title}
               onClick={() => {
                 setActiveService(index);
