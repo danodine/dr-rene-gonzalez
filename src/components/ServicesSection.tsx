@@ -365,13 +365,13 @@ export default function ServicesSection() {
         </div>
 
         <div
-          className={`absolute right-[0.125rem] top-[54%] z-20 h-fit w-[min(18.625rem,calc(54vw+1.625rem))] -translate-y-1/2 rounded-[2rem] border border-white/10 bg-black/58 px-5 pb-5 pt-11 shadow-[0_28px_90px_rgba(0,0,0,0.48)] backdrop-blur-xl transition-all duration-300 sm:right-[0.125rem] sm:top-1/2 sm:h-auto sm:w-[min(21.125rem,calc(64vw+0.625rem))] sm:px-6 sm:pb-6 sm:pt-12 md:w-[min(24.125rem,calc(60vw+0.125rem))] md:px-8 md:pb-8 md:pt-14 lg:left-auto lg:right-[8vw] lg:w-auto lg:-translate-x-0 lg:px-[clamp(1.25rem,1.8vw,2rem)] lg:pb-[clamp(1.25rem,1.8vw,2rem)] lg:pt-[clamp(2.8rem,3.2vw,3.6rem)] 2xl:w-[min(30rem,46vw)] ${
+          className={`absolute bottom-[max(11.5rem,calc(env(safe-area-inset-bottom)+10rem))] right-[0.125rem] z-20 flex max-h-[min(52dvh,28rem)] w-[min(18.625rem,calc(54vw+1.625rem))] flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-black/58 px-5 pb-5 pt-11 shadow-[0_28px_90px_rgba(0,0,0,0.48)] backdrop-blur-xl transition-all duration-300 sm:right-[0.125rem] sm:max-h-[min(58dvh,32rem)] sm:w-[min(21.125rem,calc(64vw+0.625rem))] sm:px-6 sm:pb-6 sm:pt-12 md:max-h-[min(62dvh,36rem)] md:w-[min(24.125rem,calc(60vw+0.125rem))] md:px-8 md:pb-8 md:pt-14 lg:bottom-auto lg:left-auto lg:right-[8vw] lg:top-1/2 lg:max-h-none lg:w-auto lg:-translate-y-1/2 lg:px-[clamp(1.25rem,1.8vw,2rem)] lg:pb-[clamp(1.25rem,1.8vw,2rem)] lg:pt-[clamp(2.8rem,3.2vw,3.6rem)] 2xl:w-[min(30rem,46vw)] ${
             detailVisible
               ? "pointer-events-auto opacity-100"
               : "pointer-events-none opacity-0"
           }`}
         >
-          <div className="flex h-full w-full min-w-0 flex-col lg:max-w-[clamp(16rem,22vw,24rem)]">
+          <div className="flex h-full min-h-0 w-full min-w-0 flex-col lg:max-w-[clamp(16rem,22vw,24rem)]">
             <button
               type="button"
               aria-label="Cerrar detalles"
@@ -383,7 +383,7 @@ export default function ServicesSection() {
             <h3 className="mt-2 max-w-full break-words text-[0.98rem] font-light uppercase leading-[1.18] tracking-[0.14em] text-[#d4af37] [overflow-wrap:anywhere] sm:text-[1.18rem] lg:text-[clamp(1.08rem,1.35vw,1.45rem)]">
               {active.title}
             </h3>
-            <ul className="mt-4 flex-1 space-y-2 overflow-y-auto pr-1 text-[0.92rem] leading-6 text-white/76 sm:mt-6 sm:space-y-3 sm:text-base sm:leading-7 lg:mt-5 lg:space-y-2.5 lg:text-[clamp(0.9rem,1vw,1rem)] lg:leading-[1.65]">
+            <ul className="mt-4 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1 text-[0.92rem] leading-6 text-white/76 sm:mt-6 sm:space-y-3 sm:text-base sm:leading-7 lg:mt-5 lg:space-y-2.5 lg:text-[clamp(0.9rem,1vw,1rem)] lg:leading-[1.65]">
               {active.items.map((item) => (
                 <li
                   key={item}
