@@ -13,12 +13,6 @@ export const testimonialVideos: TestimonialVideo[] = [
     youtubeUrl: "https://www.youtube.com/embed/7NGLAnp-GYE",
   },
   {
-    id: "mentoplastia-otoplastia-1",
-    title: "Mentoplastia y Otoplastia",
-    treatment: "Mentoplastia y Otoplastia",
-    youtubeUrl: "https://www.youtube.com/embed/IL0Kwbg967Y",
-  },
-  {
     id: "acido-hialuronico-1",
     title: "Acido Hialuronico",
     treatment: "Acido Hialuronico",
