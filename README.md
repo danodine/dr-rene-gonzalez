@@ -66,7 +66,7 @@ Algunas secciones dependen de secuencias de imágenes y assets específicos. Ver
 - `servicesAnimationImages/` secuencia de servicios
 - `blog/` imágenes de artículos
 - `Dr-Rene-Gonzales.png`
-- `Dr-Rene-Gonzales-2.png`
+- `Dr-Rene-Gonzales-blanco.png`
 - `mouse-cursor.png`
 
 ## Configuración local

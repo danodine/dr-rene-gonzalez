@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
@@ -29,31 +29,71 @@ const drawTopCoverImage = (
   context.drawImage(image, x, y, drawWidth, drawHeight);
 };
 
+type ServiceItemGroup = {
+  label: string;
+  subitems: string[];
+};
+
+const groupServiceItems = (items: readonly string[]): ServiceItemGroup[] => {
+  return items.reduce<ServiceItemGroup[]>((groups, rawItem) => {
+    const item = rawItem.trim();
+    const isSubitem = item.startsWith("*");
+
+    if (isSubitem) {
+      const subitemLabel = item.replace(/^\*\s*/, "");
+      const lastGroup = groups[groups.length - 1];
+
+      if (lastGroup) {
+        lastGroup.subitems.push(subitemLabel);
+      } else {
+        groups.push({
+          label: subitemLabel,
+          subitems: [],
+        });
+      }
+
+      return groups;
+    }
+
+    groups.push({
+      label: item,
+      subitems: [],
+    });
+
+    return groups;
+  }, []);
+};
+
 const services = [
   {
-    label: "Rejuvenecimiento Facial",
-    title: "Rejuvenecimiento Facial",
+    label: "Medicina Estética Facial",
+    title: "Medicina Estética Facial",
     image: "/images/servicesAnimationImages/frame_0018.jpg",
     items: [
-      "Aplicacion Botox facial",
+      "Botox",
+      "Acido hialuronico",
       "Laser CO2 fraccionado",
       "Terapia fotodinamica",
-      "Ritidoplastia (lifting facial)",
+      "NCTF",
+      "Bio estimuladores",
+      "Marcacion mandibular",
+      "vitaminizacion facial",
     ],
   },
   {
-    label: "Hidratacion y Calidad de la Piel",
-    title: "Hidratacion y Calidad de la Piel",
-    image: "/images/servicesAnimationImages/frame_0046.jpg",
+    label: "Medicina estetica corporal",
+    title: "Medicina estetica corporal",
+    image: "/images/servicesAnimationImages/frame_0142.jpg",
     items: [
-      "Hidratacion con acido hialuronico",
-      "Aplicacion acido hialuronico",
-      "Vitaminizacion facial",
+      "IPL (Intensa luz pulsada)",
+      "* Estrias y depelacion",
+      "* Remocion",
+      "* Radiocavitacion y radiofrecuencia",
     ],
   },
   {
-    label: "Armonizacion Facial",
-    title: "Armonizacion Facial",
+    label: "Cirugia Estetica",
+    title: "Cirugia Estetica",
     image: "/images/servicesAnimationImages/frame_0074.jpg",
     items: [
       "Rinoplastia",
@@ -61,32 +101,45 @@ const services = [
       "Bichectomia",
       "Otoplastia",
       "Parpados (blefaroplastia)",
+      "Ritidoplastia",
+      "Lpopapada",
     ],
   },
   {
-    label: "Reduccion de Grasa y Moldeo Corporal",
-    title: "Reduccion de Grasa y Moldeo Corporal",
+    label: "Cirugia Etetica Corporal",
+    title: "Cirugia Etetica corporal",
     image: "/images/servicesAnimationImages/frame_0108.jpg",
     items: [
       "Liposuccion",
+      "* Lacer",
+      "* Microaire",
+      "* Tradicional",
       "Mini lipo",
-      "Papada",
-      "Cavitacion",
+      "Abdimoplastia",
+      "Aumento de mamas",
     ],
   },
   {
-    label: "Aumento y Remodelacion Corporal",
-    title: "Aumento y Remodelacion Corporal",
-    image: "/images/servicesAnimationImages/frame_0142.jpg",
-    items: ["Aumento de mamas"],
+    label: "Hidratacion y Calidad de la Piel",
+    title: "Hidratacion y Calidad de la Piel",
+    image: "/images/servicesAnimationImages/frame_0046.jpg",
+    items: [
+      "IPL (Intesa luz pulsada)",
+      "* Melasma",
+      "* Manchas de piel",
+      "* Depilacion",
+      "Hidratacion con acido hialuronico",
+    ],
   },
   {
-    label: "Tratamientos Funcionales / Medicos Esteticos",
-    title: "Tratamientos Funcionales / Medicos Esteticos",
+    label: "Tratamientos Funcionales",
+    title: "Tratamientos Funcionales",
     image: "/images/servicesAnimationImages/frame_0176.jpg",
     items: [
       "Botox (hiperhidrosis)",
-      "Depilacion definitiva (IPL)",
+      "Botox (Bruxismo)",
+      "Botox (Bovimientos clonicos)",
+      "Botox (tosis palpebral)",
     ],
   },
 ] as const;
@@ -207,7 +260,10 @@ export default function ServicesSection() {
 
     const ctx = gsap.context(() => {
       const scrollState = { frame: 0 };
-      const nodes = gsap.utils.toArray<HTMLElement>("[data-service-node]", section);
+      const nodes = gsap.utils.toArray<HTMLElement>(
+        "[data-service-node]",
+        section,
+      );
 
       gsap.set(canvas, {
         autoAlpha: 1,
@@ -255,7 +311,6 @@ export default function ServicesSection() {
           },
           0.16,
         );
-
     }, section);
 
     return () => {
@@ -265,6 +320,7 @@ export default function ServicesSection() {
   }, []);
 
   const active = services[activeService];
+  const activeItemGroups = groupServiceItems(active.items);
 
   return (
     <section ref={sectionRef} className="relative h-[420vh] bg-black">
@@ -333,12 +389,24 @@ export default function ServicesSection() {
               {active.title}
             </h3>
             <ul className="mt-4 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1 text-[0.92rem] leading-6 text-white/76 sm:mt-6 sm:space-y-3 sm:text-base sm:leading-7 lg:mt-5 lg:space-y-2.5 lg:text-[clamp(0.9rem,1vw,1rem)] lg:leading-[1.65]">
-              {active.items.map((item) => (
+              {activeItemGroups.map((itemGroup) => (
                 <li
-                  key={item}
+                  key={`${active.title}-${itemGroup.label}`}
                   className="border-b border-white/8 pb-3 last:border-b-0 last:pb-0"
                 >
-                  {item}
+                  <span>{itemGroup.label}</span>
+                  {itemGroup.subitems.length > 0 ? (
+                    <ul className="mt-2 space-y-1.5 pl-4 text-[0.88em] leading-[1.55] text-white/52">
+                      {itemGroup.subitems.map((subitem) => (
+                        <li
+                          key={`${itemGroup.label}-${subitem}`}
+                          className="relative pl-3 before:absolute before:left-0 before:top-[0.72em] before:h-px before:w-1.5 before:bg-[#d4af37]/45 before:content-['']"
+                        >
+                          {subitem}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </li>
               ))}
             </ul>

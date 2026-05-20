@@ -177,10 +177,10 @@ export default async function BlogPostPage({ params }) {
                 <img
                   src="/images/Dr-Rene-Gonzales.png"
                   className="author-mini-photo"
-                  alt="DR. Rene Gonzales"
+                  alt="DR. René Gonzalez Dávila"
                 />
                 <div className="author-mini-info">
-                  <p className="name">DR. Rene Gonzales</p>
+                  <p className="name">DR. René Gonzalez Dávila</p>
                   <p className="role">Cirujano Estetico</p>
                 </div>
               </div>

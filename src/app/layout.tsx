@@ -10,13 +10,13 @@ const siteUrl = "https://pagina-rene-gonzalez.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "DR. Rene Gonzalez | Cirujano Estetico",
-    template: "%s | DR. Rene Gonzalez",
+    default: "DR. René Gonzalez Dávila | Cirujano Estetico",
+    template: "%s | DR. René Gonzalez Dávila",
   },
   description:
     "Cirujano estético enfocado en armonización facial, rejuvenecimiento y procedimientos corporales con resultados naturales, seguros y personalizados.",
   keywords: [
-    "Dr Rene Gonzalez",
+    "Dr René Gonzalez Dávila",
     "cirujano estetico",
     "cirugia estetica",
     "armonizacion facial",
@@ -26,10 +26,10 @@ export const metadata: Metadata = {
     "rinoplastia",
     "cirugia plastica Ecuador",
   ],
-  applicationName: "DR. Rene Gonzalez",
-  authors: [{ name: "DR. Rene Gonzalez" }],
-  creator: "DR. Rene Gonzalez",
-  publisher: "DR. Rene Gonzalez",
+  applicationName: "DR. René Gonzalez Dávila",
+  authors: [{ name: "DR. René Gonzalez Dávila" }],
+  creator: "DR. René Gonzalez Dávila",
+  publisher: "DR. René Gonzalez Dávila",
   alternates: {
     canonical: "/",
   },
@@ -37,25 +37,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_EC",
     url: siteUrl,
-    siteName: "DR. Rene Gonzalez",
-    title: "DR. Rene Gonzalez | Cirujano Estetico",
+    siteName: "DR. René Gonzalez Dávila",
+    title: "DR. René Gonzalez Dávila | Cirujano Estetico",
     description:
       "Descubre procedimientos estéticos faciales y corporales con una visión médica enfocada en naturalidad, proporción y seguridad.",
     images: [
       {
-        url: "/images/Dr-Rene-Gonzales-2.png",
+        url: "/images/Dr-Rene-Gonzales-Bl.png",
         width: 1200,
         height: 1200,
-        alt: "DR. Rene Gonzalez, Cirujano Estetico",
+        alt: "DR. René Gonzalez Dávila, Cirujano Estetico",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DR. Rene Gonzalez | Cirujano Estetico",
+    title: "DR. René Gonzalez Dávila | Cirujano Estetico",
     description:
       "Cirugía estética facial y corporal con resultados naturales, precisión quirúrgica y atención personalizada.",
-    images: ["/images/Dr-Rene-Gonzales-2.png"],
+    images: ["/images/Dr-Rene-Gonzales-Bl.png"],
   },
   robots: {
     index: true,

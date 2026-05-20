@@ -52,7 +52,7 @@ export default function BlogPage() {
           <p className="future-subtitle">
             Un blog diseñado como una experiencia editorial inmersiva:
             información clara sobre estética, procedimientos y recuperación con
-            DR. Rene Gonzales, Cirujano Estetico.
+            DR. René Gonzalez Dávila, Cirujano Estetico.
           </p>
         </div>
       </section>
