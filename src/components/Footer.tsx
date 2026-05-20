@@ -7,10 +7,10 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div>
             <p className="text-[0.68rem] uppercase tracking-[0.5em] text-[#d4af37]/75">
-              DR René Gonzalez Dávila
+              DR René González Dávila
             </p>
             <h2 className="mt-5 max-w-3xl text-3xl font-light uppercase tracking-[0.18em] text-white sm:text-5xl">
-              Cirujano est&eacute;tico
+              Cirujano estético
             </h2>
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
               Tengo un dicho que es transformando vidas...
@@ -24,7 +24,11 @@ export default function Footer() {
                 aria-label="Facebook"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/12 bg-white/5 text-white/80 shadow-[0_14px_40px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:border-[#d4af37]/40 hover:text-[#d4af37]"
               >
-                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5 fill-current"
+                  aria-hidden="true"
+                >
                   <path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.1H8V14h2.5v7h3z" />
                 </svg>
               </a>
@@ -35,7 +39,11 @@ export default function Footer() {
                 aria-label="Instagram"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/12 bg-white/5 text-white/80 shadow-[0_14px_40px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:border-[#d4af37]/40 hover:text-[#d4af37]"
               >
-                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5 fill-current"
+                  aria-hidden="true"
+                >
                   <path d="M7.8 3h8.4A4.8 4.8 0 0 1 21 7.8v8.4a4.8 4.8 0 0 1-4.8 4.8H7.8A4.8 4.8 0 0 1 3 16.2V7.8A4.8 4.8 0 0 1 7.8 3m0 1.7A3.1 3.1 0 0 0 4.7 7.8v8.4a3.1 3.1 0 0 0 3.1 3.1h8.4a3.1 3.1 0 0 0 3.1-3.1V7.8a3.1 3.1 0 0 0-3.1-3.1H7.8m8.8 1.3a1.1 1.1 0 1 1 0 2.3 1.1 1.1 0 0 1 0-2.3M12 7.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5m0 1.7A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2" />
                 </svg>
               </a>
@@ -46,7 +54,11 @@ export default function Footer() {
                 aria-label="TikTok"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/12 bg-white/5 text-white/80 shadow-[0_14px_40px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:border-[#d4af37]/40 hover:text-[#d4af37]"
               >
-                <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5 fill-current"
+                  aria-hidden="true"
+                >
                   <path d="M14.8 3c.3 1.8 1.3 3.2 3.2 3.8.6.2 1.3.3 2 .3V9c-1.8 0-3.7-.6-5.1-1.8v7.2a5.4 5.4 0 1 1-5.4-5.4c.4 0 .8 0 1.1.1v2.2a3.2 3.2 0 1 0 2 3V3h2.2z" />
                 </svg>
               </a>
@@ -80,7 +92,7 @@ export default function Footer() {
 
             <div>
               <p className="text-[0.68rem] uppercase tracking-[0.42em] text-[#d4af37]/75">
-                Direcci&oacute;n
+                Dirección
               </p>
               <a
                 href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=/maps/place//data%3D!4m2!3m1!1s0x91cb49113de9be7b:0x3ab4219d42a27722%3Fsa%3DX%26ved%3D1t:8290%26ictx%3D111&ved=2ahUKEwi398q3r4GUAxWycfEDHaPLKkUQ4kB6BAgmEAM&usg=AOvVaw2QU13P6DX4EZsGfjyT48NX"
@@ -88,14 +100,14 @@ export default function Footer() {
                 rel="noreferrer"
                 className="mt-4 block max-w-md text-sm leading-7 text-white/60 transition-colors duration-300 hover:text-[#d4af37] sm:text-base"
               >
-                Ver ubicaci&oacute;n de la cl&iacute;nica en Google Maps
+                Ver ubicación de la clínica en Google Maps
               </a>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col gap-5 border-t border-white/10 pt-8 text-xs uppercase tracking-[0.28em] text-white/35 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} DR René Gonzalez Dávila</p>
+          <p>&copy; {new Date().getFullYear()} DR René González Dávila</p>
           <p>
             Developed by <span className="text-[#d4af37]">HeiLabs</span>{" "}
             Germany

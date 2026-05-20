@@ -5,12 +5,28 @@ import { useEffect, useRef, useState } from "react";
 
 const navItems = [
   {
-    href: "/",
-    label: "Start",
+    href: "/#inicio",
+    label: "Inicio",
+  },
+  {
+    href: "/#vision-mision",
+    label: "Visión y misión",
+  },
+  {
+    href: "/#sobre-mi",
+    label: "Sobre mí",
+  },
+  {
+    href: "/#servicios",
+    label: "Servicios",
+  },
+  {
+    href: "/#testimonios",
+    label: "Testimonios",
   },
   {
     href: "/blog",
-    label: "Blog",
+    label: "Revista Digital",
   },
 ];
 
@@ -50,25 +66,24 @@ export default function Navbar() {
     <nav ref={navRef} className="fixed right-5 top-5 z-50 sm:right-8 sm:top-8">
       <button
         type="button"
-        aria-label={isOpen ? "Cerrar menu" : "Abrir menu"}
+        aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
         aria-expanded={isOpen}
         onClick={() => setIsOpen((open) => !open)}
-        className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-white/30 bg-black/30 shadow-[0_18px_55px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.42),inset_0_-14px_28px_rgba(255,255,255,0.08)] backdrop-blur-2xl backdrop-saturate-150 transition-all duration-300 hover:border-[#d4af37]/45 hover:bg-black/40 hover:shadow-[0_18px_58px_rgba(0,0,0,0.24),0_0_34px_rgba(212,175,55,0.1),inset_0_1px_0_rgba(255,255,255,0.5)]"
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full border border-[#d4af37]/35 bg-black/55 text-[#d4af37] shadow-[0_18px_40px_rgba(0,0,0,0.34),0_0_24px_rgba(212,175,55,0.08)] backdrop-blur-xl transition-all duration-300 hover:border-[#d4af37]/70 hover:bg-black/72 hover:text-[#f1d37a]"
       >
-        <span className="pointer-events-none absolute inset-x-2 top-1 h-4 rounded-full bg-white/18 blur-sm" />
         <span className="flex w-5 flex-col gap-1.5">
           <span
-            className={`h-px w-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.35)] transition-transform duration-300 ${
+            className={`h-px w-full bg-current shadow-[0_0_8px_rgba(212,175,55,0.35)] transition-transform duration-300 ${
               isOpen ? "translate-y-[3.5px] rotate-45" : ""
             }`}
           />
           <span
-            className={`h-px w-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.35)] transition-opacity duration-300 ${
+            className={`h-px w-full bg-current shadow-[0_0_8px_rgba(212,175,55,0.35)] transition-opacity duration-300 ${
               isOpen ? "opacity-0" : "opacity-100"
             }`}
           />
           <span
-            className={`h-px w-full bg-[#d4af37] shadow-[0_0_8px_rgba(212,175,55,0.35)] transition-transform duration-300 ${
+            className={`h-px w-full bg-current shadow-[0_0_8px_rgba(212,175,55,0.35)] transition-transform duration-300 ${
               isOpen ? "-translate-y-[8.5px] -rotate-45" : ""
             }`}
           />

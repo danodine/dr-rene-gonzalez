@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
 
   if (!post) {
     return {
-      title: "Articulo no encontrado",
+      title: "Artículo no encontrado",
     };
   }
 
@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }) {
               fontSize: "0.8rem",
             }}
           >
-            <span style={{ fontSize: "1.2rem" }}>←</span> VOLVER
+            <span style={{ fontSize: "1.2rem" }}>&larr;</span> VOLVER
           </Link>
         </div>
         <header className="blog-header-section">
@@ -128,7 +128,7 @@ export default async function BlogPostPage({ params }) {
 
             <div className="blog-note-box">
               <h4>
-                <span style={{ color: "var(--cyan)" }}>✦</span>
+                <span style={{ color: "var(--cyan)" }}>&#10022;</span>
                 {post.noteTitle}
               </h4>
               <p>{post.note}</p>
@@ -177,11 +177,11 @@ export default async function BlogPostPage({ params }) {
                 <img
                   src="/images/Dr-Rene-Gonzales.png"
                   className="author-mini-photo"
-                  alt="DR. René Gonzalez Dávila"
+                  alt="DR. René González Dávila"
                 />
                 <div className="author-mini-info">
-                  <p className="name">DR. René Gonzalez Dávila</p>
-                  <p className="role">Cirujano Estetico</p>
+                  <p className="name">DR. René González Dávila</p>
+                  <p className="role">Cirujano estético</p>
                 </div>
               </div>
             </div>
@@ -205,7 +205,7 @@ export default async function BlogPostPage({ params }) {
             }}
           >
             <h2 style={{ color: "#fff", fontSize: "3.5rem", margin: 0 }}>
-              Próximo Artículo.
+              Próximo artículo.
             </h2>
             <Link
               href="/blog"
@@ -230,7 +230,7 @@ export default async function BlogPostPage({ params }) {
               <img
                 src={nextPost.image}
                 className="next-article-image"
-                alt="Próximo"
+                alt="Próximo artículo"
               />
               <div className="next-article-content" style={{ padding: "60px" }}>
                 <span
@@ -253,7 +253,7 @@ export default async function BlogPostPage({ params }) {
                 >
                   {nextPost.title}
                 </h3>
-                <span className="future-link">Leer Ahora</span>
+                <span className="future-link">Leer ahora</span>
               </div>
             </div>
           </Link>

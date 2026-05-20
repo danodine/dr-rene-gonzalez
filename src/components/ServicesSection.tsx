@@ -71,64 +71,64 @@ const services = [
     image: "/images/servicesAnimationImages/frame_0018.jpg",
     items: [
       "Botox",
-      "Acido hialuronico",
-      "Laser CO2 fraccionado",
-      "Terapia fotodinamica",
+      "Ácido hialurónico",
+      "Láser CO2 fraccionado",
+      "Terapia fotodinámica",
       "NCTF",
-      "Bio estimuladores",
-      "Marcacion mandibular",
-      "vitaminizacion facial",
+      "Bioestimuladores",
+      "Marcación mandibular",
+      "Vitaminización facial",
     ],
   },
   {
-    label: "Medicina estetica corporal",
-    title: "Medicina estetica corporal",
+    label: "Medicina estética corporal",
+    title: "Medicina estética corporal",
     image: "/images/servicesAnimationImages/frame_0142.jpg",
     items: [
       "IPL (Intensa luz pulsada)",
-      "* Estrias y depelacion",
-      "* Remocion",
-      "* Radiocavitacion y radiofrecuencia",
+      "* Estrías y depilación",
+      "* Remoción",
+      "* Radiocavitación y radiofrecuencia",
     ],
   },
   {
-    label: "Cirugia Estetica",
-    title: "Cirugia Estetica",
+    label: "Cirugía Estética",
+    title: "Cirugía Estética",
     image: "/images/servicesAnimationImages/frame_0074.jpg",
     items: [
       "Rinoplastia",
       "Mentoplastia",
-      "Bichectomia",
+      "Bichectomía",
       "Otoplastia",
-      "Parpados (blefaroplastia)",
+      "Párpados (blefaroplastia)",
       "Ritidoplastia",
-      "Lpopapada",
+      "Lipo papada",
     ],
   },
   {
-    label: "Cirugia Etetica Corporal",
-    title: "Cirugia Etetica corporal",
+    label: "Cirugía Estética Corporal",
+    title: "Cirugía Estética Corporal",
     image: "/images/servicesAnimationImages/frame_0108.jpg",
     items: [
-      "Liposuccion",
-      "* Lacer",
+      "Liposucción",
+      "* Láser",
       "* Microaire",
       "* Tradicional",
       "Mini lipo",
-      "Abdimoplastia",
+      "Abdominoplastia",
       "Aumento de mamas",
     ],
   },
   {
-    label: "Hidratacion y Calidad de la Piel",
-    title: "Hidratacion y Calidad de la Piel",
+    label: "Hidratación y Calidad de la Piel",
+    title: "Hidratación y Calidad de la Piel",
     image: "/images/servicesAnimationImages/frame_0046.jpg",
     items: [
-      "IPL (Intesa luz pulsada)",
+      "IPL (Intensa luz pulsada)",
       "* Melasma",
       "* Manchas de piel",
-      "* Depilacion",
-      "Hidratacion con acido hialuronico",
+      "* Depilación",
+      "Hidratación con ácido hialurónico",
     ],
   },
   {
@@ -137,9 +137,9 @@ const services = [
     image: "/images/servicesAnimationImages/frame_0176.jpg",
     items: [
       "Botox (hiperhidrosis)",
-      "Botox (Bruxismo)",
-      "Botox (Bovimientos clonicos)",
-      "Botox (tosis palpebral)",
+      "Botox (bruxismo)",
+      "Botox (movimientos clónicos)",
+      "Botox (ptosis palpebral)",
     ],
   },
 ] as const;
@@ -323,7 +323,11 @@ export default function ServicesSection() {
   const activeItemGroups = groupServiceItems(active.items);
 
   return (
-    <section ref={sectionRef} className="relative h-[420vh] bg-black">
+    <section
+      id="servicios"
+      ref={sectionRef}
+      className="relative h-[420vh] bg-black"
+    >
       <div className="sticky top-0 h-screen overflow-hidden bg-black">
         <canvas
           ref={canvasRef}

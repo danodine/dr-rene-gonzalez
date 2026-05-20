@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
@@ -217,6 +217,16 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="relative h-[760vh] bg-black">
+      <div
+        id="vision-mision"
+        className="absolute top-0 h-px w-px"
+        aria-hidden="true"
+      />
+      <div
+        id="sobre-mi"
+        className="absolute left-0 top-[56%] h-px w-px"
+        aria-hidden="true"
+      />
       <div className="sticky top-0 h-screen overflow-hidden">
         <div
           className="absolute inset-0 scale-[1.02] bg-cover bg-center bg-no-repeat"
@@ -245,13 +255,19 @@ export default function HeroSection() {
               className="max-w-sm rounded-3xl border border-white/10 bg-black/62 p-5 text-left shadow-[0_18px_60px_rgba(0,0,0,0.36)] backdrop-blur-md sm:rounded-none sm:border-transparent sm:bg-transparent sm:p-0 sm:shadow-none sm:backdrop-blur-0"
             >
               <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/75">
-                Visi&oacute;n
+                Visión
               </p>
               <h2 className="text-2xl font-light uppercase tracking-[0.16em] text-white sm:text-4xl sm:tracking-[0.18em]">
-                Belleza con Prop&oacute;sito
+                Belleza con Propósito
               </h2>
               <p className="mt-5 text-xs leading-6 text-white/78 sm:mt-6 sm:text-base sm:leading-7 sm:text-white/58">
-                Convertirme en un referente en cirugía estética, reconocido por resultados elegantes, naturales y consistentes, así como por una atención humana y personalizada de alto nivel. Aspiramos a consolidar un consultorio de prestigio, donde la innovación, la ética y el detalle marquen la diferencia, creando experiencias que inspiren confianza y transformen positivamente la vida de nuestros pacientes.
+                Ser un referente en cirugía estética, reconocido por ofrecer
+                resultados elegantes, naturales y consistentes, así como una
+                atención humana, personalizada y de alto nivel. Aspiramos a
+                consolidar un consultorio de prestigio, donde la innovación, la
+                ética y el cuidado por cada detalle marquen la diferencia,
+                creando experiencias que inspiren confianza y transformen
+                positivamente la vida de nuestros pacientes.
               </p>
             </div>
           </div>
@@ -264,13 +280,19 @@ export default function HeroSection() {
               className="max-w-sm rounded-3xl border border-white/10 bg-black/62 p-5 text-left shadow-[0_18px_60px_rgba(0,0,0,0.36)] backdrop-blur-md sm:rounded-none sm:border-transparent sm:bg-transparent sm:p-0 sm:shadow-none sm:backdrop-blur-0"
             >
               <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/75">
-                Misi&oacute;n
+                Misión
               </p>
               <h2 className="text-2xl font-light uppercase tracking-[0.16em] text-white sm:text-4xl sm:tracking-[0.18em]">
                 Confianza en Cada Detalle
               </h2>
               <p className="mt-5 text-xs leading-6 text-white/78 sm:mt-6 sm:text-base sm:leading-7 sm:text-white/58">
-                Brindar una experiencia médica estética de excelencia, combinando precisión quirúrgica, sensibilidad artística y un profundo respeto por la individualidad de cada paciente. Mi compromiso es realzar la belleza natural de forma armónica y segura, generando confianza, bienestar y resultados que no solo transformen la imagen, sino también la seguridad y calidad de vida de quienes confían en mí.
+                Brindar una experiencia médico-estética de excelencia,
+                combinando precisión quirúrgica, sensibilidad artística y un
+                profundo respeto por la individualidad de cada paciente. Nuestro
+                compromiso es realzar la belleza natural de forma armónica y
+                segura, generando confianza, bienestar y resultados que no solo
+                transformen la imagen, sino que también fortalezcan la seguridad
+                y la calidad de vida de quienes confían en nosotros.
               </p>
             </div>
           </div>
@@ -298,52 +320,53 @@ export default function HeroSection() {
           </div>
 
           <div className="absolute inset-0 z-20 flex items-end justify-start p-6 pb-16 sm:p-12 lg:p-20">
-            <div ref={secondTextRef} className="relative h-[25rem] w-full max-w-2xl sm:h-[24rem]">
+            <div
+              ref={secondTextRef}
+              className="relative h-[25rem] w-full max-w-2xl sm:h-[24rem]"
+            >
               <div data-about-panel className="absolute inset-x-0 bottom-0">
                 <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
                   Sobre el Doctor
                 </p>
                 <h2 className="text-3xl font-light uppercase tracking-[0.16em] text-white sm:text-5xl">
-                  Formaci&oacute;n Acad&eacute;mica
+                  Formación Académica
                 </h2>
                 <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
-                  M&eacute;dico cirujano con s&oacute;lida formaci&oacute;n acad&eacute;mica y
-                  un firme compromiso con la excelencia profesional. Realiz&oacute;
-                  sus estudios de Medicina en la Pontificia Universidad
-                  Cat&oacute;lica del Ecuador, donde consolid&oacute; una base
-                  cient&iacute;fica rigurosa y competencias cl&iacute;nicas
-                  fundamentales.
+                  Médico cirujano con sólida formación académica y un firme
+                  compromiso con la excelencia profesional. Realizó sus estudios
+                  de Medicina en la Pontificia Universidad Católica del Ecuador,
+                  donde consolidó una base científica rigurosa y competencias
+                  clínicas fundamentales.
                 </p>
               </div>
 
               <div data-about-panel className="absolute inset-x-0 bottom-0">
                 <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
-                  Visi&oacute;n Integral
+                  Visión Integral
                 </p>
                 <h2 className="text-3xl font-light uppercase tracking-[0.16em] text-white sm:text-5xl">
-                  Gerencia en Salud
+                  Administración de Instituciones de Salud
                 </h2>
                 <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
-                  Ampli&oacute; su preparaci&oacute;n con estudios de posgrado y
-                  cuarto nivel en la Universidad de las Am&eacute;ricas, en el
-                  &aacute;rea de Gerencia en Salud, integrando calidad,
-                  gesti&oacute;n y una atenci&oacute;n centrada en el paciente.
+                  Amplió su preparación con estudios de posgrado y cuarto nivel
+                  en la Universidad de las Américas, en el área de Gerencia en
+                  Salud, integrando calidad, gestión y una atención centrada en
+                  el paciente.
                 </p>
               </div>
 
               <div data-about-panel className="absolute inset-x-0 bottom-0">
                 <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
-                  Actualizaci&oacute;n Continua
+                  Actualización Continua
                 </p>
                 <h2 className="text-3xl font-light uppercase tracking-[0.16em] text-white sm:text-5xl">
-                  Cirug&iacute;a Est&eacute;tica
+                  Cirugía Estética
                 </h2>
                 <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
-                  Ha fortalecido su formaci&oacute;n mediante estudios de cuarto
-                  nivel, capacitaciones especializadas y actualizaci&oacute;n
-                  continua en instituciones como la Universidad del Conde,
-                  M&eacute;xico, y el IESM Instituto de Estudios Superiores en
-                  Medicina S. C.
+                  Ha fortalecido su formación mediante estudios de cuarto nivel,
+                  capacitaciones especializadas y actualización continua en
+                  instituciones como la Universidad del Conde, México, y el IESM
+                  Instituto de Estudios Superiores en Medicina S. C.
                 </p>
               </div>
 
@@ -355,11 +378,11 @@ export default function HeroSection() {
                   Seguridad y Naturalidad
                 </h2>
                 <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
-                  Su trayectoria se distingue por la formaci&oacute;n continua,
-                  la innovaci&oacute;n y el perfeccionamiento profesional, con el
-                  objetivo de ofrecer procedimientos basados en evidencia y
-                  desarrollados bajo altos est&aacute;ndares de calidad y
-                  seguridad.
+                  Su trayectoria, respaldada por 12 años de experiencia, se
+                  distingue por la formación continua, la innovación y el
+                  perfeccionamiento profesional, con el objetivo de ofrecer
+                  procedimientos basados en evidencia y desarrollados bajo altos
+                  estándares de calidad y seguridad.
                 </p>
               </div>
             </div>

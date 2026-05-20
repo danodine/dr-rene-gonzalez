@@ -45,14 +45,14 @@ export default function BlogPage() {
 
       <section ref={heroRef} className="future-hero">
         <div className="container future-hero-shell">
-          <p className="future-eyebrow">Knowledge archive</p>
+          <p className="future-eyebrow">Archivo editorial</p>
           <h1 className="future-title">
             Medicina que <span>se entiende</span>
           </h1>
           <p className="future-subtitle">
-            Un blog diseñado como una experiencia editorial inmersiva:
+            Una revista digital diseñada como una experiencia editorial inmersiva:
             información clara sobre estética, procedimientos y recuperación con
-            DR. René Gonzalez Dávila, Cirujano Estetico.
+            DR. René González Dávila, cirujano estético.
           </p>
         </div>
       </section>
@@ -138,7 +138,7 @@ export default function BlogPage() {
                     className="future-link"
                     style={{ width: "100%" }}
                   >
-                    Leer Artículo
+                    Leer artículo
                   </Link>
                 </div>
               </article>

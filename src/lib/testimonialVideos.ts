@@ -8,20 +8,20 @@ export type TestimonialVideo = {
 export const testimonialVideos: TestimonialVideo[] = [
   {
     id: "botox-1",
-    title: "Aplicacion de Botox",
+    title: "Aplicación de Botox",
     treatment: "Botox",
     youtubeUrl: "https://www.youtube.com/embed/7NGLAnp-GYE",
   },
   {
     id: "acido-hialuronico-1",
-    title: "Acido Hialuronico",
-    treatment: "Acido Hialuronico",
+    title: "Ácido Hialurónico",
+    treatment: "Ácido Hialurónico",
     youtubeUrl: "https://www.youtube.com/embed/MHnb3Jz7Cig",
   },
   {
     id: "procedimiento-1",
     title: "Procedimiento",
-    treatment: "Procedimiento Estetico",
+    treatment: "Procedimiento Estético",
     youtubeUrl: "https://www.youtube.com/embed/AR12DbGAZvA",
   },
   {
@@ -33,7 +33,7 @@ export const testimonialVideos: TestimonialVideo[] = [
   {
     id: "procedimiento-2",
     title: "Procedimiento",
-    treatment: "Procedimiento Estetico",
+    treatment: "Procedimiento Estético",
     youtubeUrl: "https://www.youtube.com/embed/_1U7fKq7ovU",
   },
 ];

@@ -42,7 +42,10 @@ export default function TestimoniosSection() {
   const cards = useMemo(() => videos.slice(0, CARD_COUNT), [videos]);
 
   return (
-    <section className="relative overflow-hidden bg-black px-4 py-24 text-white sm:px-6 lg:px-10 lg:py-32">
+    <section
+      id="testimonios"
+      className="relative overflow-hidden bg-black px-4 py-24 text-white sm:px-6 lg:px-10 lg:py-32"
+    >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(212,175,55,0.06),transparent_22%),radial-gradient(circle_at_80%_78%,rgba(255,255,255,0.05),transparent_24%)]" />
 
       <div className="relative mx-auto max-w-[1500px]">

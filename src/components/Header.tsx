@@ -97,7 +97,11 @@ export default function Header() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[260vh] bg-white">
+    <section
+      id="inicio"
+      ref={sectionRef}
+      className="relative h-[260vh] bg-white"
+    >
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-white">
         <div
           ref={logoRef}
@@ -122,13 +126,13 @@ export default function Header() {
                 className="text-[clamp(1.05rem,1.75vw,1.9rem)] font-light tracking-[0.08em]"
                 style={{ color: logoColor }}
               >
-                Ren&eacute; Gonz&aacute;lez D&aacute;vila
+                René González Dávila
               </h1>
               <h2
                 className="mt-1 text-[0.58rem] uppercase tracking-[0.58em] sm:text-xs"
                 style={{ color: logoColor }}
               >
-                Cirug&iacute;a Est&eacute;tica
+                Cirugía Estética
               </h2>
             </div>
           </div>
@@ -139,7 +143,7 @@ export default function Header() {
           >
             <NextImage
               src="/images/Dr-Rene-Gonzales-Bl.png"
-              alt="Dr. Ren&eacute; Gonzalez D&aacute;vila"
+              alt="Dr. René González Dávila"
               fill
               priority
               sizes="32vw"
