@@ -103,25 +103,23 @@ export default function Header() {
       className="relative h-[260vh] bg-white"
     >
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-white">
-        <div
-          ref={logoRef}
-          className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
-        >
-          <div className="relative h-[clamp(8rem,24vw,18rem)] w-[clamp(8rem,24vw,18rem)]">
-            <NextImage
-              src="/images/Logo.png"
-              alt="RG"
-              fill
-              priority
-              sizes="100vw"
-              className="object-contain"
-            />
-          </div>
-        </div>
-
         <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
-          <div className="absolute left-1/2 top-[66%] z-20 flex w-[min(54rem,62vw)] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center max-md:top-[65%] max-md:w-[88vw]">
-            <div ref={nameRef}>
+          <div className="absolute left-1/2 top-1/2 z-20 flex w-[min(54rem,62vw)] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center max-md:w-[88vw]">
+            <div
+              ref={logoRef}
+              className="relative h-[clamp(8rem,24vw,18rem)] w-[clamp(8rem,24vw,18rem)]"
+            >
+              <NextImage
+                src="/images/Logo.png"
+                alt="RG"
+                fill
+                priority
+                sizes="100vw"
+                className="object-contain"
+              />
+            </div>
+
+            <div ref={nameRef} className="mt-[25px]">
               <h1
                 className="text-[clamp(1.05rem,1.75vw,1.9rem)] font-light tracking-[0.08em]"
                 style={{ color: logoColor }}

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
@@ -50,9 +51,9 @@ export default function BlogPage() {
             Medicina que <span>se entiende</span>
           </h1>
           <p className="future-subtitle">
-            Una revista digital diseñada como una experiencia editorial inmersiva:
-            información clara sobre estética, procedimientos y recuperación con
-            DR. René González Dávila, cirujano estético.
+            Una revista digital diseñada como una experiencia editorial
+            inmersiva: información clara sobre estética, procedimientos y
+            recuperación con DR. René González Dávila, cirujano estético.
           </p>
         </div>
       </section>
@@ -79,9 +80,11 @@ export default function BlogPage() {
                     marginBottom: "20px",
                   }}
                 >
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
+                    width={1200}
+                    height={675}
                     style={{
                       width: "100%",
                       aspectRatio: "16/9",

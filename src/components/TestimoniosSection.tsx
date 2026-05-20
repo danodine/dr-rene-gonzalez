@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   pickRandomVideos,
@@ -68,11 +69,12 @@ export default function TestimoniosSection() {
                 className="group overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] text-left shadow-[0_18px_50px_rgba(0,0,0,0.34)] transition-all duration-300 hover:border-[#d4af37]/35 hover:shadow-[0_22px_60px_rgba(0,0,0,0.42),0_0_24px_rgba(212,175,55,0.08)]"
               >
                 <div className="relative aspect-[9/14] overflow-hidden sm:aspect-[9/16]">
-                  <img
+                  <Image
                     src={toThumbnailUrl(video.youtubeUrl)}
                     alt={video.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    referrerPolicy="strict-origin-when-cross-origin"
+                    fill
+                    unoptimized
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05),rgba(0,0,0,0.58))]" />
                   <div className="absolute inset-x-0 bottom-0 p-4">

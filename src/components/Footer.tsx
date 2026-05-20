@@ -13,7 +13,7 @@ export default function Footer() {
               Cirujano estético
             </h2>
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
-              Tengo un dicho que es transformando vidas...
+              Transformando vidas...
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -109,8 +109,7 @@ export default function Footer() {
         <div className="flex flex-col gap-5 border-t border-white/10 pt-8 text-xs uppercase tracking-[0.28em] text-white/35 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} DR René González Dávila</p>
           <p>
-            Developed by <span className="text-[#d4af37]">HeiLabs</span>{" "}
-            Germany
+            Developed by <span className="text-[#d4af37]">HeiLabs</span> Germany
           </p>
         </div>
       </div>

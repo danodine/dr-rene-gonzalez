@@ -1,7 +1,8 @@
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import BlogGoldDust from "@/components/BlogGoldDust";
 import { getAllPosts, getPostBySlug } from "@lib/posts";
-import Link from "next/link";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -153,9 +154,11 @@ export default async function BlogPostPage({ params }) {
               className="blog-post-visual-wrap"
               style={{ margin: "40px 0", aspectRatio: "16/9" }}
             >
-              <img
+              <Image
                 src={post.image}
                 alt={post.title}
+                width={1200}
+                height={675}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
@@ -174,10 +177,12 @@ export default async function BlogPostPage({ params }) {
           <aside className="blog-sidebar">
             <div className="sidebar-reading-block">
               <div className="blog-author-strip">
-                <img
+                <Image
                   src="/images/Dr-Rene-Gonzales.png"
                   className="author-mini-photo"
                   alt="DR. René González Dávila"
+                  width={90}
+                  height={90}
                 />
                 <div className="author-mini-info">
                   <p className="name">DR. René González Dávila</p>
@@ -227,10 +232,12 @@ export default async function BlogPostPage({ params }) {
             style={{ textDecoration: "none" }}
           >
             <div className="next-article-card" style={{ height: "500px" }}>
-              <img
+              <Image
                 src={nextPost.image}
                 className="next-article-image"
                 alt="Próximo artículo"
+                width={1200}
+                height={675}
               />
               <div className="next-article-content" style={{ padding: "60px" }}>
                 <span

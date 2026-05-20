@@ -68,7 +68,6 @@ const services = [
   {
     label: "Medicina Estética Facial",
     title: "Medicina Estética Facial",
-    image: "/images/servicesAnimationImages/frame_0018.jpg",
     items: [
       "Botox",
       "Ácido hialurónico",
@@ -81,11 +80,10 @@ const services = [
     ],
   },
   {
-    label: "Medicina estética corporal",
-    title: "Medicina estética corporal",
-    image: "/images/servicesAnimationImages/frame_0142.jpg",
+    label: "Medicina Estética Corporal",
+    title: "Medicina Estética Corporal",
     items: [
-      "IPL (Intensa luz pulsada)",
+      "IPL (intensa luz pulsada)",
       "* Estrías y depilación",
       "* Remoción",
       "* Radiocavitación y radiofrecuencia",
@@ -94,7 +92,6 @@ const services = [
   {
     label: "Cirugía Estética",
     title: "Cirugía Estética",
-    image: "/images/servicesAnimationImages/frame_0074.jpg",
     items: [
       "Rinoplastia",
       "Mentoplastia",
@@ -108,7 +105,6 @@ const services = [
   {
     label: "Cirugía Estética Corporal",
     title: "Cirugía Estética Corporal",
-    image: "/images/servicesAnimationImages/frame_0108.jpg",
     items: [
       "Liposucción",
       "* Láser",
@@ -122,9 +118,8 @@ const services = [
   {
     label: "Hidratación y Calidad de la Piel",
     title: "Hidratación y Calidad de la Piel",
-    image: "/images/servicesAnimationImages/frame_0046.jpg",
     items: [
-      "IPL (Intensa luz pulsada)",
+      "IPL (intensa luz pulsada)",
       "* Melasma",
       "* Manchas de piel",
       "* Depilación",
@@ -134,7 +129,6 @@ const services = [
   {
     label: "Tratamientos Funcionales",
     title: "Tratamientos Funcionales",
-    image: "/images/servicesAnimationImages/frame_0176.jpg",
     items: [
       "Botox (hiperhidrosis)",
       "Botox (bruxismo)",

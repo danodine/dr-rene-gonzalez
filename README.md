@@ -1,22 +1,22 @@
-# DR. Rene Gonzalez Website
+# DR. René González Website
 
-Sitio web premium desarrollado con Next.js para DR. Rene Gonzalez, Cirujano Estetico. El proyecto combina una estética negra y dorada con animaciones scroll-driven en GSAP, secciones visuales inmersivas, blog editorial y módulos reutilizables para testimonios, servicios y contacto.
+Sitio web premium desarrollado con Next.js para DR. René González Dávila, cirujano estético. El proyecto combina una estética negra y dorada con animaciones scroll-driven en GSAP, secciones visuales inmersivas, revista digital editorial y módulos reutilizables para testimonios, servicios y contacto.
 
 ## Stack
 
 - Next.js 16.2.4
-- React 19.2.4
+- React 19
 - TypeScript
 - Tailwind CSS v4
 - GSAP + ScrollTrigger
 
 ## Funcionalidades principales
 
-- Header cinematográfico con secuencia de frames y reveal final del doctor.
-- Sección hero con transiciones scroll-driven, visión, misión y narrativa "about me".
+- Header editorial con logo centrado y reveal scroll-driven del doctor.
+- Sección hero con transiciones scroll-driven, visión, misión y narrativa biográfica.
 - Sección de servicios con animación por frames, categorías interactivas y panel de subservicios.
 - Sección de testimonios con videos de YouTube seleccionados al azar y modal fullscreen en mobile.
-- Blog con listado de artículos y páginas dinámicas por slug.
+- Revista digital con listado de artículos y páginas dinámicas por slug.
 - Navbar glass-style, footer global y botón flotante de WhatsApp.
 - SEO base configurado con metadata, `robots.ts` y `sitemap.ts`.
 
@@ -55,19 +55,21 @@ public/
 ## Rutas
 
 - `/` Home principal
-- `/blog` Listado de artículos
+- `/blog` Revista digital
 - `/blog/[slug]` Detalle de cada artículo
 
-## Assets esperados en `public/images`
+## Assets esperados
 
-Algunas secciones dependen de secuencias de imágenes y assets específicos. Verifica que estos directorios y archivos estén presentes antes de desplegar:
+Verifica que estos archivos y carpetas estén presentes antes de desplegar:
 
-- `HeaderAnimation/` secuencia del header
-- `servicesAnimationImages/` secuencia de servicios
-- `blog/` imágenes de artículos
-- `Dr-Rene-Gonzales.png`
-- `Dr-Rene-Gonzales-blanco.png`
-- `mouse-cursor.png`
+- `public/images/servicesAnimationImages/`
+- `public/images/blog/`
+- `public/images/Dr-Rene-Gonzales.png`
+- `public/images/Dr-Rene-Gonzales-Bl.png`
+- `public/images/Logo.png`
+- `public/images/mouse-cursor.png`
+- `public/images/section_1_image.png`
+- `public/images/section_2_image.png`
 
 ## Configuración local
 
@@ -110,7 +112,7 @@ Los videos de testimonios se administran en:
 
 El componente selecciona 4 videos al azar cada vez que se carga la página.
 
-### Blog
+### Revista digital
 
 Los artículos actuales se administran en:
 
@@ -149,7 +151,7 @@ Incluye:
 - Twitter cards
 - canonical base
 - sitemap dinámico
-- metadata por artículo del blog
+- metadata por artículo de la revista digital
 
 ## Despliegue
 
@@ -166,4 +168,4 @@ Antes de publicar:
 
 - Este proyecto usa una versión moderna de Next.js con App Router.
 - Varias secciones dependen de scroll y canvas, por lo que los assets deben estar correctamente disponibles en producción.
-- Si aparecen errores 404 en Vercel, revisa primero nombres de carpetas y archivos dentro de `public/images`.
+- Si aparecen errores 404 en Vercel, revisa primero los nombres de carpetas y archivos dentro de `public/images`.
