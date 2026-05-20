@@ -65,7 +65,7 @@ Verifica que estos archivos y carpetas estén presentes antes de desplegar:
 - `public/images/servicesAnimationImages/`
 - `public/images/blog/`
 - `public/images/Dr-Rene-Gonzales.png`
-- `public/images/Dr-Rene-Gonzales-Bl.png`
+- `public/images/Dr-Rene-Gonzales_SN.png`
 - `public/images/Logo.png`
 - `public/images/mouse-cursor.png`
 - `public/images/section_1_image.png`

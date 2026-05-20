@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       "Descubre procedimientos estéticos faciales y corporales con una visión médica enfocada en naturalidad, proporción y seguridad.",
     images: [
       {
-        url: "/images/Dr-Rene-Gonzales-Bl.png",
+        url: "/images/Dr-Rene-Gonzales-SN.png",
         width: 1200,
         height: 1200,
         alt: "DR. René González Dávila, cirujano estético",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: "DR. René González Dávila | Cirujano Estético",
     description:
       "Cirugía estética facial y corporal con resultados naturales, precisión quirúrgica y atención personalizada.",
-    images: ["/images/Dr-Rene-Gonzales-Bl.png"],
+    images: ["/images/Dr-Rene-Gonzales-SN.png"],
   },
   robots: {
     index: true,

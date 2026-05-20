@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import NextImage from "next/image";
 import { useLayoutEffect, useRef } from "react";
@@ -140,7 +140,7 @@ export default function Header() {
             className="absolute bottom-0 right-[5vw] z-10 h-[86vh] w-[min(34rem,32vw)] max-md:hidden"
           >
             <NextImage
-              src="/images/Dr-Rene-Gonzales-Bl.png"
+              src="/images/Dr-Rene-Gonzales-SN.png"
               alt="Dr. René González Dávila"
               fill
               priority
