@@ -91,6 +91,7 @@ export default function HeroSection() {
           start: "top top",
           end: "bottom bottom",
           scrub: 1.2,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -227,7 +228,7 @@ export default function HeroSection() {
         className="absolute left-0 top-[56%] h-px w-px"
         aria-hidden="true"
       />
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-screen overflow-hidden safari-motion-layer">
         <div
           className="absolute inset-0 scale-[1.02] bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: 'url("/images/section_1_image.png")' }}
@@ -236,14 +237,14 @@ export default function HeroSection() {
 
         <div
           ref={overlayRef}
-          className="absolute inset-y-0 left-1/2 w-1/2 bg-black/95 shadow-[-28px_0_95px_rgba(212,175,55,0.28)]"
+          className="absolute inset-y-0 left-1/2 w-1/2 bg-black/95 shadow-[-28px_0_95px_rgba(212,175,55,0.28)] safari-motion-layer"
         >
           <div className="absolute inset-y-0 left-0 w-px bg-[#d4af37]/70 shadow-[0_0_30px_rgba(212,175,55,0.6),0_0_70px_rgba(212,175,55,0.3)]" />
         </div>
 
         <div
           ref={rightWashRef}
-          className="absolute inset-y-0 right-0 z-20 w-1/2 bg-white"
+          className="absolute inset-y-0 right-0 z-20 w-1/2 bg-white safari-motion-layer"
         />
 
         <div className="absolute inset-0 z-10 grid grid-cols-1 sm:grid-cols-2">
@@ -308,14 +309,14 @@ export default function HeroSection() {
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_36%),linear-gradient(180deg,rgba(0,0,0,0.24),rgba(0,0,0,0.42))]" />
 
-          <div className="absolute inset-0 z-10">
+          <div className="absolute inset-0 z-10 safari-motion-layer">
             <div
               ref={leftPanelRef}
-              className="absolute inset-y-0 left-0 w-1/2 origin-right bg-black shadow-[20px_0_72px_rgba(0,0,0,0.6)]"
+              className="absolute inset-y-0 left-0 w-1/2 origin-right bg-black shadow-[20px_0_72px_rgba(0,0,0,0.6)] safari-motion-layer"
             />
             <div
               ref={rightPanelRef}
-              className="absolute inset-y-0 right-0 w-1/2 origin-left bg-white shadow-[-20px_0_72px_rgba(255,255,255,0.18)]"
+              className="absolute inset-y-0 right-0 w-1/2 origin-left bg-white shadow-[-20px_0_72px_rgba(255,255,255,0.18)] safari-motion-layer"
             />
           </div>
 

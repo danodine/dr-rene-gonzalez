@@ -1,35 +1,41 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import CursorSparkle from "@/components/CursorSparkle";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import ScrollTriggerRefresh from "@/components/ScrollTriggerRefresh";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
 const siteUrl = "https://pagina-rene-gonzalez.vercel.app";
+const siteName = "Dr. René González Dávila";
+const siteDescription =
+  "Dr. René González Dávila, cirujano estético en Loja, Ecuador. Rinoplastia, Botox, liposucción, ácido hialurónico y procedimientos estéticos con resultados naturales, seguros y personalizados.";
+const ogImage = "/images/Dr-Rene-Gonzales-Bl.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "DR. René González Dávila | Cirujano Estético",
-    template: "%s | DR. René González Dávila",
+    default: "Cirujano estético en Loja | Dr. René González Dávila",
+    template: `%s | ${siteName}`,
   },
-  description:
-    "Cirujano estético enfocado en armonización facial, rejuvenecimiento y procedimientos corporales con resultados naturales, seguros y personalizados.",
+  description: siteDescription,
   keywords: [
+    "cirujano estético en Loja",
+    "cirugía estética en Loja",
     "Dr. René González Dávila",
-    "cirujano estético",
-    "cirugía estética",
-    "armonización facial",
-    "rejuvenecimiento facial",
-    "liposucción",
-    "Botox",
-    "rinoplastia",
-    "cirugía plástica Ecuador",
+    "rinoplastia en Loja",
+    "botox en Loja",
+    "liposucción en Loja",
+    "ácido hialurónico en Loja",
+    "armonización facial en Loja",
+    "rejuvenecimiento facial en Loja",
+    "cirujano estético en Ecuador",
   ],
-  applicationName: "DR. René González Dávila",
-  authors: [{ name: "DR. René González Dávila" }],
-  creator: "DR. René González Dávila",
-  publisher: "DR. René González Dávila",
+  applicationName: siteName,
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
+  category: "healthcare",
   alternates: {
     canonical: "/",
   },
@@ -37,29 +43,30 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_EC",
     url: siteUrl,
-    siteName: "DR. René González Dávila",
-    title: "DR. René González Dávila | Cirujano Estético",
+    siteName,
+    title: "Cirujano estético en Loja | Dr. René González Dávila",
     description:
-      "Descubre procedimientos estéticos faciales y corporales con una visión médica enfocada en naturalidad, proporción y seguridad.",
+      "Rinoplastia, Botox, liposucción, ácido hialurónico y cirugía estética en Loja, Ecuador, con una visión médica enfocada en naturalidad, proporción y seguridad.",
     images: [
       {
-        url: "/images/Dr-Rene-Gonzales-SN.png",
+        url: ogImage,
         width: 1200,
         height: 1200,
-        alt: "DR. René González Dávila, cirujano estético",
+        alt: "Dr. René González Dávila, cirujano estético en Loja, Ecuador",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DR. René González Dávila | Cirujano Estético",
+    title: "Cirujano estético en Loja | Dr. René González Dávila",
     description:
-      "Cirugía estética facial y corporal con resultados naturales, precisión quirúrgica y atención personalizada.",
-    images: ["/images/Dr-Rene-Gonzales-SN.png"],
+      "Cirugía estética facial y corporal en Loja, Ecuador, con resultados naturales, precisión quirúrgica y atención personalizada.",
+    images: [ogImage],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -68,7 +75,13 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  category: "healthcare",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#000000",
+  colorScheme: "dark light",
 };
 
 export default function RootLayout({
@@ -80,6 +93,7 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning className="h-full antialiased">
       <body className="min-h-full flex flex-col">
         <CursorSparkle />
+        <ScrollTriggerRefresh />
         <Navbar />
         <WhatsAppButton />
         {children}

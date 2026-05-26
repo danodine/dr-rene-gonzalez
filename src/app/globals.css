@@ -173,6 +173,38 @@ body {
     linear-gradient(90deg, rgba(119, 236, 255, 0.05) 1px, transparent 1px);
   background-size: 58px 58px;
   mask-image: radial-gradient(circle at center, black, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle at center, black, transparent 72%);
+}
+
+.safari-motion-layer {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .backdrop-blur-md,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl {
+    -webkit-backdrop-filter:
+      var(--tw-backdrop-blur, )
+      var(--tw-backdrop-brightness, )
+      var(--tw-backdrop-contrast, )
+      var(--tw-backdrop-grayscale, )
+      var(--tw-backdrop-hue-rotate, )
+      var(--tw-backdrop-invert, )
+      var(--tw-backdrop-opacity, )
+      var(--tw-backdrop-saturate, )
+      var(--tw-backdrop-sepia, );
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .backdrop-blur-md,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl {
+    background-color: rgba(0, 0, 0, 0.82) !important;
+  }
 }
 
 .future-orb {

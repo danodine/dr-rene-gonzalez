@@ -53,7 +53,8 @@ export default function BlogPage() {
           <p className="future-subtitle">
             Una revista digital diseñada como una experiencia editorial
             inmersiva: información clara sobre estética, procedimientos y
-            recuperación con DR. René González Dávila, cirujano estético.
+            recuperación con Dr. René González Dávila, cirujano estético en
+            Loja, Ecuador.
           </p>
         </div>
       </section>

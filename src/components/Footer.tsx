@@ -1,3 +1,6 @@
+const mapUrl =
+  "https://www.google.com/maps/place//data=!4m2!3m1!1s0x91cb49113de9be7b:0x3ab4219d42a27722?sa=X&ved=1t:8290&ictx=111";
+
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-black text-white">
@@ -7,13 +10,13 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div>
             <p className="text-[0.68rem] uppercase tracking-[0.5em] text-[#d4af37]/75">
-              DR René González Dávila
+              Dr. René González Dávila
             </p>
             <h2 className="mt-5 max-w-3xl text-3xl font-light uppercase tracking-[0.18em] text-white sm:text-5xl">
               Cirujano estético
             </h2>
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
-              Transformando vidas...
+              Tengo un dicho que es transformando vidas.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -94,11 +97,15 @@ export default function Footer() {
               <p className="text-[0.68rem] uppercase tracking-[0.42em] text-[#d4af37]/75">
                 Dirección
               </p>
+              <p className="mt-4 max-w-md text-sm leading-7 text-white/60 sm:text-base lg:ml-auto">
+                Clínica Santa María, Av. Cuxibamba entre Latacunga y Riobamba,
+                Loja, Ecuador
+              </p>
               <a
-                href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=/maps/place//data%3D!4m2!3m1!1s0x91cb49113de9be7b:0x3ab4219d42a27722%3Fsa%3DX%26ved%3D1t:8290%26ictx%3D111&ved=2ahUKEwi398q3r4GUAxWycfEDHaPLKkUQ4kB6BAgmEAM&usg=AOvVaw2QU13P6DX4EZsGfjyT48NX"
+                href={mapUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 block max-w-md text-sm leading-7 text-white/60 transition-colors duration-300 hover:text-[#d4af37] sm:text-base"
+                className="mt-2 block max-w-md text-sm leading-7 text-white/60 transition-colors duration-300 hover:text-[#d4af37] sm:text-base lg:ml-auto"
               >
                 Ver ubicación de la clínica en Google Maps
               </a>
@@ -107,7 +114,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-5 border-t border-white/10 pt-8 text-xs uppercase tracking-[0.28em] text-white/35 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} DR René González Dávila</p>
+          <p>&copy; {new Date().getFullYear()} Dr. René González Dávila</p>
           <p>
             Developed by <span className="text-[#d4af37]">HeiLabs</span> Germany
           </p>

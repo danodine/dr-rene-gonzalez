@@ -277,6 +277,7 @@ export default function ServicesSection() {
           start: "top top",
           end: "bottom bottom",
           scrub: 1.5,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -322,10 +323,10 @@ export default function ServicesSection() {
       ref={sectionRef}
       className="relative h-[420vh] bg-black"
     >
-      <div className="sticky top-0 h-screen overflow-hidden bg-black">
+      <div className="sticky top-0 h-screen overflow-hidden bg-black safari-motion-layer">
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover safari-motion-layer"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.07),transparent_36%),linear-gradient(180deg,rgba(0,0,0,0.44),rgba(0,0,0,0.56))]" />
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/82 via-black/38 to-transparent" />
@@ -368,7 +369,7 @@ export default function ServicesSection() {
         </div>
 
         <div
-          className={`absolute bottom-[max(11.5rem,calc(env(safe-area-inset-bottom)+10rem))] right-[0.125rem] z-20 flex max-h-[min(52dvh,28rem)] w-[min(18.625rem,calc(54vw+1.625rem))] flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-black/58 px-5 pb-5 pt-11 shadow-[0_28px_90px_rgba(0,0,0,0.48)] backdrop-blur-xl transition-all duration-300 sm:right-[0.125rem] sm:max-h-[min(58dvh,32rem)] sm:w-[min(21.125rem,calc(64vw+0.625rem))] sm:px-6 sm:pb-6 sm:pt-12 md:max-h-[min(62dvh,36rem)] md:w-[min(24.125rem,calc(60vw+0.125rem))] md:px-8 md:pb-8 md:pt-14 lg:bottom-auto lg:left-auto lg:right-[8vw] lg:top-1/2 lg:max-h-none lg:w-auto lg:-translate-y-1/2 lg:px-[clamp(1.25rem,1.8vw,2rem)] lg:pb-[clamp(1.25rem,1.8vw,2rem)] lg:pt-[clamp(2.8rem,3.2vw,3.6rem)] 2xl:w-[min(30rem,46vw)] ${
+          className={`absolute bottom-[max(11.5rem,calc(env(safe-area-inset-bottom)+10rem))] right-[0.125rem] z-20 flex max-h-[min(52vh,28rem)] w-[min(18.625rem,calc(54vw+1.625rem))] flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-black/58 px-5 pb-5 pt-11 shadow-[0_28px_90px_rgba(0,0,0,0.48)] backdrop-blur-xl transition-all duration-300 sm:right-[0.125rem] sm:max-h-[min(58vh,32rem)] sm:w-[min(21.125rem,calc(64vw+0.625rem))] sm:px-6 sm:pb-6 sm:pt-12 md:max-h-[min(62vh,36rem)] md:w-[min(24.125rem,calc(60vw+0.125rem))] md:px-8 md:pb-8 md:pt-14 lg:bottom-auto lg:left-auto lg:right-[8vw] lg:top-1/2 lg:max-h-none lg:w-auto lg:-translate-y-1/2 lg:px-[clamp(1.25rem,1.8vw,2rem)] lg:pb-[clamp(1.25rem,1.8vw,2rem)] lg:pt-[clamp(2.8rem,3.2vw,3.6rem)] 2xl:w-[min(30rem,46vw)] ${
             detailVisible
               ? "pointer-events-auto opacity-100"
               : "pointer-events-none opacity-0"

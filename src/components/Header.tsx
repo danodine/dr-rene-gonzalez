@@ -1,152 +1,78 @@
 "use client";
 
-import NextImage from "next/image";
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const logoColor = "#49506a";
+const desktopTextColor = "#49506a";
+const mobileTextColor = "#ffffff";
 
 export default function Header() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const logoRef = useRef<HTMLDivElement | null>(null);
-  const nameRef = useRef<HTMLDivElement | null>(null);
-  const portraitRef = useRef<HTMLDivElement | null>(null);
-
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const logo = logoRef.current;
-    const name = nameRef.current;
-    const portrait = portraitRef.current;
-
-    if (!section || !logo || !name || !portrait) {
-      return;
-    }
-
-    const ctx = gsap.context(() => {
-      gsap.set(logo, {
-        autoAlpha: 1,
-        scale: 1,
-        y: 0,
-      });
-
-      gsap.set([name, portrait], {
-        autoAlpha: 0,
-        y: 34,
-        filter: "blur(10px)",
-      });
-
-      const timeline = gsap.timeline({
-        defaults: {
-          ease: "none",
-        },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.15,
-        },
-      });
-
-      timeline
-        .to(
-          logo,
-          {
-            scale: 1.08,
-            y: -16,
-            duration: 0.72,
-          },
-          0,
-        )
-        .to(
-          name,
-          {
-            autoAlpha: 1,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 0.5,
-          },
-          0.36,
-        )
-        .fromTo(
-          portrait,
-          {
-            autoAlpha: 0,
-            x: 46,
-            y: 24,
-            scale: 0.985,
-            filter: "blur(12px)",
-          },
-          {
-            autoAlpha: 1,
-            x: 0,
-            y: 0,
-            scale: 1,
-            filter: "blur(0px)",
-            duration: 0.7,
-          },
-          0.48,
-        );
-    }, section);
-
-    return () => {
-      ctx.revert();
-    };
-  }, []);
-
   return (
-    <section
-      id="inicio"
-      ref={sectionRef}
-      className="relative h-[260vh] bg-white"
-    >
-      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden bg-white">
-        <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
-          <div className="absolute left-1/2 top-1/2 z-20 flex w-[min(54rem,62vw)] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center max-md:w-[88vw]">
-            <div
-              ref={logoRef}
-              className="relative h-[clamp(8rem,24vw,18rem)] w-[clamp(8rem,24vw,18rem)]"
-            >
-              <NextImage
-                src="/images/Logo.png"
+    <section id="inicio" className="relative h-screen bg-black">
+      <div className="relative h-screen overflow-hidden bg-black safari-motion-layer">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat safari-motion-layer md:hidden"
+          style={{
+            backgroundImage: "url('/images/headerBackgroundMobile.jpeg')",
+          }}
+        />
+        <div
+          className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat safari-motion-layer md:block"
+          style={{
+            backgroundImage: "url('/images/headerBackgroundDesktop.jpeg')",
+          }}
+        />
+
+        <div className="pointer-events-none absolute inset-0 z-20 md:hidden">
+          <div className="absolute inset-x-0 top-6 flex justify-center px-6">
+            <div className="relative h-[8rem] w-[8rem]">
+              <img
+                src="/images/LogoNB.png"
                 alt="RG"
-                fill
-                priority
-                sizes="100vw"
-                className="object-contain"
+                className="h-full w-full object-contain"
               />
             </div>
+          </div>
 
-            <div ref={nameRef} className="mt-[25px]">
+          <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
+            <div>
               <h1
-                className="text-[clamp(1.05rem,1.75vw,1.9rem)] font-light tracking-[0.08em]"
-                style={{ color: logoColor }}
+                className="whitespace-nowrap text-[1.1rem] font-light uppercase tracking-[0.12em]"
+                style={{ color: mobileTextColor }}
               >
                 René González Dávila
               </h1>
               <h2
-                className="mt-1 text-[0.58rem] uppercase tracking-[0.58em] sm:text-xs"
-                style={{ color: logoColor }}
+                className="mt-[12px] text-[0.62rem] uppercase tracking-[0.4em]"
+                style={{ color: mobileTextColor }}
               >
                 Cirugía Estética
               </h2>
             </div>
           </div>
+        </div>
 
-          <div
-            ref={portraitRef}
-            className="absolute bottom-0 right-[5vw] z-10 h-[86vh] w-[min(34rem,32vw)] max-md:hidden"
-          >
-            <NextImage
-              src="/images/Dr-Rene-Gonzales-SN.png"
-              alt="Dr. René González Dávila"
-              fill
-              priority
-              sizes="32vw"
-              className="object-contain object-bottom drop-shadow-[0_28px_60px_rgba(0,0,0,0.16)]"
-            />
+        <div className="pointer-events-none absolute inset-0 z-20 hidden items-start justify-end pl-6 pr-1 pt-24 sm:pl-5 sm:pr-0 sm:pt-28 md:flex lg:px-6 lg:pr-[calc(9%-100px)] lg:pt-16">
+          <div className="flex w-full max-w-[18rem] flex-col items-center text-center sm:max-w-[20rem] lg:max-w-[24rem]">
+            <div className="relative h-[8vw] w-[8vw]">
+              <img
+                src="/images/LogoNB.png"
+                alt="RG"
+                className="h-full w-full object-contain"
+              />
+            </div>
+
+            <div className="mt-[25px]">
+              <h1
+                className="whitespace-nowrap text-[1.25vw] font-light uppercase tracking-[0.12em]"
+                style={{ color: desktopTextColor }}
+              >
+                René González Dávila
+              </h1>
+              <h2
+                className="mt-[5px] text-[0.3rem] uppercase tracking-[0.2em] sm:text-xs"
+                style={{ color: desktopTextColor }}
+              >
+                Cirugía Estética
+              </h2>
+            </div>
           </div>
         </div>
       </div>

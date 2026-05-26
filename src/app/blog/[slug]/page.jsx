@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import BlogGoldDust from "@/components/BlogGoldDust";
 import { getAllPosts, getPostBySlug } from "@lib/posts";
 
+const siteUrl = "https://pagina-rene-gonzalez.vercel.app";
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -46,13 +48,44 @@ export default async function BlogPostPage({ params }) {
   const post = getPostBySlug(slug);
   const allPosts = getAllPosts();
 
-  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
+  if (!post) {
+    notFound();
+  }
+
+  const currentIndex = allPosts.findIndex((item) => item.slug === slug);
   const nextPost = allPosts[currentIndex + 1] || allPosts[0];
 
-  if (!post) notFound();
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.paragraph1,
+    image: `${siteUrl}${post.image}`,
+    datePublished: post.isoDate,
+    dateModified: post.isoDate,
+    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
+    author: {
+      "@type": "Person",
+      name: "Dr. René González Dávila",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Dr. René González Dávila",
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/icon.png`,
+      },
+    },
+    articleSection: post.type,
+    inLanguage: "es-EC",
+  };
 
   return (
     <main className="blog-post-page-detail">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <BlogGoldDust />
       <div className="future-grid-bg" />
       <div className="future-orb one" />
@@ -74,6 +107,7 @@ export default async function BlogPostPage({ params }) {
             <span style={{ fontSize: "1.2rem" }}>&larr;</span> VOLVER
           </Link>
         </div>
+
         <header className="blog-header-section">
           <div className="blog-post-meta">
             <span
@@ -100,10 +134,10 @@ export default async function BlogPostPage({ params }) {
           </div>
 
           <h1 className="blog-main-title">
-            {post.title.split(".").map((part, i) => (
-              <span key={i} className={i === 1 ? "text-cyan" : ""}>
+            {post.title.split(".").map((part, index) => (
+              <span key={index} className={index === 1 ? "text-cyan" : ""}>
                 {part}
-                {i === 0 ? "." : ""}
+                {index === 0 ? "." : ""}
               </span>
             ))}
           </h1>
@@ -168,8 +202,8 @@ export default async function BlogPostPage({ params }) {
             </p>
 
             <ul className="blog-check-list">
-              {post.list.map((item, i) => (
-                <li key={i}>{item}</li>
+              {post.list.map((item, index) => (
+                <li key={index}>{item}</li>
               ))}
             </ul>
           </div>
@@ -180,12 +214,12 @@ export default async function BlogPostPage({ params }) {
                 <Image
                   src="/images/Dr-Rene-Gonzales.png"
                   className="author-mini-photo"
-                  alt="DR. René González Dávila"
+                  alt="Dr. René González Dávila"
                   width={90}
                   height={90}
                 />
                 <div className="author-mini-info">
-                  <p className="name">DR. René González Dávila</p>
+                  <p className="name">Dr. René González Dávila</p>
                   <p className="role">Cirujano estético</p>
                 </div>
               </div>
