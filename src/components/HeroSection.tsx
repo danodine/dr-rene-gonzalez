@@ -304,9 +304,21 @@ export default function HeroSection() {
         <div ref={ripStageRef} className="absolute inset-0 z-30">
           <div
             ref={secondImageRef}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: 'url("/images/section_2_image.png")' }}
-          />
+            className="absolute inset-0"
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
+              style={{
+                backgroundImage: 'url("/images/section-2-image-3-mobile.jpeg")',
+              }}
+            />
+            <div
+              className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block"
+              style={{
+                backgroundImage: 'url("/images/section-2-image-3.jpeg")',
+              }}
+            />
+          </div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_36%),linear-gradient(180deg,rgba(0,0,0,0.24),rgba(0,0,0,0.42))]" />
 
           <div className="absolute inset-0 z-10 safari-motion-layer">
