@@ -90,8 +90,8 @@ const services = [
     ],
   },
   {
-    label: "Cirugía Estética",
-    title: "Cirugía Estética",
+    label: "Cirugía Estética Facial",
+    title: "Cirugía Estética Facial",
     items: [
       "Rinoplastia",
       "Mentoplastia",

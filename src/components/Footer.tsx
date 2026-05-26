@@ -16,7 +16,7 @@ export default function Footer() {
               Cirujano estético
             </h2>
             <p className="mt-6 max-w-xl text-sm leading-7 text-white/55 sm:text-base">
-              Tengo un dicho que es transformando vidas.
+              Transformando vidas.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
