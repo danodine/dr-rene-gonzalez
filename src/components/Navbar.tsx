@@ -1,7 +1,10 @@
 'use client';
 
 import Link from "next/link";
+import { getAllPosts } from "@lib/posts";
 import { useEffect, useRef, useState } from "react";
+
+const hasBlogPosts = getAllPosts().length > 0;
 
 const navItems = [
   {
@@ -27,6 +30,7 @@ const navItems = [
   {
     href: "/blog",
     label: "Revista Digital",
+    hidden: !hasBlogPosts,
   },
 ];
 
@@ -98,7 +102,7 @@ export default function Navbar() {
         }`}
       >
         <div className="rounded-[1.25rem] bg-transparent p-2">
-          {navItems.map((item) => (
+          {navItems.filter((item) => !item.hidden).map((item) => (
             <Link
               key={item.href}
               href={item.href}
