@@ -16,7 +16,7 @@ export default function Header() {
         <div
           className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat safari-motion-layer md:block"
           style={{
-            backgroundImage: "url('/images/headerBackgroundDesktop.jpeg')",
+            backgroundImage: "url('/images/headerBackgroundDesktopC.png')",
           }}
         />
 

@@ -302,10 +302,7 @@ export default function HeroSection() {
         </div>
 
         <div ref={ripStageRef} className="absolute inset-0 z-30">
-          <div
-            ref={secondImageRef}
-            className="absolute inset-0"
-          >
+          <div ref={secondImageRef} className="absolute inset-0">
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
               style={{
@@ -315,7 +312,7 @@ export default function HeroSection() {
             <div
               className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block"
               style={{
-                backgroundImage: 'url("/images/section-2-image-3.jpeg")',
+                backgroundImage: 'url("/images/section-2-image-3.png")',
               }}
             />
           </div>
@@ -337,7 +334,10 @@ export default function HeroSection() {
               ref={secondTextRef}
               className="relative h-[25rem] w-full max-w-2xl sm:h-[24rem]"
             >
-              <div data-about-panel className="absolute inset-x-0 bottom-0">
+              <div
+                data-about-panel
+                className="absolute inset-x-0 bottom-0 rounded-3xl border border-white/10 bg-black/58 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.42)] backdrop-blur-md sm:p-8"
+              >
                 <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
                   Sobre el Doctor
                 </p>
@@ -353,7 +353,10 @@ export default function HeroSection() {
                 </p>
               </div>
 
-              <div data-about-panel className="absolute inset-x-0 bottom-0">
+              <div
+                data-about-panel
+                className="absolute inset-x-0 bottom-0 rounded-3xl border border-white/10 bg-black/58 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.42)] backdrop-blur-md sm:p-8"
+              >
                 <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
                   Visión Integral
                 </p>
@@ -368,7 +371,10 @@ export default function HeroSection() {
                 </p>
               </div>
 
-              <div data-about-panel className="absolute inset-x-0 bottom-0">
+              <div
+                data-about-panel
+                className="absolute inset-x-0 bottom-0 rounded-3xl border border-white/10 bg-black/58 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.42)] backdrop-blur-md sm:p-8"
+              >
                 <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
                   Actualización Continua
                 </p>
@@ -383,7 +389,10 @@ export default function HeroSection() {
                 </p>
               </div>
 
-              <div data-about-panel className="absolute inset-x-0 bottom-0">
+              <div
+                data-about-panel
+                className="absolute inset-x-0 bottom-0 rounded-3xl border border-white/10 bg-black/58 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.42)] backdrop-blur-md sm:p-8"
+              >
                 <p className="mb-5 text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
                   Excelencia Profesional
                 </p>

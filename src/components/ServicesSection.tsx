@@ -1,5 +1,6 @@
 "use client";
 
+import NextImage from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import gsap from "gsap";
@@ -33,6 +34,251 @@ type ServiceItemGroup = {
   label: string;
   subitems: string[];
 };
+
+type ServiceVideoDetail = {
+  serviceLabel: string;
+  itemLabel: string;
+  title: string;
+  description: string;
+  media:
+    | {
+        type: "video";
+        url: string;
+      }
+    | {
+        type: "image";
+        src: string;
+      };
+};
+
+const PLACEHOLDER_VIDEO_URL = "https://www.youtube.com/embed/z-vtfoyOEmE";
+const PLACEHOLDER_DESCRIPTION =
+  "Próximamente agregaremos una descripción más detallada de este procedimiento y lo que el paciente podrá ver en este contenido.";
+
+const toEmbedUrl = (url: string) => {
+  if (url.includes("/embed/")) {
+    return url;
+  }
+
+  if (url.includes("youtu.be/")) {
+    const videoId = url.split("youtu.be/")[1]?.split("?")[0];
+    return videoId
+      ? `https://www.youtube.com/embed/${videoId}`
+      : PLACEHOLDER_VIDEO_URL;
+  }
+
+  if (url.includes("/shorts/")) {
+    const videoId = url.split("/shorts/")[1]?.split("?")[0];
+    return videoId
+      ? `https://www.youtube.com/embed/${videoId}`
+      : PLACEHOLDER_VIDEO_URL;
+  }
+
+  try {
+    const parsed = new URL(url);
+    const videoId = parsed.searchParams.get("v");
+    return videoId
+      ? `https://www.youtube.com/embed/${videoId}`
+      : PLACEHOLDER_VIDEO_URL;
+  } catch {
+    return PLACEHOLDER_VIDEO_URL;
+  }
+};
+
+const serviceMediaLibrary = {
+  Botox: {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/a95bc7BVdLc?feature=share"),
+    },
+    title: "Botox función",
+    description:
+      "Estas inyecciones a menudo se utilizan para suavizar arrugas en la cara. También, se usan para tratar los espasmos de cuello, la sudoración, la vejiga hiperactiva, el ojo perezoso y otras afecciones.",
+  },
+  "Ácido hialurónico": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/9cuHNzXwpUg?feature=share"),
+    },
+    title: "Aumento de labios",
+    description:
+      "El relleno de labios permite hidratarlos, perfilarlos, modificar tanto su forma como su volumen y corregir las arrugas de la boca.",
+  },
+  "Láser CO2 fraccionado": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/PFc2aIlbDxY?feature=share"),
+    },
+    title: "Láser CO2 fraccionado",
+    description:
+      "El láser CO2 fraccionado es un tratamiento dermatológico y estético de alta potencia. Se utiliza principalmente para el rejuvenecimiento facial profundo, atenuar arrugas y eliminar cicatrices de acné o estrías.",
+  },
+  "Terapia fotodinámica": {
+    media: { type: "image", src: "/images/TerapiaFotodinamica.jpeg" },
+    title: "Terapia fotodinámica",
+    description:
+      "La terapia fotodinámica (TFD) es un tratamiento médico que combina un medicamento fotosensibilizante con luz de una longitud de onda específica.",
+  },
+  NCTF: {
+    media: { type: "image", src: "/images/NCTF.jpeg" },
+    title: "NCTF",
+    description:
+      "El NCTF (New Cellular Treatment Factor) es un tratamiento de mesoterapia facial que revitaliza la piel aportando luminosidad, hidratación y firmeza.",
+  },
+  Bioestimuladores: {
+    media: { type: "image", src: "/images/Bioestimuladores.jpeg" },
+    title: "Bioestimuladores",
+    description:
+      "Los bioestimuladores son sustancias inyectables que activan los fibroblastos para que el organismo produzca su propio colágeno y elastina.",
+  },
+  "Marcación mandibular": {
+    media: { type: "image", src: "/images/MarcacionMandibular.jpeg" },
+    title: "Marcación mandibular",
+    description:
+      "La marcación mandibular es un procedimiento de armonización facial no quirúrgico que define y resalta el contorno del rostro.",
+  },
+  "Vitaminización facial": {
+    media: { type: "image", src: "/images/VitaminizacionFacial.jpeg" },
+    title: "Vitaminización facial",
+    description:
+      "La vitaminización facial consiste en aplicar un cóctel personalizado de vitaminas, minerales y ácido hialurónico directamente en la dermis mediante microinyecciones superficiales.",
+  },
+  "IPL (intensa luz pulsada)": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/b2hObWQgIlw?feature=share"),
+    },
+    title: "IPL",
+    description:
+      "El tratamiento con IPL (Luz Pulsada Intensa) es un procedimiento médico-estético no invasivo que utiliza pulsos de luz para mejorar la calidad de la piel.",
+  },
+  Rinoplastia: {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/tUHzKHXQ5NY?feature=share"),
+    },
+    title: "Rinoplastia",
+    description:
+      "La rinoplastia es un procedimiento quirúrgico que modifica el tamaño, la forma y la estructura de la nariz para lograr una mayor armonía facial.",
+  },
+  Mentoplastia: {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/dXGWFE6AewI?feature=share"),
+    },
+    title: "Rinoplastia y mentón",
+    description: PLACEHOLDER_DESCRIPTION,
+  },
+  Bichectomía: {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/bRcfXNm86YU?feature=share"),
+    },
+    title: "Bichectomía",
+    description:
+      "La bichectomía es un procedimiento quirúrgico ambulatorio y de mínima invasión que consiste en la extirpación de las bolsas de Bichat.",
+  },
+  Otoplastia: {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/byX_kDmYZZc?feature=share"),
+    },
+    title: "Otoplastia",
+    description:
+      "La otoplastia es la cirugía estética que modifica el tamaño, la forma o la posición de las orejas.",
+  },
+  "Párpados (blefaroplastia)": {
+    media: { type: "image", src: "/images/Blefaroplastia.jpeg" },
+    title: "Blefaroplastia",
+    description:
+      "La blefaroplastia elimina el exceso de piel y grasa en los párpados superiores e inferiores, logrando una mirada rejuvenecida y fresca, e incluso mejorando el campo de visión periférica.",
+  },
+  Ritidoplastia: {
+    media: { type: "image", src: "/images/Ritidoplastia.jpeg" },
+    title: "Ritidoplastia",
+    description:
+      "La ritidoplastia, también conocida como lifting facial, es un procedimiento quirúrgico estético diseñado para rejuvenecer el rostro y el cuello.",
+  },
+  "Lipo papada": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/eCHS5V5iRR8?feature=share"),
+    },
+    title: "Rinoplastia y lipo papada",
+    description: PLACEHOLDER_DESCRIPTION,
+  },
+  Liposucción: {
+    media: { type: "video", url: PLACEHOLDER_VIDEO_URL },
+    title: "Liposucción",
+    description:
+      "La liposucción es una intervención quirúrgica estética diseñada para moldear la figura mediante la extracción de depósitos de grasa localizada.",
+  },
+  "Mini lipo": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/mekUXYLKdgU?feature=share"),
+    },
+    title: "Mini lipo",
+    description:
+      "La mini lipo es un procedimiento ambulatorio diseñado para eliminar pequeñas acumulaciones de grasa localizada.",
+  },
+  Abdominoplastia: {
+    media: { type: "image", src: "/images/Abdominoplastia.jpeg" },
+    title: "Abdominoplastia",
+    description:
+      "La abdominoplastia elimina el exceso de piel y grasa del abdomen y tensa los músculos de la pared abdominal, ayudando a aplanar el vientre y definir la cintura.",
+  },
+  "Aumento de mamas": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/8JCIJWijKTY?feature=share"),
+    },
+    title: "Aumento de mamas",
+    description:
+      "El aumento de mamas es un procedimiento quirúrgico que incrementa el volumen, proyecta o mejora la forma del pecho.",
+  },
+  "Hidratación con ácido hialurónico": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/bVQ9GI4JGTM?feature=share"),
+    },
+    title: "Hidratación y aumento de labios",
+    description:
+      "El aumento de labios es una técnica mínimamente invasiva en la que se inyecta ácido hialurónico para aumentar su grosor e hidratación.",
+  },
+  "Botox (hiperhidrosis)": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/o19y5Bmay10?feature=share"),
+    },
+    title: "Botox (hiperhidrosis)",
+    description: PLACEHOLDER_DESCRIPTION,
+  },
+  "Botox (bruxismo)": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/o19y5Bmay10?feature=share"),
+    },
+    title: "Botox (bruxismo)",
+    description: PLACEHOLDER_DESCRIPTION,
+  },
+  "Botox (movimientos clónicos)": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/o19y5Bmay10?feature=share"),
+    },
+    title: "Botox (movimientos clónicos)",
+    description: PLACEHOLDER_DESCRIPTION,
+  },
+  "Botox (ptosis palpebral)": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/o19y5Bmay10?feature=share"),
+    },
+    title: "Botox (ptosis palpebral)",
+    description: PLACEHOLDER_DESCRIPTION,
+  },
+} as const;
 
 const groupServiceItems = (items: readonly string[]): ServiceItemGroup[] => {
   return items.reduce<ServiceItemGroup[]>((groups, rawItem) => {
@@ -130,10 +376,11 @@ const services = [
     label: "Tratamientos Funcionales",
     title: "Tratamientos Funcionales",
     items: [
-      "Botox (hiperhidrosis)",
-      "Botox (bruxismo)",
-      "Botox (movimientos clónicos)",
-      "Botox (ptosis palpebral)",
+      "Botox",
+      "* Botox (hiperhidrosis)",
+      "* Botox (bruxismo)",
+      "* Botox (movimientos clónicos)",
+      "* Botox (ptosis palpebral)",
     ],
   },
 ] as const;
@@ -178,6 +425,30 @@ function ServiceNode({
   );
 }
 
+function resolveServiceMedia(
+  serviceLabel: string,
+  itemLabel: string,
+  parentLabel?: string,
+): ServiceVideoDetail {
+  const directMatch =
+    serviceMediaLibrary[itemLabel as keyof typeof serviceMediaLibrary];
+  const parentMatch = parentLabel
+    ? serviceMediaLibrary[parentLabel as keyof typeof serviceMediaLibrary]
+    : null;
+  const match = directMatch ?? parentMatch;
+
+  return {
+    serviceLabel,
+    itemLabel,
+    title: match?.title ?? itemLabel,
+    description: match?.description ?? PLACEHOLDER_DESCRIPTION,
+    media: match?.media ?? {
+      type: "video",
+      url: PLACEHOLDER_VIDEO_URL,
+    },
+  };
+}
+
 export default function ServicesSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -185,6 +456,9 @@ export default function ServicesSection() {
   const activeFrameRef = useRef(0);
   const [activeService, setActiveService] = useState(0);
   const [detailVisible, setDetailVisible] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<ServiceVideoDetail | null>(
+    null,
+  );
 
   useEffect(() => {
     if (!detailVisible) {
@@ -205,6 +479,24 @@ export default function ServicesSection() {
       window.removeEventListener("scroll", hideDetails);
     };
   }, [detailVisible]);
+
+  useEffect(() => {
+    if (!activeVideo) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveVideo(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeVideo]);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -393,7 +685,21 @@ export default function ServicesSection() {
                   key={`${active.title}-${itemGroup.label}`}
                   className="border-b border-white/8 pb-3 last:border-b-0 last:pb-0"
                 >
-                  <span>{itemGroup.label}</span>
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="pr-2">{itemGroup.label}</span>
+                    <button
+                      type="button"
+                      aria-label={`Ver video de ${itemGroup.label}`}
+                      onClick={() =>
+                        setActiveVideo(
+                          resolveServiceMedia(active.title, itemGroup.label),
+                        )
+                      }
+                      className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d4af37]/35 bg-black/30 text-[0.7rem] text-[#d4af37] transition-colors duration-300 hover:border-[#d4af37]/70 hover:bg-black/55 hover:text-[#f1d37a]"
+                    >
+                      ▶
+                    </button>
+                  </div>
                   {itemGroup.subitems.length > 0 ? (
                     <ul className="mt-2 space-y-1.5 pl-4 text-[0.88em] leading-[1.55] text-white/52">
                       {itemGroup.subitems.map((subitem) => (
@@ -411,6 +717,68 @@ export default function ServicesSection() {
             </ul>
           </div>
         </div>
+
+        {activeVideo ? (
+          <div className="fixed inset-0 z-[90] bg-black/82 backdrop-blur-xl">
+            <button
+              type="button"
+              aria-label="Cerrar video"
+              onClick={() => setActiveVideo(null)}
+              className="absolute inset-0"
+            />
+
+            <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
+              <div className="relative z-10 h-[calc(100vh-2rem)] w-full max-w-[21rem] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:h-auto sm:max-h-[calc(100vh-3rem)] sm:max-w-[22rem]">
+                <button
+                  type="button"
+                  aria-label="Cerrar video"
+                  onClick={() => setActiveVideo(null)}
+                  className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]/35 bg-black/45 text-xl text-[#d4af37] shadow-[0_18px_40px_rgba(0,0,0,0.32)] transition-colors duration-300 hover:border-[#d4af37]/70 hover:bg-black/55"
+                >
+                  ×
+                </button>
+
+                <div className="flex h-full min-h-0 flex-col">
+                  <div className="min-h-0 overflow-hidden rounded-[1.4rem] bg-black">
+                    <div className="h-[58vh] w-full sm:h-[52vh]">
+                      {activeVideo.media.type === "video" ? (
+                        <iframe
+                          className="h-full w-full"
+                          src={activeVideo.media.url}
+                          title={`Video de ${activeVideo.itemLabel}`}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <div className="relative h-full w-full">
+                          <NextImage
+                            src={activeVideo.media.src}
+                            alt={activeVideo.title}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="px-2 pb-2 pt-4 sm:px-3">
+                    <p className="text-[0.66rem] uppercase tracking-[0.34em] text-[#d4af37]/80">
+                      {activeVideo.serviceLabel}
+                    </p>
+                    <h4 className="mt-2 text-[1rem] font-light uppercase leading-[1.18] tracking-[0.1em] text-white sm:text-[1.15rem]">
+                      {activeVideo.title}
+                    </h4>
+                    <p className="mt-2 text-[0.82rem] leading-5 text-white/68 sm:text-[0.88rem] sm:leading-6">
+                      {activeVideo.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );
