@@ -44,6 +44,16 @@ html {
   scroll-behavior: auto;
 }
 
+html.page-loading,
+body.page-loading {
+  overflow: hidden;
+}
+
+body.page-loading {
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
 body,
 a,
 button {
@@ -85,6 +95,21 @@ body {
   100% {
     opacity: 0;
     transform: translate(-50%, -120%) scale(0);
+  }
+}
+
+.page-loader-bar {
+  animation: page-loader-sweep 1.25s ease-in-out infinite;
+  transform: translateX(-100%);
+}
+
+@keyframes page-loader-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(220%);
   }
 }
 
