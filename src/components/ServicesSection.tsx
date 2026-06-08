@@ -485,15 +485,25 @@ export default function ServicesSection() {
       return;
     }
 
+    const handleScrollClose = () => {
+      setActiveVideo(null);
+    };
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setActiveVideo(null);
       }
     };
 
+    window.addEventListener("wheel", handleScrollClose, { passive: true });
+    window.addEventListener("touchmove", handleScrollClose, { passive: true });
+    window.addEventListener("scroll", handleScrollClose, { passive: true });
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      window.removeEventListener("wheel", handleScrollClose);
+      window.removeEventListener("touchmove", handleScrollClose);
+      window.removeEventListener("scroll", handleScrollClose);
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [activeVideo]);
@@ -719,21 +729,20 @@ export default function ServicesSection() {
         </div>
 
         {activeVideo ? (
-          <div className="fixed inset-0 z-[90] bg-black/82 backdrop-blur-xl">
-            <button
-              type="button"
-              aria-label="Cerrar video"
-              onClick={() => setActiveVideo(null)}
-              className="absolute inset-0"
-            />
-
+          <div
+            className="fixed inset-0 z-[90] bg-black/82 backdrop-blur-xl"
+            onClick={() => setActiveVideo(null)}
+          >
             <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
-              <div className="relative z-10 h-[calc(100vh-2rem)] w-full max-w-[21rem] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:h-auto sm:max-h-[calc(100vh-3rem)] sm:max-w-[22rem]">
+              <div
+                className="relative z-10 h-[calc(100vh-2rem)] w-full max-w-[21rem] overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:h-auto sm:max-h-[calc(100vh-3rem)] sm:max-w-[22rem]"
+                onClick={(event) => event.stopPropagation()}
+              >
                 <button
                   type="button"
                   aria-label="Cerrar video"
                   onClick={() => setActiveVideo(null)}
-                  className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]/35 bg-black/45 text-xl text-[#d4af37] shadow-[0_18px_40px_rgba(0,0,0,0.32)] transition-colors duration-300 hover:border-[#d4af37]/70 hover:bg-black/55"
+                  className="absolute left-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-[#d4af37]/35 bg-black/45 text-xl text-[#d4af37] shadow-[0_18px_40px_rgba(0,0,0,0.32)] transition-colors duration-300 hover:border-[#d4af37]/70 hover:bg-black/55"
                 >
                   ×
                 </button>
