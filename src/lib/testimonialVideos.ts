@@ -141,8 +141,21 @@ export const testimonialVideos: TestimonialVideo[] = [
 ];
 
 const getYoutubeId = (url: string) => {
+  const allowedHosts = new Set([
+    "youtu.be",
+    "www.youtu.be",
+    "youtube.com",
+    "www.youtube.com",
+    "youtube-nocookie.com",
+    "www.youtube-nocookie.com",
+  ]);
+
   try {
     const parsed = new URL(url);
+
+    if (!allowedHosts.has(parsed.hostname)) {
+      return "";
+    }
 
     if (parsed.hostname.includes("youtu.be")) {
       return parsed.pathname.replace("/", "");
@@ -159,13 +172,18 @@ const getYoutubeId = (url: string) => {
   }
 };
 
-export const toEmbedUrl = (url: string) => {
+const getSafeYoutubeId = (url: string) => {
   const id = getYoutubeId(url);
+  return /^[A-Za-z0-9_-]{6,}$/.test(id) ? id : "z-vtfoyOEmE";
+};
+
+export const toEmbedUrl = (url: string) => {
+  const id = getSafeYoutubeId(url);
   return `https://www.youtube.com/embed/${id}`;
 };
 
 export const toThumbnailUrl = (url: string) => {
-  const id = getYoutubeId(url);
+  const id = getSafeYoutubeId(url);
   return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 };
 

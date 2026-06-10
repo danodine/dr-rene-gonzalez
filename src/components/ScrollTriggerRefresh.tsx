@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ScrollTriggerRefresh() {
   useEffect(() => {
+    let isMounted = true;
+
     const refresh = () => {
-      ScrollTrigger.refresh();
+      void import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+        if (isMounted) {
+          ScrollTrigger.refresh();
+        }
+      });
     };
 
     const timeoutId = window.setTimeout(refresh, 180);
@@ -21,6 +26,7 @@ export default function ScrollTriggerRefresh() {
     window.addEventListener("orientationchange", refresh);
 
     return () => {
+      isMounted = false;
       window.clearTimeout(timeoutId);
       window.cancelAnimationFrame(rafId);
       window.removeEventListener("load", refresh);

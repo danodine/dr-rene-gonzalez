@@ -1,10 +1,6 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -45,16 +41,31 @@ export default function HeroSection() {
       return;
     }
 
-    const aboutPanels = gsap.utils.toArray<HTMLElement>(
-      "[data-about-panel]",
-      secondText,
-    );
+    let ctx: { revert: () => void } | null = null;
+    let isMounted = true;
 
-    if (aboutPanels.length === 0) {
-      return;
-    }
+    void (async () => {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
 
-    const ctx = gsap.context(() => {
+      if (!isMounted) {
+        return;
+      }
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const aboutPanels = gsap.utils.toArray<HTMLElement>(
+        "[data-about-panel]",
+        secondText,
+      );
+
+      if (aboutPanels.length === 0) {
+        return;
+      }
+
+      ctx = gsap.context(() => {
       gsap.set([rightText, leftText, secondText], {
         autoAlpha: 0,
         y: 18,
@@ -211,9 +222,13 @@ export default function HeroSection() {
             start + 0.82,
           );
       });
-    }, section);
+      }, section);
+    })();
 
-    return () => ctx.revert();
+    return () => {
+      isMounted = false;
+      ctx?.revert();
+    };
   }, []);
 
   return (
@@ -231,7 +246,7 @@ export default function HeroSection() {
       <div className="sticky top-0 h-screen overflow-hidden safari-motion-layer">
         <div
           className="absolute inset-0 scale-[1.02] bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url("/images/section_1_image.png")' }}
+          style={{ backgroundImage: 'url("/images/section_1_image.webp")' }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/25" />
 
@@ -306,13 +321,14 @@ export default function HeroSection() {
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
               style={{
-                backgroundImage: 'url("/images/section-2-image-2-mobile.png")',
+                backgroundImage:
+                  'url("/images/section-2-image-2-mobile.webp")',
               }}
             />
             <div
               className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block"
               style={{
-                backgroundImage: 'url("/images/section-2-image-2.png")',
+                backgroundImage: 'url("/images/section-2-image-2.webp")',
               }}
             />
           </div>

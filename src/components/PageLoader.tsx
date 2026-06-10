@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const FADE_DURATION_MS = 520;
-const MIN_VISIBLE_MS = 900;
+const MIN_VISIBLE_MS = 350;
 
 export default function PageLoader() {
   const [isVisible, setIsVisible] = useState(true);
@@ -36,14 +36,9 @@ export default function PageLoader() {
       }, delay);
     };
 
-    if (document.readyState === "complete") {
-      finishLoading();
-    } else {
-      window.addEventListener("load", finishLoading, { once: true });
-    }
+    fadeTimer = window.setTimeout(finishLoading, 0);
 
     return () => {
-      window.removeEventListener("load", finishLoading);
       if (fadeTimer) {
         window.clearTimeout(fadeTimer);
       }

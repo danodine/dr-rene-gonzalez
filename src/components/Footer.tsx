@@ -23,7 +23,7 @@ export default function Footer() {
               <a
                 href="https://www.facebook.com/dr.renegonzalezdav"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/12 bg-white/5 text-white/80 shadow-[0_14px_40px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:border-[#d4af37]/40 hover:text-[#d4af37]"
               >
@@ -38,7 +38,7 @@ export default function Footer() {
               <a
                 href="https://www.instagram.com/dr.renegonzalezdav/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/12 bg-white/5 text-white/80 shadow-[0_14px_40px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:border-[#d4af37]/40 hover:text-[#d4af37]"
               >
@@ -53,7 +53,7 @@ export default function Footer() {
               <a
                 href="https://www.tiktok.com/@dr.renegonzalezdav?_r=1&_t=ZS-95oZtyoRWlh"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="TikTok"
                 className="flex h-12 w-12 items-center justify-center rounded-full border border-white/12 bg-white/5 text-white/80 shadow-[0_14px_40px_rgba(0,0,0,0.24)] backdrop-blur-xl transition-all duration-300 hover:border-[#d4af37]/40 hover:text-[#d4af37]"
               >
@@ -104,7 +104,7 @@ export default function Footer() {
               <a
                 href={mapUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mt-2 block max-w-md text-sm leading-7 text-white/60 transition-colors duration-300 hover:text-[#d4af37] sm:text-base lg:ml-auto"
               >
                 Ver ubicación de la clínica en Google Maps

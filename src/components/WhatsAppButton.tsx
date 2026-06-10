@@ -3,7 +3,7 @@ export default function WhatsAppButton() {
     <a
       href="https://wa.me/593992448076"
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       aria-label="Abrir WhatsApp"
       className="fixed bottom-5 right-5 z-[70] flex h-14 w-14 items-center justify-center rounded-full border border-[#d4af37]/35 bg-black/55 text-[#d4af37] shadow-[0_18px_40px_rgba(0,0,0,0.34),0_0_24px_rgba(212,175,55,0.08)] backdrop-blur-xl transition-all duration-300 hover:border-[#d4af37]/70 hover:bg-black/72 hover:text-[#f1d37a] sm:bottom-7 sm:right-7"
     >

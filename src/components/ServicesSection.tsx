@@ -3,15 +3,12 @@
 import NextImage from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const frameCount = 469;
+const framePrefetchRadius = 2;
 
 const currentFrame = (index: number) =>
-  `/images/servicesAnimationImages/frame_${index.toString().padStart(4, "0")}.png`;
+  `/images/servicesAnimationFramesWebp/frame_${index.toString().padStart(4, "0")}.webp`;
 
 const drawTopCoverImage = (
   context: CanvasRenderingContext2D,
@@ -54,34 +51,45 @@ type ServiceVideoDetail = {
 const PLACEHOLDER_VIDEO_URL = "https://www.youtube.com/embed/z-vtfoyOEmE";
 const PLACEHOLDER_DESCRIPTION = "";
 
-const toEmbedUrl = (url: string) => {
-  if (url.includes("/embed/")) {
-    return url;
-  }
-
-  if (url.includes("youtu.be/")) {
-    const videoId = url.split("youtu.be/")[1]?.split("?")[0];
-    return videoId
-      ? `https://www.youtube.com/embed/${videoId}`
-      : PLACEHOLDER_VIDEO_URL;
-  }
-
-  if (url.includes("/shorts/")) {
-    const videoId = url.split("/shorts/")[1]?.split("?")[0];
-    return videoId
-      ? `https://www.youtube.com/embed/${videoId}`
-      : PLACEHOLDER_VIDEO_URL;
-  }
+const getSafeYoutubeId = (url: string) => {
+  const allowedHosts = new Set([
+    "youtu.be",
+    "www.youtu.be",
+    "youtube.com",
+    "www.youtube.com",
+    "youtube-nocookie.com",
+    "www.youtube-nocookie.com",
+  ]);
 
   try {
     const parsed = new URL(url);
-    const videoId = parsed.searchParams.get("v");
-    return videoId
-      ? `https://www.youtube.com/embed/${videoId}`
-      : PLACEHOLDER_VIDEO_URL;
+
+    if (!allowedHosts.has(parsed.hostname)) {
+      return "";
+    }
+
+    if (parsed.hostname.includes("youtu.be")) {
+      return parsed.pathname.split("/").filter(Boolean)[0] ?? "";
+    }
+
+    const pathParts = parsed.pathname.split("/").filter(Boolean);
+    const pathId =
+      pathParts[0] === "embed" || pathParts[0] === "shorts"
+        ? pathParts[1]
+        : "";
+    const id = parsed.searchParams.get("v") ?? pathId ?? "";
+
+    return /^[A-Za-z0-9_-]{6,}$/.test(id) ? id : "";
   } catch {
-    return PLACEHOLDER_VIDEO_URL;
+    return "";
   }
+};
+
+const toEmbedUrl = (url: string) => {
+  const videoId = getSafeYoutubeId(url);
+  return videoId
+    ? `https://www.youtube.com/embed/${videoId}`
+    : PLACEHOLDER_VIDEO_URL;
 };
 
 const serviceMediaLibrary = {
@@ -442,7 +450,10 @@ function resolveServiceMedia(
 export default function ServicesSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const frameCacheRef = useRef<Map<number, HTMLImageElement>>(new Map());
+  const pendingFrameRef = useRef<Map<number, Promise<HTMLImageElement | null>>>(
+    new Map(),
+  );
   const activeFrameRef = useRef(0);
   const [activeService, setActiveService] = useState(0);
   const [detailVisible, setDetailVisible] = useState(false);
@@ -507,14 +518,76 @@ export default function ServicesSection() {
       return;
     }
 
+    let isMounted = true;
+    let ctx: { revert: () => void } | null = null;
+
+    const loadFrame = (index: number) => {
+      const normalizedIndex = Math.min(Math.max(index, 0), frameCount - 1);
+      const cachedImage = frameCacheRef.current.get(normalizedIndex);
+
+      if (cachedImage) {
+        return Promise.resolve(cachedImage);
+      }
+
+      const pendingImage = pendingFrameRef.current.get(normalizedIndex);
+
+      if (pendingImage) {
+        return pendingImage;
+      }
+
+      const promise = new Promise<HTMLImageElement | null>((resolve) => {
+        const image = new Image();
+
+        image.decoding = "async";
+        image.onload = () => {
+          pendingFrameRef.current.delete(normalizedIndex);
+          frameCacheRef.current.set(normalizedIndex, image);
+          resolve(image);
+        };
+        image.onerror = () => {
+          pendingFrameRef.current.delete(normalizedIndex);
+          resolve(null);
+        };
+        image.src = currentFrame(normalizedIndex + 1);
+      });
+
+      pendingFrameRef.current.set(normalizedIndex, promise);
+      return promise;
+    };
+
+    const prefetchNearbyFrames = (index: number) => {
+      for (
+        let offset = -framePrefetchRadius;
+        offset <= framePrefetchRadius;
+        offset += 1
+      ) {
+        const nextIndex = index + offset;
+
+        if (nextIndex >= 0 && nextIndex < frameCount) {
+          void loadFrame(nextIndex);
+        }
+      }
+    };
+
     const renderFrame = (index: number) => {
-      const image = imagesRef.current[index];
+      const image = frameCacheRef.current.get(index);
 
       if (!image || !image.complete || image.naturalWidth === 0) {
+        void loadFrame(index).then((loadedImage) => {
+          if (
+            isMounted &&
+            loadedImage &&
+            activeFrameRef.current === index
+          ) {
+            drawTopCoverImage(context, loadedImage, canvas.width, canvas.height);
+            prefetchNearbyFrames(index);
+          }
+        });
         return;
       }
 
       drawTopCoverImage(context, image, canvas.width, canvas.height);
+      prefetchNearbyFrames(index);
     };
 
     const resizeCanvas = () => {
@@ -526,25 +599,28 @@ export default function ServicesSection() {
       renderFrame(activeFrameRef.current);
     };
 
-    imagesRef.current = [];
-
-    for (let index = 1; index <= frameCount; index += 1) {
-      const image = new Image();
-      image.src = currentFrame(index);
-      imagesRef.current.push(image);
-
-      if (index === 1) {
-        image.onload = () => {
-          resizeCanvas();
-          renderFrame(0);
-        };
-      }
-    }
-
     resizeCanvas();
+    void loadFrame(0).then((image) => {
+      if (isMounted && image) {
+        resizeCanvas();
+        renderFrame(0);
+      }
+    });
     window.addEventListener("resize", resizeCanvas);
 
-    const ctx = gsap.context(() => {
+    void (async () => {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+
+      if (!isMounted) {
+        return;
+      }
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      ctx = gsap.context(() => {
       const scrollState = { frame: 0 };
       const nodes = gsap.utils.toArray<HTMLElement>(
         "[data-service-node]",
@@ -598,11 +674,13 @@ export default function ServicesSection() {
           },
           0.16,
         );
-    }, section);
+      }, section);
+    })();
 
     return () => {
+      isMounted = false;
       window.removeEventListener("resize", resizeCanvas);
-      ctx.revert();
+      ctx?.revert();
     };
   }, []);
 
@@ -747,6 +825,7 @@ export default function ServicesSection() {
                           title={`Video de ${activeVideo.itemLabel}`}
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           referrerPolicy="strict-origin-when-cross-origin"
+                          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
                           allowFullScreen
                         />
                       ) : (
