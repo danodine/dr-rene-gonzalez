@@ -306,13 +306,13 @@ export default function HeroSection() {
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
               style={{
-                backgroundImage: 'url("/images/section-2-image-3-mobile.jpeg")',
+                backgroundImage: 'url("/images/section-2-image-2-mobile.png")',
               }}
             />
             <div
               className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block"
               style={{
-                backgroundImage: 'url("/images/section-2-image-3.png")',
+                backgroundImage: 'url("/images/section-2-image-2.png")',
               }}
             />
           </div>

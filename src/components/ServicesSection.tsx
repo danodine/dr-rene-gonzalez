@@ -52,8 +52,7 @@ type ServiceVideoDetail = {
 };
 
 const PLACEHOLDER_VIDEO_URL = "https://www.youtube.com/embed/z-vtfoyOEmE";
-const PLACEHOLDER_DESCRIPTION =
-  "Próximamente agregaremos una descripción más detallada de este procedimiento y lo que el paciente podrá ver en este contenido.";
+const PLACEHOLDER_DESCRIPTION = "";
 
 const toEmbedUrl = (url: string) => {
   if (url.includes("/embed/")) {
@@ -89,7 +88,7 @@ const serviceMediaLibrary = {
   Botox: {
     media: {
       type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/a95bc7BVdLc?feature=share"),
+      url: toEmbedUrl("https://youtube.com/shorts/I8Saca5LhW8?feature=share"),
     },
     title: "Botox función",
     description:
@@ -138,26 +137,47 @@ const serviceMediaLibrary = {
       "La marcación mandibular es un procedimiento de armonización facial no quirúrgico que define y resalta el contorno del rostro.",
   },
   "Vitaminización facial": {
-    media: { type: "image", src: "/images/VitaminizacionFacial.jpeg" },
+    media: { type: "image", src: "/images/VitaminizacionFacial.jpg" },
     title: "Vitaminización facial",
     description:
       "La vitaminización facial consiste en aplicar un cóctel personalizado de vitaminas, minerales y ácido hialurónico directamente en la dermis mediante microinyecciones superficiales.",
   },
-  "IPL (intensa luz pulsada)": {
-    media: {
-      type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/b2hObWQgIlw?feature=share"),
-    },
+  IPL: {
+    media: { type: "image", src: "/images/IPL.jpg" },
     title: "IPL",
     description:
       "El tratamiento con IPL (Luz Pulsada Intensa) es un procedimiento médico-estético no invasivo que utiliza pulsos de luz para mejorar la calidad de la piel.",
   },
-  Rinoplastia: {
+  "Remoción de tatuajes": {
+    media: { type: "image", src: "/images/RemocionTatuajes.jpeg" },
+    title: "Remoción de tatuajes",
+    description:
+      "La remoción de tatuajes es un tratamiento clínico que utiliza tecnología láser para fragmentar la tinta encapsulada en la piel",
+  },
+  "Radiocavitación y radiofrecuencia": {
+    media: {
+      type: "image",
+      src: "/images/RadiocavitacionRradiofrecuencia.jpg",
+    },
+    title: "Radiocavitación y radiofrecuencia",
+    description:
+      "La cavitación y la radiofrecuencia son dos tecnologías estéticas no invasivas que se complementan para modelar el cuerpo",
+  },
+  "Rinoplastia Mujer": {
     media: {
       type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/tUHzKHXQ5NY?feature=share"),
+      url: toEmbedUrl("https://youtube.com/shorts/nmH7XUkwsJ0?feature=share"),
     },
-    title: "Rinoplastia",
+    title: "Rinoplastia Mujer",
+    description:
+      "La rinoplastia es un procedimiento quirúrgico que modifica el tamaño, la forma y la estructura de la nariz para lograr una mayor armonía facial.",
+  },
+  "Rinoplastia Hombre": {
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/u59xtanT2To?feature=share"),
+    },
+    title: "Rinoplastia Hombre",
     description:
       "La rinoplastia es un procedimiento quirúrgico que modifica el tamaño, la forma y la estructura de la nariz para lograr una mayor armonía facial.",
   },
@@ -208,7 +228,10 @@ const serviceMediaLibrary = {
     description: PLACEHOLDER_DESCRIPTION,
   },
   Liposucción: {
-    media: { type: "video", url: PLACEHOLDER_VIDEO_URL },
+    media: {
+      type: "video",
+      url: toEmbedUrl("https://youtube.com/shorts/S7rDDJ99ruE?feature=share"),
+    },
     title: "Liposucción",
     description:
       "La liposucción es una intervención quirúrgica estética diseñada para moldear la figura mediante la extracción de depósitos de grasa localizada.",
@@ -245,38 +268,6 @@ const serviceMediaLibrary = {
     title: "Hidratación y aumento de labios",
     description:
       "El aumento de labios es una técnica mínimamente invasiva en la que se inyecta ácido hialurónico para aumentar su grosor e hidratación.",
-  },
-  "Botox (hiperhidrosis)": {
-    media: {
-      type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/o19y5Bmay10?feature=share"),
-    },
-    title: "Botox (hiperhidrosis)",
-    description: PLACEHOLDER_DESCRIPTION,
-  },
-  "Botox (bruxismo)": {
-    media: {
-      type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/o19y5Bmay10?feature=share"),
-    },
-    title: "Botox (bruxismo)",
-    description: PLACEHOLDER_DESCRIPTION,
-  },
-  "Botox (movimientos clónicos)": {
-    media: {
-      type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/o19y5Bmay10?feature=share"),
-    },
-    title: "Botox (movimientos clónicos)",
-    description: PLACEHOLDER_DESCRIPTION,
-  },
-  "Botox (ptosis palpebral)": {
-    media: {
-      type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/o19y5Bmay10?feature=share"),
-    },
-    title: "Botox (ptosis palpebral)",
-    description: PLACEHOLDER_DESCRIPTION,
   },
 } as const;
 
@@ -329,17 +320,16 @@ const services = [
     label: "Medicina Estética Corporal",
     title: "Medicina Estética Corporal",
     items: [
-      "IPL (intensa luz pulsada)",
-      "* Estrías y depilación",
-      "* Remoción",
-      "* Radiocavitación y radiofrecuencia",
+      "Remoción de tatuajes", // subir este y agregar video
+      "Radiocavitación y radiofrecuencia", // subir este y agregar video
     ],
   },
   {
     label: "Cirugía Estética Facial",
     title: "Cirugía Estética Facial",
     items: [
-      "Rinoplastia",
+      "Rinoplastia Mujer",
+      "Rinoplastia Hombre",
       "Mentoplastia",
       "Bichectomía",
       "Otoplastia",
@@ -365,7 +355,7 @@ const services = [
     label: "Hidratación y Calidad de la Piel",
     title: "Hidratación y Calidad de la Piel",
     items: [
-      "IPL (intensa luz pulsada)",
+      "IPL",
       "* Melasma",
       "* Manchas de piel",
       "* Depilación",
