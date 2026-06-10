@@ -5,7 +5,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 
 const frameCount = 469;
-const framePrefetchRadius = 2;
+const framePrefetchRadius = 16;
+const framePreloadConcurrency = 6;
 
 const currentFrame = (index: number) =>
   `/images/servicesAnimationFramesWebp/frame_${index.toString().padStart(4, "0")}.webp`;
@@ -520,6 +521,11 @@ export default function ServicesSection() {
 
     let isMounted = true;
     let ctx: { revert: () => void } | null = null;
+    let preloadCursor = 0;
+    let activePreloads = 0;
+    let preloadStarted = false;
+    let preloadTimer: number | null = null;
+    let lastRenderedFrame = 0;
 
     const loadFrame = (index: number) => {
       const normalizedIndex = Math.min(Math.max(index, 0), frameCount - 1);
@@ -539,7 +545,14 @@ export default function ServicesSection() {
         const image = new Image();
 
         image.decoding = "async";
-        image.onload = () => {
+        image.loading = "eager";
+        image.onload = async () => {
+          try {
+            await image.decode();
+          } catch {
+            // The frame can still be drawn when decode() is unavailable or rejects.
+          }
+
           pendingFrameRef.current.delete(normalizedIndex);
           frameCacheRef.current.set(normalizedIndex, image);
           resolve(image);
@@ -553,6 +566,34 @@ export default function ServicesSection() {
 
       pendingFrameRef.current.set(normalizedIndex, promise);
       return promise;
+    };
+
+    const findNearestLoadedFrame = (index: number) => {
+      const exactImage = frameCacheRef.current.get(index);
+
+      if (exactImage) {
+        return { image: exactImage, index };
+      }
+
+      for (let distance = 1; distance <= framePrefetchRadius; distance += 1) {
+        const previousIndex = index - distance;
+        const nextIndex = index + distance;
+        const previousImage =
+          previousIndex >= 0 ? frameCacheRef.current.get(previousIndex) : null;
+        const nextImage =
+          nextIndex < frameCount ? frameCacheRef.current.get(nextIndex) : null;
+
+        if (previousImage) {
+          return { image: previousImage, index: previousIndex };
+        }
+
+        if (nextImage) {
+          return { image: nextImage, index: nextIndex };
+        }
+      }
+
+      const lastImage = frameCacheRef.current.get(lastRenderedFrame);
+      return lastImage ? { image: lastImage, index: lastRenderedFrame } : null;
     };
 
     const prefetchNearbyFrames = (index: number) => {
@@ -569,10 +610,49 @@ export default function ServicesSection() {
       }
     };
 
-    const renderFrame = (index: number) => {
-      const image = frameCacheRef.current.get(index);
+    const scheduleBackgroundPreload = () => {
+      if (!isMounted) {
+        return;
+      }
 
-      if (!image || !image.complete || image.naturalWidth === 0) {
+      while (
+        activePreloads < framePreloadConcurrency &&
+        preloadCursor < frameCount
+      ) {
+        const nextIndex = preloadCursor;
+        preloadCursor += 1;
+
+        if (
+          frameCacheRef.current.has(nextIndex) ||
+          pendingFrameRef.current.has(nextIndex)
+        ) {
+          continue;
+        }
+
+        activePreloads += 1;
+        void loadFrame(nextIndex).finally(() => {
+          activePreloads -= 1;
+
+          if (isMounted && preloadCursor < frameCount) {
+            preloadTimer = window.setTimeout(scheduleBackgroundPreload, 18);
+          }
+        });
+      }
+    };
+
+    const startBackgroundPreload = () => {
+      if (preloadStarted) {
+        return;
+      }
+
+      preloadStarted = true;
+      scheduleBackgroundPreload();
+    };
+
+    const renderFrame = (index: number) => {
+      const loadedFrame = findNearestLoadedFrame(index);
+
+      if (!loadedFrame) {
         void loadFrame(index).then((loadedImage) => {
           if (
             isMounted &&
@@ -586,8 +666,22 @@ export default function ServicesSection() {
         return;
       }
 
-      drawTopCoverImage(context, image, canvas.width, canvas.height);
+      drawTopCoverImage(context, loadedFrame.image, canvas.width, canvas.height);
+      lastRenderedFrame = loadedFrame.index;
       prefetchNearbyFrames(index);
+
+      if (loadedFrame.index !== index) {
+        void loadFrame(index).then((loadedImage) => {
+          if (
+            isMounted &&
+            loadedImage &&
+            activeFrameRef.current === index
+          ) {
+            drawTopCoverImage(context, loadedImage, canvas.width, canvas.height);
+            lastRenderedFrame = index;
+          }
+        });
+      }
     };
 
     const resizeCanvas = () => {
@@ -607,6 +701,24 @@ export default function ServicesSection() {
       }
     });
     window.addEventListener("resize", resizeCanvas);
+
+    const preloadObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          startBackgroundPreload();
+        }
+      },
+      {
+        rootMargin: "2200px 0px",
+      },
+    );
+
+    preloadObserver.observe(section);
+
+    const idlePreloadId =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(startBackgroundPreload, { timeout: 2500 })
+        : globalThis.setTimeout(startBackgroundPreload, 2200);
 
     void (async () => {
       const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
@@ -679,6 +791,15 @@ export default function ServicesSection() {
 
     return () => {
       isMounted = false;
+      preloadObserver.disconnect();
+      if ("cancelIdleCallback" in window && typeof idlePreloadId === "number") {
+        window.cancelIdleCallback(idlePreloadId);
+      } else {
+        globalThis.clearTimeout(idlePreloadId);
+      }
+      if (preloadTimer) {
+        window.clearTimeout(preloadTimer);
+      }
       window.removeEventListener("resize", resizeCanvas);
       ctx?.revert();
     };
