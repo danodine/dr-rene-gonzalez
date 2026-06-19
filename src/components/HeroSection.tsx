@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 
 export default function HeroSection() {
@@ -13,6 +14,7 @@ export default function HeroSection() {
   const leftPanelRef = useRef<HTMLDivElement | null>(null);
   const rightPanelRef = useRef<HTMLDivElement | null>(null);
   const secondTextRef = useRef<HTMLDivElement | null>(null);
+  const secondBrandRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -25,6 +27,7 @@ export default function HeroSection() {
     const leftPanel = leftPanelRef.current;
     const rightPanel = rightPanelRef.current;
     const secondText = secondTextRef.current;
+    const secondBrand = secondBrandRef.current;
 
     if (
       !section ||
@@ -36,7 +39,8 @@ export default function HeroSection() {
       !secondImage ||
       !leftPanel ||
       !rightPanel ||
-      !secondText
+      !secondText ||
+      !secondBrand
     ) {
       return;
     }
@@ -66,162 +70,176 @@ export default function HeroSection() {
       }
 
       ctx = gsap.context(() => {
-      gsap.set([rightText, leftText, secondText], {
-        autoAlpha: 0,
-        y: 18,
-      });
+        gsap.set([rightText, leftText, secondText], {
+          autoAlpha: 0,
+          y: 18,
+        });
 
-      gsap.set(aboutPanels, {
-        autoAlpha: 0,
-        y: 18,
-      });
+        gsap.set(secondBrand, {
+          autoAlpha: 0,
+          y: 12,
+        });
 
-      gsap.set(rightWash, {
-        autoAlpha: 0,
-      });
+        gsap.set(aboutPanels, {
+          autoAlpha: 0,
+          y: 18,
+        });
 
-      gsap.set(ripStage, {
-        autoAlpha: 0,
-      });
+        gsap.set(rightWash, {
+          autoAlpha: 0,
+        });
 
-      gsap.set(secondImage, {
-        scale: 1.08,
-      });
+        gsap.set(ripStage, {
+          autoAlpha: 0,
+        });
 
-      gsap.set([leftPanel, rightPanel], {
-        xPercent: 0,
-        rotate: 0,
-      });
+        gsap.set(secondImage, {
+          scale: 1.08,
+        });
 
-      const timeline = gsap.timeline({
-        defaults: {
-          ease: "none",
-        },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        },
-      });
+        gsap.set([leftPanel, rightPanel], {
+          xPercent: 0,
+          rotate: 0,
+        });
 
-      timeline
-        .to(rightText, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.28,
-        })
-        .to(
-          overlay,
-          {
-            xPercent: -100,
-            duration: 1.95,
+        const timeline = gsap.timeline({
+          defaults: {
+            ease: "none",
           },
-          0.34,
-        )
-        .to(
-          rightText,
-          {
-            autoAlpha: 0,
-            y: -10,
-            duration: 0.26,
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.2,
+            invalidateOnRefresh: true,
           },
-          0.78,
-        )
-        .to(
-          leftText,
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.36,
-          },
-          2.34,
-        )
-        .to(
-          [leftText, rightText],
-          {
-            autoAlpha: 0,
-            y: -10,
-            duration: 0.26,
-          },
-          2.76,
-        )
-        .to(
-          rightWash,
-          {
-            autoAlpha: 1,
-            duration: 0.48,
-          },
-          2.86,
-        )
-        .to(
-          ripStage,
-          {
-            autoAlpha: 1,
-            duration: 0.02,
-          },
-          3.24,
-        )
-        .to(
-          leftPanel,
-          {
-            xPercent: -108,
-            rotate: -2.8,
-            duration: 1.18,
-          },
-          3.42,
-        )
-        .to(
-          rightPanel,
-          {
-            xPercent: 108,
-            rotate: 2.8,
-            duration: 1.18,
-          },
-          3.42,
-        )
-        .to(
-          secondImage,
-          {
-            scale: 1,
-            duration: 1.2,
-          },
-          3.48,
-        )
-        .to(
-          secondText,
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.24,
-          },
-          4.2,
-        );
-
-      aboutPanels.forEach((panel, index) => {
-        const start = 4.42 + index * 1.05;
+        });
 
         timeline
+          .to(rightText, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.28,
+          })
           .to(
-            panel,
+            overlay,
+            {
+              xPercent: -100,
+              duration: 1.95,
+            },
+            0.34,
+          )
+          .to(
+            rightText,
+            {
+              autoAlpha: 0,
+              y: -10,
+              duration: 0.26,
+            },
+            0.78,
+          )
+          .to(
+            leftText,
             {
               autoAlpha: 1,
               y: 0,
-              duration: 0.22,
+              duration: 0.36,
             },
-            start,
+            2.34,
           )
           .to(
-            panel,
+            [leftText, rightText],
             {
               autoAlpha: 0,
-              y: -16,
-              duration: 0.22,
+              y: -10,
+              duration: 0.26,
             },
-            start + 0.82,
+            2.76,
+          )
+          .to(
+            rightWash,
+            {
+              autoAlpha: 1,
+              duration: 0.48,
+            },
+            2.86,
+          )
+          .to(
+            ripStage,
+            {
+              autoAlpha: 1,
+              duration: 0.02,
+            },
+            3.24,
+          )
+          .to(
+            leftPanel,
+            {
+              xPercent: -108,
+              rotate: -2.8,
+              duration: 1.18,
+            },
+            3.42,
+          )
+          .to(
+            rightPanel,
+            {
+              xPercent: 108,
+              rotate: 2.8,
+              duration: 1.18,
+            },
+            3.42,
+          )
+          .to(
+            secondImage,
+            {
+              scale: 1,
+              duration: 1.2,
+            },
+            3.48,
+          )
+          .to(
+            secondText,
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.24,
+            },
+            4.2,
+          )
+          .to(
+            secondBrand,
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.24,
+            },
+            4.62,
           );
-      });
+
+        aboutPanels.forEach((panel, index) => {
+          const start = 4.42 + index * 1.05;
+
+          timeline
+            .to(
+              panel,
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.22,
+              },
+              start,
+            )
+            .to(
+              panel,
+              {
+                autoAlpha: 0,
+                y: -16,
+                duration: 0.22,
+              },
+              start + 0.82,
+            );
+        });
       }, section);
     })();
 
@@ -321,14 +339,13 @@ export default function HeroSection() {
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
               style={{
-                backgroundImage:
-                  'url("/images/section-2-image-2-mobile.webp")',
+                backgroundImage: 'url("/images/section-2-image-1-mobile.webp")',
               }}
             />
             <div
               className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block"
               style={{
-                backgroundImage: 'url("/images/section-2-image-2.webp")',
+                backgroundImage: 'url("/images/section-2-image-1.webp")',
               }}
             />
           </div>
@@ -343,6 +360,31 @@ export default function HeroSection() {
               ref={rightPanelRef}
               className="absolute inset-y-0 right-0 w-1/2 origin-left bg-white shadow-[-20px_0_72px_rgba(255,255,255,0.18)] safari-motion-layer"
             />
+          </div>
+
+          <div
+            ref={secondBrandRef}
+            aria-hidden="true"
+            className="pointer-events-none absolute left-[100px] top-[50px] z-[15] hidden flex-col items-center text-center md:flex"
+          >
+            <div className="relative h-[6rem] w-[6rem] lg:h-[7rem] lg:w-[7rem]">
+              <Image
+                src="/images/LogoNB.png"
+                alt="RG"
+                fill
+                sizes="7rem"
+                className="object-contain"
+              />
+            </div>
+
+            <div className="mt-5">
+              <p className="whitespace-nowrap text-[clamp(0.95rem,1.25vw,1.25rem)] font-light uppercase tracking-[0.12em] text-[#49506a]">
+                {"Ren\u00e9 Gonz\u00e1lez D\u00e1vila"}
+              </p>
+              <p className="mt-1.5 text-xs uppercase tracking-[0.2em] text-[#49506a]">
+                {"Cirug\u00eda Est\u00e9tica"}
+              </p>
+            </div>
           </div>
 
           <div className="absolute inset-0 z-20 flex items-end justify-start p-6 pb-16 sm:p-12 lg:p-20">

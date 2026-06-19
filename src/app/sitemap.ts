@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/app/lib/blog";
+import { siteUrl } from "@/lib/seo";
 
-const siteUrl = "https://pagina-rene-gonzalez.vercel.app";
-const lastModified = new Date();
+const lastModified = new Date("2026-06-19T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();

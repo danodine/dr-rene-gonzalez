@@ -49,7 +49,7 @@ type ServiceVideoDetail = {
       };
 };
 
-const PLACEHOLDER_VIDEO_URL = "https://www.youtube.com/embed/z-vtfoyOEmE";
+const PLACEHOLDER_VIDEO_URL = "https://www.youtube-nocookie.com/embed/z-vtfoyOEmE";
 const PLACEHOLDER_DESCRIPTION = "";
 
 const getSafeYoutubeId = (url: string) => {
@@ -89,7 +89,7 @@ const getSafeYoutubeId = (url: string) => {
 const toEmbedUrl = (url: string) => {
   const videoId = getSafeYoutubeId(url);
   return videoId
-    ? `https://www.youtube.com/embed/${videoId}`
+    ? `https://www.youtube-nocookie.com/embed/${videoId}`
     : PLACEHOLDER_VIDEO_URL;
 };
 

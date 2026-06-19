@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const siteUrl = "https://pagina-rene-gonzalez.vercel.app";
+import { siteHost, siteUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    host: siteUrl,
+    host: siteHost,
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

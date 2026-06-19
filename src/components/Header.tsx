@@ -6,6 +6,9 @@ const mobileTextColor = "#ffffff";
 export default function Header() {
   return (
     <section id="inicio" className="relative h-screen bg-black">
+      <h1 className="sr-only">
+        Dr. René González Dávila, cirujano estético en Loja, Ecuador
+      </h1>
       <div className="relative h-screen overflow-hidden bg-black safari-motion-layer">
         <picture>
           <source
@@ -18,7 +21,7 @@ export default function Header() {
             type="image/webp"
           />
           <img
-            src="/images/headerBackgroundMobile.jpeg"
+            src="/images/headerBackgroundMobile.webp"
             alt=""
             fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover object-center safari-motion-layer"
@@ -30,7 +33,7 @@ export default function Header() {
             <div className="relative h-[8rem] w-[8rem]">
               <Image
                 src="/images/LogoNB.png"
-                alt="RG"
+                alt="Logotipo de Dr. René González Dávila"
                 fill
                 sizes="8rem"
                 className="object-contain"
@@ -40,18 +43,18 @@ export default function Header() {
 
           <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
             <div>
-              <h1
+              <p
                 className="whitespace-nowrap text-[1.1rem] font-light uppercase tracking-[0.12em]"
                 style={{ color: mobileTextColor }}
               >
                 René González Dávila
-              </h1>
-              <h2
+              </p>
+              <p
                 className="mt-[12px] text-[0.62rem] uppercase tracking-[0.4em]"
                 style={{ color: mobileTextColor }}
               >
                 Cirugía Estética
-              </h2>
+              </p>
             </div>
           </div>
         </div>
@@ -61,7 +64,7 @@ export default function Header() {
             <div className="relative h-[8vw] w-[8vw]">
               <Image
                 src="/images/LogoNB.png"
-                alt="RG"
+                alt="Logotipo de Dr. René González Dávila"
                 fill
                 sizes="8vw"
                 className="object-contain"
@@ -69,18 +72,18 @@ export default function Header() {
             </div>
 
             <div className="mt-[25px]">
-              <h1
+              <p
                 className="whitespace-nowrap text-[1.25vw] font-light uppercase tracking-[0.12em]"
                 style={{ color: desktopTextColor }}
               >
                 René González Dávila
-              </h1>
-              <h2
+              </p>
+              <p
                 className="mt-[5px] text-[0.3rem] uppercase tracking-[0.2em] sm:text-xs"
                 style={{ color: desktopTextColor }}
               >
                 Cirugía Estética
-              </h2>
+              </p>
             </div>
           </div>
         </div>

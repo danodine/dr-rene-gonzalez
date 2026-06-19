@@ -179,7 +179,7 @@ const getSafeYoutubeId = (url: string) => {
 
 export const toEmbedUrl = (url: string) => {
   const id = getSafeYoutubeId(url);
-  return `https://www.youtube.com/embed/${id}`;
+  return `https://www.youtube-nocookie.com/embed/${id}`;
 };
 
 export const toThumbnailUrl = (url: string) => {

@@ -18,8 +18,17 @@ const securityHeaders = [
       "connect-src 'self'",
       "media-src 'self'",
       "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
+      ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
     ].join("; "),
   },
+  ...(isDevelopment
+    ? []
+    : [
+        {
+          key: "Strict-Transport-Security",
+          value: "max-age=31536000",
+        },
+      ]),
   {
     key: "Referrer-Policy",
     value: "strict-origin-when-cross-origin",
@@ -41,6 +50,9 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  turbopack: {
+    root: process.cwd(),
+  },
   async headers() {
     return [
       {

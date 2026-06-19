@@ -3,8 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import BlogGoldDust from "@/components/BlogGoldDust";
 import { getAllPosts, getPostBySlug } from "@lib/posts";
-
-const siteUrl = "https://pagina-rene-gonzalez.vercel.app";
+import { doctorName, jsonLd, siteName, siteUrl } from "@/lib/seo";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
@@ -66,11 +65,11 @@ export default async function BlogPostPage({ params }) {
     mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
     author: {
       "@type": "Person",
-      name: "Dr. René González Dávila",
+      name: doctorName,
     },
     publisher: {
       "@type": "Organization",
-      name: "Dr. René González Dávila",
+      name: siteName,
       logo: {
         "@type": "ImageObject",
         url: `${siteUrl}/icon.png`,
@@ -84,7 +83,7 @@ export default async function BlogPostPage({ params }) {
     <main className="blog-post-page-detail">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(articleSchema) }}
       />
       <BlogGoldDust />
       <div className="future-grid-bg" />

@@ -5,13 +5,15 @@ import Navbar from "@/components/Navbar";
 import PageLoader from "@/components/PageLoader";
 import ScrollTriggerRefresh from "@/components/ScrollTriggerRefresh";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import {
+  doctorName,
+  seoKeywords,
+  siteDescription,
+  siteName,
+  siteUrl,
+  socialImage,
+} from "@/lib/seo";
 import "./globals.css";
-
-const siteUrl = "https://pagina-rene-gonzalez.vercel.app";
-const siteName = "Dr. René González Dávila";
-const siteDescription =
-  "Dr. René González Dávila, cirujano estético en Loja, Ecuador. Rinoplastia, Botox, liposucción, ácido hialurónico y procedimientos estéticos con resultados naturales, seguros y personalizados.";
-const ogImage = "/images/Dr-Rene-Gonzales-Bl.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -20,25 +22,18 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description: siteDescription,
-  keywords: [
-    "cirujano estético en Loja",
-    "cirugía estética en Loja",
-    "Dr. René González Dávila",
-    "rinoplastia en Loja",
-    "botox en Loja",
-    "liposucción en Loja",
-    "ácido hialurónico en Loja",
-    "armonización facial en Loja",
-    "rejuvenecimiento facial en Loja",
-    "cirujano estético en Ecuador",
-  ],
+  keywords: seoKeywords,
   applicationName: siteName,
-  authors: [{ name: siteName }],
+  authors: [{ name: doctorName, url: siteUrl }],
   creator: siteName,
   publisher: siteName,
   category: "healthcare",
+  classification: "Medical practice",
   alternates: {
     canonical: "/",
+    languages: {
+      "es-EC": "/",
+    },
   },
   openGraph: {
     type: "website",
@@ -48,21 +43,14 @@ export const metadata: Metadata = {
     title: "Cirujano estético en Loja | Dr. René González Dávila",
     description:
       "Rinoplastia, Botox, liposucción, ácido hialurónico y cirugía estética en Loja, Ecuador, con una visión médica enfocada en naturalidad, proporción y seguridad.",
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 1200,
-        alt: "Dr. René González Dávila, cirujano estético en Loja, Ecuador",
-      },
-    ],
+    images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Cirujano estético en Loja | Dr. René González Dávila",
     description:
       "Cirugía estética facial y corporal en Loja, Ecuador, con resultados naturales, precisión quirúrgica y atención personalizada.",
-    images: [ogImage],
+    images: [socialImage.url],
   },
   robots: {
     index: true,
@@ -75,6 +63,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
       "max-video-preview": -1,
     },
+  },
+  other: {
+    "geo.region": "EC-L",
+    "geo.placename": "Loja",
+    "medical-specialty": "Cirugía estética",
   },
 };
 
