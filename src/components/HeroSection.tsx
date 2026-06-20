@@ -339,13 +339,13 @@ export default function HeroSection() {
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
               style={{
-                backgroundImage: 'url("/images/section-2-image-1-mobile.webp")',
+                backgroundImage: 'url("/images/section-2-image-2-mobile.webp")',
               }}
             />
             <div
               className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block"
               style={{
-                backgroundImage: 'url("/images/section-2-image-1.webp")',
+                backgroundImage: 'url("/images/section-2-image-2.webp")',
               }}
             />
           </div>
@@ -365,7 +365,7 @@ export default function HeroSection() {
           <div
             ref={secondBrandRef}
             aria-hidden="true"
-            className="pointer-events-none absolute left-[100px] top-[50px] z-[15] hidden flex-col items-center text-center md:flex"
+            className="pointer-events-none absolute left-1/4 top-[14vh] z-[15] hidden -translate-x-1/2 flex-col items-center text-center md:flex"
           >
             <div className="relative h-[6rem] w-[6rem] lg:h-[7rem] lg:w-[7rem]">
               <Image
