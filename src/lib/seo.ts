@@ -1,5 +1,8 @@
-export const siteUrl = "https://pagina-rene-gonzalez.vercel.app";
-export const siteHost = "pagina-rene-gonzalez.vercel.app";
+const configuredSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.renegonzalezdavila.com";
+
+export const siteUrl = configuredSiteUrl.replace(/\/$/, "");
+export const siteHost = new URL(siteUrl).host;
 export const doctorName = "Dr. René González Dávila";
 export const siteName = doctorName;
 export const clinicAddress =
@@ -22,8 +25,14 @@ export const siteDescription =
 
 export const seoKeywords = [
   "cirujano estético en Loja",
+  "cirujano estetico loja",
+  "cirujano estetico ecuador",
+  "cirujano estetico",
   "cirugía estética en Loja",
+  "cirugia estetica loja",
+  "cirugia estetica ecuador",
   "Dr. René González Dávila",
+  "Dr Rene Gonzalez Davila",
   "rinoplastia en Loja",
   "botox en Loja",
   "liposucción en Loja",
@@ -31,6 +40,17 @@ export const seoKeywords = [
   "armonización facial en Loja",
   "rejuvenecimiento facial en Loja",
   "cirujano estético en Ecuador",
+];
+
+export const targetSearchQueries = [
+  "Cirujano estético",
+  "Cirujano estetico",
+  "Cirujano estético Loja",
+  "Cirujano estetico loja",
+  "Cirujano estético Ecuador",
+  "Cirujano estetico ecuador",
+  "cirugía estética Loja",
+  "cirugia estetica Loja",
 ];
 
 export const serviceNames = [

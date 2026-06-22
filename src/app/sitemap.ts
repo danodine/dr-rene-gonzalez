@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/app/lib/blog";
 import { siteUrl } from "@/lib/seo";
 
-const lastModified = new Date("2026-06-19T00:00:00.000Z");
+const lastModified = new Date("2026-06-22T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -19,6 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "weekly",
       priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/cirujano-estetico-loja`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.95,
     },
     ...posts.map((post) => ({
       url: `${siteUrl}/blog/${post.slug}`,

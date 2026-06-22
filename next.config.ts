@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const isDevelopment = process.env.NODE_ENV === "development";
+const canonicalSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.renegonzalezdavila.com";
 
 const securityHeaders = [
   {
@@ -26,7 +28,7 @@ const securityHeaders = [
     : [
         {
           key: "Strict-Transport-Security",
-          value: "max-age=31536000",
+          value: "max-age=63072000; includeSubDomains; preload",
         },
       ]),
   {
@@ -58,6 +60,22 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: securityHeaders,
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "header",
+            key: "x-forwarded-proto",
+            value: "http",
+          },
+        ],
+        destination: `${canonicalSiteUrl.replace(/\/$/, "")}/:path*`,
+        permanent: true,
       },
     ];
   },

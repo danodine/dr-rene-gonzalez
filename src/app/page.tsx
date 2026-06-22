@@ -287,6 +287,12 @@ export default function Home() {
                 Agenda una valoración médica para definir el tratamiento más
                 adecuado según tu anatomía, objetivos y estado de salud.
               </p>
+              <a
+                href="/cirujano-estetico-loja"
+                className="mt-5 inline-block text-xs uppercase tracking-[0.24em] text-[#d4af37] transition-colors hover:text-[#f1d37a]"
+              >
+                Ver guía para pacientes en Loja
+              </a>
             </article>
           </div>
         </div>
