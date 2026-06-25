@@ -19,6 +19,8 @@ import {
   socialProfiles,
 } from "@/lib/seo";
 
+export const dynamic = "force-static";
+
 const description =
   "Dr. René González Dávila, cirujano estético en Loja, Ecuador. Especialista en rinoplastia, Botox, liposucción y ácido hialurónico con atención personalizada y resultados naturales.";
 

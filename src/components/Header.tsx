@@ -6,9 +6,6 @@ const mobileTextColor = "#ffffff";
 export default function Header() {
   return (
     <section id="inicio" className="relative h-screen bg-black">
-      <h1 className="sr-only">
-        Dr. René González Dávila, cirujano estético en Loja, Ecuador
-      </h1>
       <div className="relative h-screen overflow-hidden bg-black safari-motion-layer">
         <picture>
           <source
@@ -22,7 +19,7 @@ export default function Header() {
           />
           <img
             src="/images/headerBackgroundMobile.webp"
-            alt=""
+            alt="Dr. Rene Gonzalez Davila, realizando una cirugía de rinoplastia"
             fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover object-center safari-motion-layer"
           />
@@ -43,12 +40,12 @@ export default function Header() {
 
           <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
             <div>
-              <p
+              <h1
                 className="whitespace-nowrap text-[1.1rem] font-light uppercase tracking-[0.12em]"
                 style={{ color: mobileTextColor }}
               >
                 René González Dávila
-              </p>
+              </h1>
               <p
                 className="mt-[12px] text-[0.62rem] uppercase tracking-[0.4em]"
                 style={{ color: mobileTextColor }}

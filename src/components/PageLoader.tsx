@@ -57,7 +57,7 @@ export default function PageLoader() {
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 z-[200] flex items-center justify-center bg-black px-6 transition-all duration-500 ${
+      className={`js-page-loader fixed inset-0 z-[200] flex items-center justify-center bg-black px-6 transition-all duration-500 ${
         isLeaving ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >

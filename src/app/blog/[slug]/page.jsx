@@ -5,6 +5,15 @@ import BlogGoldDust from "@/components/BlogGoldDust";
 import { getAllPosts, getPostBySlug } from "@lib/posts";
 import { doctorName, jsonLd, siteName, siteUrl } from "@/lib/seo";
 
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getAllPosts().map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);

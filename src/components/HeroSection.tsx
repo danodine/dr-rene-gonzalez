@@ -46,30 +46,33 @@ export default function HeroSection() {
     }
 
     let ctx: { revert: () => void } | null = null;
+    let hasStartedAnimation = false;
     let isMounted = true;
+    let removeInteractionListeners = () => {};
 
-    void (async () => {
-      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
-        import("gsap"),
-        import("gsap/ScrollTrigger"),
-      ]);
+    const initializeAnimation = () => {
+      void (async () => {
+        const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+          import("gsap"),
+          import("gsap/ScrollTrigger"),
+        ]);
 
-      if (!isMounted) {
-        return;
-      }
+        if (!isMounted) {
+          return;
+        }
 
-      gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger);
 
-      const aboutPanels = gsap.utils.toArray<HTMLElement>(
-        "[data-about-panel]",
-        secondText,
-      );
+        const aboutPanels = gsap.utils.toArray<HTMLElement>(
+          "[data-about-panel]",
+          secondText,
+        );
 
-      if (aboutPanels.length === 0) {
-        return;
-      }
+        if (aboutPanels.length === 0) {
+          return;
+        }
 
-      ctx = gsap.context(() => {
+        ctx = gsap.context(() => {
         gsap.set([rightText, leftText, secondText], {
           autoAlpha: 0,
           y: 18,
@@ -240,11 +243,42 @@ export default function HeroSection() {
               start + 0.82,
             );
         });
-      }, section);
-    })();
+        }, section);
+      })();
+    };
+
+    const startAnimation = () => {
+      if (hasStartedAnimation) {
+        return;
+      }
+
+      hasStartedAnimation = true;
+      removeInteractionListeners();
+      initializeAnimation();
+    };
+
+    const interactionEvents = ["wheel", "touchstart", "pointerdown", "keydown"];
+
+    removeInteractionListeners = () => {
+      interactionEvents.forEach((eventName) => {
+        window.removeEventListener(eventName, startAnimation);
+      });
+    };
+
+    interactionEvents.forEach((eventName) => {
+      window.addEventListener(eventName, startAnimation, {
+        once: true,
+        passive: true,
+      });
+    });
+
+    if (window.scrollY > 0) {
+      window.requestAnimationFrame(startAnimation);
+    }
 
     return () => {
       isMounted = false;
+      removeInteractionListeners();
       ctx?.revert();
     };
   }, []);

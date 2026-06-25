@@ -86,6 +86,9 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning className="h-full antialiased">
       <body className="min-h-full flex flex-col">
+        <noscript>
+          <style>{".js-page-loader{display:none!important}"}</style>
+        </noscript>
         <PageLoader />
         <CursorSparkle />
         <ScrollTriggerRefresh />

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   pickRandomVideos,
+  testimonialVideos,
   toEmbedUrl,
   toThumbnailUrl,
   type TestimonialVideo,
@@ -12,7 +13,8 @@ import {
 const CARD_COUNT = 4;
 
 export default function TestimoniosSection() {
-  const [videos, setVideos] = useState<TestimonialVideo[]>([]);
+  const initialVideos = testimonialVideos.slice(0, CARD_COUNT);
+  const [videos, setVideos] = useState<TestimonialVideo[]>(initialVideos);
   const [activeVideo, setActiveVideo] = useState<TestimonialVideo | null>(null);
 
   useEffect(() => {

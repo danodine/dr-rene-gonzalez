@@ -1,40 +1,13 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import BlogHeroAnimation from "@/components/BlogHeroAnimation";
 import BlogGoldDust from "@/components/BlogGoldDust";
 import { getAllPosts } from "@lib/posts";
 
-gsap.registerPlugin(ScrollTrigger);
+export const dynamic = "force-static";
 
 export default function BlogPage() {
-  const posts = useMemo(() => getAllPosts(), []);
-  const heroRef = useRef(null);
-
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
-
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 992px)", () => {
-      const title = hero.querySelector(".future-title");
-      const sub = hero.querySelector(".future-subtitle");
-      const badge = hero.querySelector(".future-eyebrow");
-
-      gsap.from([badge, title, sub], {
-        y: 24,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.12,
-        ease: "power3.out",
-      });
-    });
-
-    return () => mm.revert();
-  }, []);
+  const posts = getAllPosts();
 
   return (
     <main className="blog-future-page">
@@ -43,8 +16,9 @@ export default function BlogPage() {
       <div className="future-orb one" />
       <div className="future-orb two" />
       <div className="future-orb three" />
+      <BlogHeroAnimation />
 
-      <section ref={heroRef} className="future-hero">
+      <section className="future-hero">
         <div className="container future-hero-shell">
           <p className="future-eyebrow">Archivo editorial</p>
           <h1 className="future-title">
