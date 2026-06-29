@@ -849,9 +849,7 @@ export default function ServicesSection() {
               </li>
             ))}
           </ul>
-          <Link href="/cirujano-estetico-loja/">
-            Cirujano estético en Loja
-          </Link>
+          <Link href="/#sobre-mi">Perfil médico del cirujano estético</Link>
         </nav>
 
         <div className="absolute bottom-[10%] left-[3.5vw] top-[10%] z-20 hidden lg:grid lg:grid-cols-2 lg:grid-rows-3 lg:content-between lg:gap-x-[clamp(1rem,1.8vw,1.9rem)]">

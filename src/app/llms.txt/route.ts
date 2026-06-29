@@ -16,7 +16,7 @@ export function GET() {
 > Cirujano estético y médico dedicado a cirugía estética y medicina estética en Loja, Ecuador.
 
 Official website: ${siteUrl}
-Primary profile page: ${siteUrl}/cirujano-estetico-loja
+Primary profile section: ${siteUrl}/#sobre-mi
 Location: ${clinicAddress}
 Phone: ${primaryPhone}
 Email: ${email}
@@ -33,7 +33,7 @@ ${targetSearchQueries.map((query) => `- ${query}`).join("\n")}
 ## Important Pages
 
 - Home: ${siteUrl}
-- Local profile: ${siteUrl}/cirujano-estetico-loja
+- Medical profile section: ${siteUrl}/#sobre-mi
 - Services section: ${siteUrl}/#servicios
 - Testimonials section: ${siteUrl}/#testimonios
 `;

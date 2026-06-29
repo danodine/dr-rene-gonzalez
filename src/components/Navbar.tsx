@@ -17,14 +17,10 @@ const navItems = [
   },
   {
     href: "/#sobre-mi",
-    label: "Sobre mí",
-  },
-  {
-    href: "/cirujano-estetico-loja/",
     label: "Perfil médico",
   },
   {
-    href: "/#servicios",
+    href: "/#servicios-final",
     label: "Servicios",
   },
   {

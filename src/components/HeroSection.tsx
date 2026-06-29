@@ -287,12 +287,12 @@ export default function HeroSection() {
     <section ref={sectionRef} className="relative h-[760vh] bg-black">
       <div
         id="vision-mision"
-        className="absolute top-0 h-px w-px"
+        className="absolute left-0 top-[3%] h-px w-px"
         aria-hidden="true"
       />
       <div
         id="sobre-mi"
-        className="absolute left-0 top-[56%] h-px w-px"
+        className="absolute left-0 top-[48%] h-px w-px"
         aria-hidden="true"
       />
       <div className="sticky top-0 h-screen overflow-hidden safari-motion-layer">

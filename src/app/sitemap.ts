@@ -28,12 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
           },
         ]
       : []),
-    {
-      url: `${siteUrl}/cirujano-estetico-loja/`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.95,
-    },
     ...servicePages.map((service) => ({
       url: `${siteUrl}/servicios/${service.slug}/`,
       lastModified,
