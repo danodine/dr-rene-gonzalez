@@ -20,6 +20,10 @@ const navItems = [
     label: "Sobre mí",
   },
   {
+    href: "/cirujano-estetico-loja/",
+    label: "Perfil médico",
+  },
+  {
     href: "/#servicios",
     label: "Servicios",
   },

@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import NextImage from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import { getServiceHref, servicePages } from "@/lib/services";
 
 const frameCount = 469;
 const framePrefetchRadius = 16;
@@ -122,43 +124,43 @@ const serviceMediaLibrary = {
       "El láser CO2 fraccionado es un tratamiento dermatológico y estético de alta potencia. Se utiliza principalmente para el rejuvenecimiento facial profundo, atenuar arrugas y eliminar cicatrices de acné o estrías.",
   },
   "Terapia fotodinámica": {
-    media: { type: "image", src: "/images/TerapiaFotodinamica.jpeg" },
+    media: { type: "image", src: "/images/TerapiaFotodinamica.webp" },
     title: "Terapia fotodinámica",
     description:
       "La terapia fotodinámica (TFD) es un tratamiento médico que combina un medicamento fotosensibilizante con luz de una longitud de onda específica.",
   },
   NCTF: {
-    media: { type: "image", src: "/images/NCTF.jpeg" },
+    media: { type: "image", src: "/images/NCTF.webp" },
     title: "NCTF",
     description:
       "El NCTF (New Cellular Treatment Factor) es un tratamiento de mesoterapia facial que revitaliza la piel aportando luminosidad, hidratación y firmeza.",
   },
   Bioestimuladores: {
-    media: { type: "image", src: "/images/Bioestimuladores.jpeg" },
+    media: { type: "image", src: "/images/Bioestimuladores.webp" },
     title: "Bioestimuladores",
     description:
       "Los bioestimuladores son sustancias inyectables que activan los fibroblastos para que el organismo produzca su propio colágeno y elastina.",
   },
   "Marcación mandibular": {
-    media: { type: "image", src: "/images/MarcacionMandibular.jpeg" },
+    media: { type: "image", src: "/images/MarcacionMandibular.webp" },
     title: "Marcación mandibular",
     description:
       "La marcación mandibular es un procedimiento de armonización facial no quirúrgico que define y resalta el contorno del rostro.",
   },
   "Vitaminización facial": {
-    media: { type: "image", src: "/images/VitaminizacionFacial.jpg" },
+    media: { type: "image", src: "/images/VitaminizacionFacial.webp" },
     title: "Vitaminización facial",
     description:
       "La vitaminización facial consiste en aplicar un cóctel personalizado de vitaminas, minerales y ácido hialurónico directamente en la dermis mediante microinyecciones superficiales.",
   },
   IPL: {
-    media: { type: "image", src: "/images/IPL.jpg" },
+    media: { type: "image", src: "/images/IPL.webp" },
     title: "IPL",
     description:
       "El tratamiento con IPL (Luz Pulsada Intensa) es un procedimiento médico-estético no invasivo que utiliza pulsos de luz para mejorar la calidad de la piel.",
   },
   "Remoción de tatuajes": {
-    media: { type: "image", src: "/images/RemocionTatuajes.jpeg" },
+    media: { type: "image", src: "/images/RemocionTatuajes.webp" },
     title: "Remoción de tatuajes",
     description:
       "La remoción de tatuajes es un tratamiento clínico que utiliza tecnología láser para fragmentar la tinta encapsulada en la piel",
@@ -166,7 +168,7 @@ const serviceMediaLibrary = {
   "Radiocavitación y radiofrecuencia": {
     media: {
       type: "image",
-      src: "/images/RadiocavitacionRradiofrecuencia.jpg",
+      src: "/images/RadiocavitacionRradiofrecuencia.webp",
     },
     title: "Radiocavitación y radiofrecuencia",
     description:
@@ -217,13 +219,13 @@ const serviceMediaLibrary = {
       "La otoplastia es la cirugía estética que modifica el tamaño, la forma o la posición de las orejas.",
   },
   "Párpados (blefaroplastia)": {
-    media: { type: "image", src: "/images/Blefaroplastia.jpeg" },
+    media: { type: "image", src: "/images/Blefaroplastia.webp" },
     title: "Blefaroplastia",
     description:
       "La blefaroplastia elimina el exceso de piel y grasa en los párpados superiores e inferiores, logrando una mirada rejuvenecida y fresca, e incluso mejorando el campo de visión periférica.",
   },
   Ritidoplastia: {
-    media: { type: "image", src: "/images/Ritidoplastia.jpeg" },
+    media: { type: "image", src: "/images/Ritidoplastia.webp" },
     title: "Ritidoplastia",
     description:
       "La ritidoplastia, también conocida como lifting facial, es un procedimiento quirúrgico estético diseñado para rejuvenecer el rostro y el cuello.",
@@ -255,7 +257,7 @@ const serviceMediaLibrary = {
       "La mini lipo es un procedimiento ambulatorio diseñado para eliminar pequeñas acumulaciones de grasa localizada.",
   },
   Abdominoplastia: {
-    media: { type: "image", src: "/images/Abdominoplastia.jpeg" },
+    media: { type: "image", src: "/images/Abdominoplastia.webp" },
     title: "Abdominoplastia",
     description:
       "La abdominoplastia elimina el exceso de piel y grasa del abdomen y tensa los músculos de la pared abdominal, ayudando a aplanar el vientre y definir la cintura.",
@@ -829,6 +831,29 @@ export default function ServicesSection() {
           </p>
         </div>
 
+        <nav
+          aria-label="Enlaces a servicios principales"
+          className="sr-only"
+        >
+          <h2>Servicios de cirugía estética y medicina estética en Loja</h2>
+          <p>
+            Procedimientos principales del Dr. René González Dávila en Loja,
+            Ecuador.
+          </p>
+          <ul>
+            {servicePages.map((service) => (
+              <li key={service.slug}>
+                <Link href={`/servicios/${service.slug}/`}>
+                  {service.label} en Loja
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link href="/cirujano-estetico-loja/">
+            Cirujano estético en Loja
+          </Link>
+        </nav>
+
         <div className="absolute bottom-[10%] left-[3.5vw] top-[10%] z-20 hidden lg:grid lg:grid-cols-2 lg:grid-rows-3 lg:content-between lg:gap-x-[clamp(1rem,1.8vw,1.9rem)]">
           {services.map((service, index) => (
             <ServiceNode
@@ -885,7 +910,12 @@ export default function ServicesSection() {
                   className="border-b border-white/8 pb-3 last:border-b-0 last:pb-0"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <span className="pr-2">{itemGroup.label}</span>
+                    <Link
+                      href={getServiceHref(itemGroup.label)}
+                      className="pr-2 transition-colors duration-300 hover:text-[#d4af37]"
+                    >
+                      {itemGroup.label}
+                    </Link>
                     <button
                       type="button"
                       aria-label={`Ver video de ${itemGroup.label}`}
@@ -979,6 +1009,11 @@ export default function ServicesSection() {
           </div>
         ) : null}
       </div>
+      <div
+        id="servicios-final"
+        className="absolute bottom-[100vh] left-0 h-px w-px"
+        aria-hidden="true"
+      />
     </section>
   );
 }

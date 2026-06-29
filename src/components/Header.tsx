@@ -19,7 +19,7 @@ export default function Header() {
           />
           <img
             src="/images/headerBackgroundMobile.webp"
-            alt="Dr. Rene Gonzalez Davila, realizando una cirugía de rinoplastia"
+            alt="Dr. René González Dávila realizando una cirugía de rinoplastia."
             fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover object-center safari-motion-layer"
           />
@@ -29,7 +29,7 @@ export default function Header() {
           <div className="absolute inset-x-0 top-6 flex justify-center px-6">
             <div className="relative h-[8rem] w-[8rem]">
               <Image
-                src="/images/LogoNB.png"
+                src="/images/LogoNB.webp"
                 alt="Logotipo de Dr. René González Dávila"
                 fill
                 sizes="8rem"
@@ -50,7 +50,7 @@ export default function Header() {
                 className="mt-[12px] text-[0.62rem] uppercase tracking-[0.4em]"
                 style={{ color: mobileTextColor }}
               >
-                Cirugía Estética
+                Cirujano Estético
               </p>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function Header() {
           <div className="flex w-full max-w-[18rem] flex-col items-center text-center sm:max-w-[20rem] lg:max-w-[24rem]">
             <div className="relative h-[8vw] w-[8vw]">
               <Image
-                src="/images/LogoNB.png"
+                src="/images/LogoNB.webp"
                 alt="Logotipo de Dr. René González Dávila"
                 fill
                 sizes="8vw"
@@ -79,7 +79,7 @@ export default function Header() {
                 className="mt-[5px] text-[0.3rem] uppercase tracking-[0.2em] sm:text-xs"
                 style={{ color: desktopTextColor }}
               >
-                Cirugía Estética
+                Cirujano Estético
               </p>
             </div>
           </div>

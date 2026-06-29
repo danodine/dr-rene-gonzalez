@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  clinicAddress,
   doctorImage,
   email,
   jsonLd,
@@ -16,11 +15,12 @@ import {
   socialProfiles,
   targetSearchQueries,
 } from "@/lib/seo";
+import { servicePages } from "@/lib/services";
 
 const pageUrl = `${siteUrl}/cirujano-estetico-loja`;
 const pageTitle = "Cirujano estético en Loja, Ecuador";
 const pageDescription =
-  "Conoce al Dr. René González Dávila, cirujano estético en Loja, Ecuador. Valoración médica para rinoplastia, Botox, liposucción, ácido hialurónico, cirugía facial y corporal.";
+  "Conoce al Dr. René González Dávila, cirujano estético en Loja, Ecuador. Información para búsquedas como cirujano estetico, cirujano plastico Loja, rinoplastia, Botox, liposucción y ácido hialurónico.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -29,6 +29,10 @@ export const metadata: Metadata = {
     ...seoKeywords,
     "cirujano estético Loja Ecuador",
     "cirujano plastico estetico Loja",
+    "cirujano plástico Loja",
+    "cirujano plastico Loja",
+    "Rene Gonzalez Davila",
+    "Rene Gonzales Davila",
     "doctor cirugía estética Loja",
     "mejor cirujano estético en Loja",
   ],
@@ -160,38 +164,6 @@ const localBusinessSchema = {
   })),
 };
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": `${pageUrl}#faq`,
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "¿Quién es el cirujano estético en Loja?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "El Dr. René González Dávila es médico cirujano dedicado a cirugía estética y medicina estética en Loja, Ecuador.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Qué procedimientos ofrece en Loja?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Ofrece valoración para rinoplastia, Botox, liposucción, ácido hialurónico, blefaroplastia, abdominoplastia, láser CO2 fraccionado, bioestimuladores y otros procedimientos faciales y corporales.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Dónde está ubicado el consultorio?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `La atención se realiza en ${clinicAddress}.`,
-      },
-    },
-  ],
-};
-
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -225,10 +197,6 @@ export default function CirujanoEsteticoLojaPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(localBusinessSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }}
       />
       <script
         type="application/ld+json"
@@ -305,61 +273,145 @@ export default function CirujanoEsteticoLojaPage() {
         </div>
       </section>
 
+      <section className="border-y border-white/10 bg-white/[0.025] px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <div className="lg:sticky lg:top-24">
+            <p className="text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
+              Búsquedas locales
+            </p>
+            <h2 className="mt-5 text-3xl font-light uppercase tracking-[0.12em] text-white sm:text-5xl">
+              Cómo encontrar la consulta del Dr. René González Dávila
+            </h2>
+          </div>
+          <div className="space-y-10 text-sm leading-8 text-white/66 sm:text-base">
+            <article>
+              <h3 className="text-xl font-light uppercase tracking-[0.14em] text-white">
+                Variantes con tilde y sin tilde
+              </h3>
+              <div className="mt-5 space-y-5">
+                <p>
+                  Muchas búsquedas locales se escriben sin acentos, por ejemplo
+                  cirujano estetico Loja, cirugia estetica Loja, Rene Gonzalez
+                  Davila o Dr Rene Gonzalez Davila. Esta página incluye esas
+                  variantes de forma visible porque ayudan a conectar la forma
+                  real en que los pacientes buscan con el nombre correcto del
+                  profesional: Dr. René González Dávila, médico cirujano
+                  dedicado a cirugía estética y medicina estética en Loja,
+                  Ecuador.
+                </p>
+                <p>
+                  También puede aparecer la variante Rene Gonzales Davila, con
+                  “s”, cuando el usuario escribe el apellido de memoria. La
+                  referencia clínica y de marca correcta es René González
+                  Dávila, pero incluir una aclaración breve evita que esa
+                  búsqueda común quede sin contexto. La prioridad sigue siendo
+                  ofrecer información útil: ubicación, servicios, contacto y
+                  criterios de valoración antes de un procedimiento.
+                </p>
+              </div>
+            </article>
+
+            <article>
+              <h3 className="text-xl font-light uppercase tracking-[0.14em] text-white">
+                Cirujano estético, cirujano plástico y medicina estética
+              </h3>
+              <div className="mt-5 space-y-5">
+                <p>
+                  Algunas personas buscan cirujano plástico Loja o cirujano
+                  plastico Loja cuando desean información sobre procedimientos
+                  de cirugía estética facial y corporal. En esta página usamos
+                  esos términos como intención de búsqueda del paciente, no como
+                  una promesa genérica ni como reemplazo de la valoración
+                  médica. La consulta debe aclarar qué procedimiento corresponde
+                  a cada caso, qué alternativas existen y qué riesgos conviene
+                  revisar antes de decidir.
+                </p>
+                <p>
+                  La cirugía estética puede incluir rinoplastia, blefaroplastia,
+                  otoplastia, bichectomía, ritidoplastia, liposucción,
+                  abdominoplastia, aumento de mamas y otros procedimientos que
+                  requieren planificación, evaluación de salud, expectativa
+                  realista y seguimiento. La medicina estética, por su parte,
+                  puede incluir Botox, ácido hialurónico, bioestimuladores,
+                  láser CO2 fraccionado, IPL y tratamientos de calidad de piel.
+                </p>
+              </div>
+            </article>
+
+            <article>
+              <h3 className="text-xl font-light uppercase tracking-[0.14em] text-white">
+                Qué debe resolver una valoración en Loja
+              </h3>
+              <div className="mt-5 space-y-5">
+                <p>
+                  Una búsqueda como mejor cirujano estético en Loja suele partir
+                  de una necesidad concreta: mejorar la nariz, definir el rostro,
+                  tratar grasa localizada, rejuvenecer la mirada o cuidar la
+                  piel. La respuesta responsable no es elegir un tratamiento por
+                  popularidad, sino revisar anatomía, antecedentes médicos,
+                  medicamentos, cirugías previas, tipo de piel, tiempos de
+                  recuperación y objetivos personales.
+                </p>
+                <p>
+                  En la consulta se puede definir si conviene una cirugía, un
+                  procedimiento mínimamente invasivo, un protocolo de piel o
+                  esperar hasta preparar mejor el caso. También se explican
+                  beneficios, límites, cuidados posteriores y señales de alarma.
+                  Esa información ayuda a que el paciente tome una decisión
+                  informada y evita que una búsqueda rápida se convierta en una
+                  elección apresurada.
+                </p>
+              </div>
+            </article>
+
+            <article>
+              <h3 className="text-xl font-light uppercase tracking-[0.14em] text-white">
+                Señales locales que ayudan a Google y al paciente
+              </h3>
+              <div className="mt-5 space-y-5">
+                <p>
+                  Para búsquedas locales, Google necesita entender quién atiende,
+                  dónde atiende y qué servicios ofrece. Por eso esta página
+                  menciona de forma clara Loja, Ecuador, Clínica Santa María,
+                  teléfonos de contacto, servicios principales y el nombre del
+                  doctor. Esas señales se complementan con datos estructurados
+                  de Physician, MedicalClinic, LocalBusiness y enlaces
+                  internos hacia servicios individuales.
+                </p>
+                <p>
+                  El objetivo no es repetir palabras clave sin sentido, sino
+                  construir una página útil para pacientes que buscan cirujano
+                  estético, cirujano estetico sin tilde, cirugía estética Loja,
+                  medicina estética Loja o Dr. René González Dávila. Cuando el
+                  contenido visible coincide con la intención de búsqueda, el
+                  sitio tiene mejores bases para ser rastreado, entendido e
+                  indexado correctamente.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-white/10 bg-white/[0.03] px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-7xl">
           <p className="text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
             Procedimientos destacados
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {serviceNames.slice(0, 8).map((service) => (
-              <div
-                key={service}
+            {servicePages.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/servicios/${service.slug}/`}
                 className="border border-white/10 bg-black/40 p-5 text-sm uppercase tracking-[0.16em] text-white/76"
               >
-                {service}
-              </div>
+                {service.label}
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="faq" className="px-6 py-20 sm:px-10 lg:px-16">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
-            Preguntas frecuentes
-          </p>
-          <div className="mt-10 space-y-8">
-            <article>
-              <h2 className="text-2xl font-light uppercase tracking-[0.12em] text-white">
-                ¿Dónde atiende?
-              </h2>
-              <p className="mt-4 text-sm leading-8 text-white/66 sm:text-base">
-                {clinicAddress}.
-              </p>
-            </article>
-            <article>
-              <h2 className="text-2xl font-light uppercase tracking-[0.12em] text-white">
-                ¿Qué procedimientos puedo consultar?
-              </h2>
-              <p className="mt-4 text-sm leading-8 text-white/66 sm:text-base">
-                Puedes consultar procedimientos de cirugía estética facial,
-                cirugía estética corporal y medicina estética, incluyendo
-                rinoplastia, Botox, liposucción, ácido hialurónico,
-                blefaroplastia, abdominoplastia y bioestimuladores.
-              </p>
-            </article>
-            <article>
-              <h2 className="text-2xl font-light uppercase tracking-[0.12em] text-white">
-                ¿Cómo agendar?
-              </h2>
-              <p className="mt-4 text-sm leading-8 text-white/66 sm:text-base">
-                Puedes escribir por WhatsApp al {primaryPhone}, llamar al{" "}
-                {secondaryPhone} o enviar un correo a {email}.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

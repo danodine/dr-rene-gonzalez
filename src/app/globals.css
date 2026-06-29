@@ -98,21 +98,6 @@ body {
   }
 }
 
-.page-loader-bar {
-  animation: page-loader-sweep 1.25s ease-in-out infinite;
-  transform: translateX(-100%);
-}
-
-@keyframes page-loader-sweep {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(220%);
-  }
-}
-
 .future-card-grid {
   display: grid;
   gap: 18px;

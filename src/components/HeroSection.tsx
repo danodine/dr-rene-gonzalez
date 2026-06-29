@@ -403,7 +403,7 @@ export default function HeroSection() {
           >
             <div className="relative h-[6rem] w-[6rem] lg:h-[7rem] lg:w-[7rem]">
               <Image
-                src="/images/LogoNB.png"
+                src="/images/LogoNB.webp"
                 alt="RG"
                 fill
                 sizes="7rem"

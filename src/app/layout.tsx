@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import CursorSparkle from "@/components/CursorSparkle";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import PageLoader from "@/components/PageLoader";
 import ScrollTriggerRefresh from "@/components/ScrollTriggerRefresh";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import {
@@ -86,10 +85,6 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning className="h-full antialiased">
       <body className="min-h-full flex flex-col">
-        <noscript>
-          <style>{".js-page-loader{display:none!important}"}</style>
-        </noscript>
-        <PageLoader />
         <CursorSparkle />
         <ScrollTriggerRefresh />
         <Navbar />
