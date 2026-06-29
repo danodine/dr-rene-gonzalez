@@ -28,122 +28,6 @@ type ServiceContentSection = {
   paragraphs: string[];
 };
 
-type MedicalSource = {
-  title: string;
-  url: string;
-};
-
-const sourceLibrary = {
-  aadBotulinum: {
-    title: "American Academy of Dermatology: Botulinum toxin therapy",
-    url: "https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-overview",
-  },
-  aadBotulinumPreparation: {
-    title: "American Academy of Dermatology: Botulinum toxin preparation",
-    url: "https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-preparation",
-  },
-  aadFillers: {
-    title: "American Academy of Dermatology: Fillers overview",
-    url: "https://www.aad.org/public/cosmetic/wrinkles/fillers-overview",
-  },
-  aadFillersPreparation: {
-    title: "American Academy of Dermatology: Fillers preparation",
-    url: "https://www.aad.org/public/cosmetic/wrinkles/fillers-preparation",
-  },
-  aadLaserConditions: {
-    title: "American Academy of Dermatology: Skin conditions lasers can treat",
-    url: "https://www.aad.org/public/diseases/a-z/skin-conditions-lasers-treat",
-  },
-  aadSaggingSkin: {
-    title: "American Academy of Dermatology: Firm sagging skin",
-    url: "https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin",
-  },
-  aadSunDamage: {
-    title: "American Academy of Dermatology: Sun-damaged skin treatments",
-    url: "https://www.aad.org/public/everyday-care/sun-protection/sun-damage-skin/wrinkles-sun-damage-can-be-treated",
-  },
-  aadTattooRemoval: {
-    title: "American Academy of Dermatology: Laser tattoo removal",
-    url: "https://www.aad.org/public/cosmetic/hair-removal/laser-tattoo-removal",
-  },
-  aspsRhinoplasty: {
-    title: "American Society of Plastic Surgeons: Rhinoplasty",
-    url: "https://www.plasticsurgery.org/cosmetic-procedures/rhinoplasty",
-  },
-  aspsLiposuction: {
-    title: "American Society of Plastic Surgeons: Liposuction",
-    url: "https://www.plasticsurgery.org/cosmetic-procedures/liposuction",
-  },
-  aspsAssistedLiposuction: {
-    title: "American Society of Plastic Surgeons: Assisted liposuction",
-    url: "https://www.plasticsurgery.org/cosmetic-procedures/liposuction-assisted",
-  },
-  aspsTummyTuck: {
-    title: "American Society of Plastic Surgeons: Tummy tuck",
-    url: "https://www.plasticsurgery.org/cosmetic-procedures/tummy-tuck",
-  },
-  aspsBreastAugmentation: {
-    title: "American Society of Plastic Surgeons: Breast augmentation",
-    url: "https://www.plasticsurgery.org/cosmetic-procedures/breast-augmentation",
-  },
-  aspsBlepharoplasty: {
-    title: "American Society of Plastic Surgeons: Eyelid surgery",
-    url: "https://www.plasticsurgery.org/cosmetic-procedures/eyelid-surgery",
-  },
-  aspsFacelift: {
-    title: "American Society of Plastic Surgeons: Facelift",
-    url: "https://www.plasticsurgery.org/cosmetic-procedures/facelift",
-  },
-  aspsEarSurgery: {
-    title: "American Society of Plastic Surgeons: Ear surgery",
-    url: "https://www.plasticsurgery.org/cosmetic-procedures/ear-surgery",
-  },
-  aspsBuccalFat: {
-    title: "American Society of Plastic Surgeons: Buccal fat removal",
-    url: "https://www.plasticsurgery.org/cosmetic-procedures/buccal-fat-removal",
-  },
-  clevelandChin: {
-    title: "Cleveland Clinic: Chin implant and chin surgery",
-    url: "https://my.clevelandclinic.org/health/treatments/23252-chin-implant",
-  },
-  clevelandLaser: {
-    title: "Cleveland Clinic: Laser skin resurfacing",
-    url: "https://my.clevelandclinic.org/health/treatments/11015-laser-skin-resurfacing",
-  },
-  clevelandRhinoplasty: {
-    title: "Cleveland Clinic: Rhinoplasty",
-    url: "https://my.clevelandclinic.org/health/treatments/11011-rhinoplasty",
-  },
-  fdaBodyContouring: {
-    title: "FDA: Non-invasive body contouring technologies",
-    url: "https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies",
-  },
-  fdaBreastImplants: {
-    title: "FDA: Things to consider before getting breast implants",
-    url: "https://www.fda.gov/medical-devices/breast-implants/things-consider-getting-breast-implants",
-  },
-  fdaDermalFillers: {
-    title: "FDA: Dermal filler do's and don'ts",
-    url: "https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more",
-  },
-  mayoCosmeticSurgery: {
-    title: "Mayo Clinic: Cosmetic surgery",
-    url: "https://www.mayoclinic.org/tests-procedures/cosmetic-surgery/about/pac-20385138",
-  },
-  mayoLaser: {
-    title: "Mayo Clinic: Laser resurfacing",
-    url: "https://www.mayoclinic.org/tests-procedures/laser-resurfacing/about/pac-20385114",
-  },
-  nciPhotodynamic: {
-    title: "National Cancer Institute: Photodynamic therapy process",
-    url: "https://www.cancer.gov/about-cancer/treatment/types/photodynamic-therapy/photodyamic-therapy-process-infographic",
-  },
-  nihIpl: {
-    title: "NCBI Bookshelf: Intense Pulsed Light therapy",
-    url: "https://www.ncbi.nlm.nih.gov/books/NBK580525/",
-  },
-} satisfies Record<string, MedicalSource>;
-
 const surgicalSlugs = new Set([
   "rinoplastia-mujer",
   "rinoplastia-hombre",
@@ -228,95 +112,6 @@ const serviceSpecificNotes: Record<string, string> = {
     "La hidratación con ácido hialurónico utiliza formulaciones orientadas a calidad de piel más que a cambios volumétricos marcados. Puede mejorar sensación de hidratación y textura, pero requiere diagnóstico de la causa de sequedad, selección del producto y cuidados posteriores para reducir inflamación o hematomas.",
 };
 
-const sourcesBySlug: Record<string, MedicalSource[]> = {
-  botox: [sourceLibrary.aadBotulinum, sourceLibrary.aadBotulinumPreparation],
-  "acido-hialuronico": [
-    sourceLibrary.aadFillers,
-    sourceLibrary.aadFillersPreparation,
-    sourceLibrary.fdaDermalFillers,
-  ],
-  "laser-co2-fraccionado": [
-    sourceLibrary.clevelandLaser,
-    sourceLibrary.mayoLaser,
-    sourceLibrary.aadLaserConditions,
-  ],
-  "terapia-fotodinamica": [sourceLibrary.nciPhotodynamic],
-  nctf: [sourceLibrary.aadFillers, sourceLibrary.aadSaggingSkin],
-  bioestimuladores: [
-    sourceLibrary.aadSaggingSkin,
-    sourceLibrary.aadFillers,
-    sourceLibrary.fdaDermalFillers,
-  ],
-  "marcacion-mandibular": [
-    sourceLibrary.aadFillers,
-    sourceLibrary.fdaDermalFillers,
-    sourceLibrary.clevelandChin,
-  ],
-  "vitaminizacion-facial": [sourceLibrary.aadSunDamage, sourceLibrary.aadFillers],
-  "remocion-de-tatuajes": [
-    sourceLibrary.aadTattooRemoval,
-    sourceLibrary.aadLaserConditions,
-  ],
-  "radiocavitacion-y-radiofrecuencia": [
-    sourceLibrary.fdaBodyContouring,
-    sourceLibrary.aadSaggingSkin,
-  ],
-  "rinoplastia-mujer": [
-    sourceLibrary.aspsRhinoplasty,
-    sourceLibrary.clevelandRhinoplasty,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  "rinoplastia-hombre": [
-    sourceLibrary.aspsRhinoplasty,
-    sourceLibrary.clevelandRhinoplasty,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  mentoplastia: [
-    sourceLibrary.clevelandChin,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  bichectomia: [
-    sourceLibrary.aspsBuccalFat,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  otoplastia: [sourceLibrary.aspsEarSurgery, sourceLibrary.mayoCosmeticSurgery],
-  "parpados-blefaroplastia": [
-    sourceLibrary.aspsBlepharoplasty,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  ritidoplastia: [sourceLibrary.aspsFacelift, sourceLibrary.mayoCosmeticSurgery],
-  "lipo-papada": [
-    sourceLibrary.aspsLiposuction,
-    sourceLibrary.aspsAssistedLiposuction,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  liposuccion: [
-    sourceLibrary.aspsLiposuction,
-    sourceLibrary.aspsAssistedLiposuction,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  "mini-lipo": [
-    sourceLibrary.aspsLiposuction,
-    sourceLibrary.fdaBodyContouring,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  abdominoplastia: [
-    sourceLibrary.aspsTummyTuck,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  "aumento-de-mamas": [
-    sourceLibrary.aspsBreastAugmentation,
-    sourceLibrary.fdaBreastImplants,
-    sourceLibrary.mayoCosmeticSurgery,
-  ],
-  ipl: [sourceLibrary.nihIpl, sourceLibrary.aadSunDamage],
-  "hidratacion-con-acido-hialuronico": [
-    sourceLibrary.aadFillers,
-    sourceLibrary.aadFillersPreparation,
-    sourceLibrary.fdaDermalFillers,
-  ],
-};
-
 const getServiceMode = (slug: string) => {
   if (surgicalSlugs.has(slug)) return "quirúrgico";
   if (injectableSlugs.has(slug)) return "inyectable";
@@ -398,12 +193,6 @@ const getServiceContent = (service: ServicePage): ServiceContentSection[] => {
   ];
 };
 
-const getMedicalSources = (slug: string) =>
-  sourcesBySlug[slug] ?? [
-    sourceLibrary.mayoCosmeticSurgery,
-    sourceLibrary.aadSunDamage,
-  ];
-
 export const dynamic = "force-static";
 export const dynamicParams = false;
 
@@ -480,7 +269,6 @@ export default async function ServicePage({ params }: ServicePageProps) {
     )
     .slice(0, 4);
   const contentSections = getServiceContent(service);
-  const medicalSources = getMedicalSources(service.slug);
 
   const procedureSchema = {
     "@context": "https://schema.org",
@@ -619,33 +407,6 @@ export default async function ServicePage({ params }: ServicePageProps) {
               </section>
             ))}
           </article>
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-white/[0.025] px-6 py-16 sm:px-10 lg:px-16">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-          <div>
-            <p className="text-[0.72rem] uppercase tracking-[0.42em] text-[#d4af37]/80">
-              Fuentes revisadas
-            </p>
-            <h2 className="mt-5 text-2xl font-light uppercase tracking-[0.12em] text-white sm:text-4xl">
-              Referencias médicas
-            </h2>
-          </div>
-          <ul className="space-y-4 text-sm leading-7 text-white/64">
-            {medicalSources.map((source) => (
-              <li key={source.url}>
-                <a
-                  href={source.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-[#d4af37]/35 underline-offset-4 transition-colors hover:text-[#d4af37]"
-                >
-                  {source.title}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
