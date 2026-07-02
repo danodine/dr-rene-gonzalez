@@ -138,6 +138,18 @@ export const testimonialVideos: TestimonialVideo[] = [
     treatment: "Medicina Estética Facial",
     youtubeUrl: "https://youtube.com/shorts/YMIBq5L2hQM?feature=share",
   },
+  {
+    id: "25",
+    title: "Rinoplastia en Mujeres",
+    treatment: "Rinoplastia",
+    youtubeUrl: "https://youtube.com/shorts/xheK87gz5sY?feature=share",
+  },
+  {
+    id: "26",
+    title: "Rinoplastia en Hombres",
+    treatment: "Rinoplastia",
+    youtubeUrl: "https://youtube.com/shorts/UkwwfyKk1IU?feature=share",
+  },
 ];
 
 const getYoutubeId = (url: string) => {
