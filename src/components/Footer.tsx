@@ -98,7 +98,7 @@ export default function Footer() {
                 Dirección
               </p>
               <p className="mt-4 max-w-md text-sm leading-7 text-white/60 sm:text-base lg:ml-auto">
-                Clínica Santa María Tercer Piso, Av. Cuxibamba entre Latacunga y
+                Clínica Santa María, tercer piso, Av. Cuxibamba entre Latacunga y
                 Riobamba, Loja, Ecuador
               </p>
               <a

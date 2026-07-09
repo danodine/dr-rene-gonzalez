@@ -101,9 +101,9 @@ const serviceMediaLibrary = {
       type: "video",
       url: toEmbedUrl("https://youtube.com/shorts/I8Saca5LhW8?feature=share"),
     },
-    title: "Botox función",
+    title: "Función del Botox",
     description:
-      "Estas inyecciones a menudo se utilizan para suavizar arrugas en la cara. También, se usan para tratar los espasmos de cuello, la sudoración, la vejiga hiperactiva, el ojo perezoso y otras afecciones.",
+      "Estas inyecciones a menudo se utilizan para suavizar arrugas en la cara. También se usan para tratar los espasmos de cuello, la sudoración, la vejiga hiperactiva, el ojo perezoso y otras afecciones.",
   },
   "Ácido hialurónico": {
     media: {
@@ -163,7 +163,7 @@ const serviceMediaLibrary = {
     media: { type: "image", src: "/images/RemocionTatuajes.webp" },
     title: "Remoción de tatuajes",
     description:
-      "La remoción de tatuajes es un tratamiento clínico que utiliza tecnología láser para fragmentar la tinta encapsulada en la piel",
+      "La remoción de tatuajes es un tratamiento clínico que utiliza tecnología láser para fragmentar la tinta encapsulada en la piel.",
   },
   "Radiocavitación y radiofrecuencia": {
     media: {
@@ -172,7 +172,7 @@ const serviceMediaLibrary = {
     },
     title: "Radiocavitación y radiofrecuencia",
     description:
-      "La cavitación y la radiofrecuencia son dos tecnologías estéticas no invasivas que se complementan para modelar el cuerpo",
+      "La cavitación y la radiofrecuencia son dos tecnologías estéticas no invasivas que se complementan para modelar el cuerpo.",
   },
   "Rinoplastia Mujer": {
     media: {
