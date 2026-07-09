@@ -4,4 +4,4 @@
 // excerpt — page.jsx and Navbar only render/react to what's actually
 // present in blogConfig, so changing enabled fields in SuperAdmin needs
 // no code changes here.
-export const BLOG_CLIENT_ID = "1dt7QpQwZphpEHUhTmTZNuyXwBj2";
+export const BLOG_CLIENT_ID = "JAKrHsA0R8XEiu39Y9JphkLGhmL2";

@@ -135,12 +135,22 @@ async function getPublishedPosts() {
   };
 }
 
+// A client with zero published posts (brand new, or blog paused) is a
+// normal state, not an error — but `output: "export"` requires at least
+// one static path for a dynamic route like this one, or the build fails
+// with a (misleadingly worded) "missing generateStaticParams()" error.
+// When there's nothing real to pre-render, return one harmless
+// placeholder slug so the build has something to satisfy that
+// requirement; the page component below already calls notFound() for
+// any slug that doesn't match a real post, so visiting it just 404s.
 export async function generateStaticParams() {
   const { posts } = await getPublishedPosts();
 
-  return posts
+  const params = posts
     .map((post) => ({ slug: getPostSlug(post) }))
     .filter((params) => params.slug);
+
+  return params.length > 0 ? params : [{ slug: "_no-posts-yet" }];
 }
 
 export async function generateMetadata({
