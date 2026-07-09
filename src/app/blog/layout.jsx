@@ -1,8 +1,10 @@
-import { seoKeywords, siteName, socialImage } from "@/lib/seo";
-import { getAllPosts } from "@lib/posts";
+import { localSeoPhrases, seoKeywords, siteName, socialImage } from "@/lib/seo";
+import { getBlogPosts } from "@/client-sdk/getBlogPosts";
+import { BLOG_CLIENT_ID } from "@/lib/blogClient";
 
-export function generateMetadata() {
-  const hasPosts = getAllPosts().length > 0;
+export async function generateMetadata() {
+  const { blogConfig, posts } = await getBlogPosts(BLOG_CLIENT_ID);
+  const hasPosts = Boolean(blogConfig?.enabled) && posts.length > 0;
 
   return {
     title: "Revista Digital de Cirugía Estética en Loja",
@@ -10,11 +12,12 @@ export function generateMetadata() {
       "Artículos sobre cirugía estética, armonización facial, rejuvenecimiento, recuperación y procedimientos del Dr. René González Dávila en Loja, Ecuador.",
     keywords: [
       ...seoKeywords,
+      ...localSeoPhrases,
       "revista digital cirugía estética",
       "blog cirugía estética en Loja",
     ],
     alternates: {
-      canonical: "/blog",
+      canonical: "/blog/",
     },
     robots: hasPosts
       ? {
@@ -29,7 +32,7 @@ export function generateMetadata() {
       title: "Revista Digital de Cirugía Estética | Dr. René González Dávila",
       description:
         "Explora artículos y contenidos sobre procedimientos estéticos, recuperación y bienestar con enfoque médico en Loja, Ecuador.",
-      url: "/blog",
+      url: "/blog/",
       type: "website",
       siteName,
       images: [socialImage],

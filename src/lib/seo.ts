@@ -26,6 +26,9 @@ export const siteDescription =
 export const seoKeywords = [
   "cirujano estético en Loja",
   "cirujano estetico loja",
+  "cirujano estético Loja Ecuador",
+  "cirujano estetico Loja Ecuador",
+  "cirujano estético en Loja Ecuador",
   "cirujano estetico ecuador",
   "cirujano estetico",
   "cirujano plástico Loja",
@@ -39,6 +42,10 @@ export const seoKeywords = [
   "Rene Gonzalez Davila",
   "Rene Gonzales Davila",
   "rinoplastia en Loja",
+  "rinoplastia Loja Ecuador",
+  "rinosplastia en Loja",
+  "rinosplastia Loja Ecuador",
+  "rinoseptoplastia Loja",
   "botox en Loja",
   "liposucción en Loja",
   "ácido hialurónico en Loja",
@@ -52,12 +59,16 @@ export const targetSearchQueries = [
   "Cirujano estetico",
   "Cirujano estético Loja",
   "Cirujano estetico loja",
+  "Cirujano estético en Loja Ecuador",
   "Cirujano estético Ecuador",
   "Cirujano estetico ecuador",
   "Cirujano plástico Loja",
   "Cirujano plastico Loja",
   "cirugía estética Loja",
   "cirugia estetica Loja",
+  "rinoplastia Loja",
+  "rinosplastia Loja",
+  "rinoseptoplastia Loja",
   "Rene Gonzalez Davila",
   "Rene Gonzales Davila",
 ];
@@ -75,6 +86,37 @@ export const serviceNames = [
   "Otoplastia",
   "Bichectomía",
   "Aumento de mamas",
+];
+
+export const localSeoPhrases = [
+  "cirugía estética facial Loja",
+  "cirugia estetica facial Loja",
+  "cirugía estética corporal Loja",
+  "medicina estética Loja",
+  "medicina estetica Loja",
+  "clínica estética Loja",
+  "clinica estetica Loja",
+  "procedimientos estéticos Loja",
+  "procedimientos esteticos Loja",
+  "consulta de cirugía estética Loja",
+  "consulta de cirugia estetica Loja",
+  "especialista en rinoplastia Loja",
+  "rinoplastia mujer Loja",
+  "rinoplastia hombre Loja",
+  "rinosplastia mujer Loja",
+  "rinosplastia hombre Loja",
+  "rinoseptoplastia Loja Ecuador",
+];
+
+export const misspelledSearchPhrases = [
+  "rinosplastia",
+  "rinosplastia en Loja",
+  "rinosplastia Loja",
+  "rinosplastia Loja Ecuador",
+  "cirujano estetico en Loja",
+  "cirugia estetica en Loja",
+  "acido hialuronico en Loja",
+  "liposuccion en Loja",
 ];
 
 export const socialProfiles = [

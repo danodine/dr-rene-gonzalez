@@ -5,6 +5,9 @@ export type ServicePage = {
   description: string;
   subitems: string[];
   image: string;
+  seoKeywords: string[];
+  alternateNames: string[];
+  legacyPaths: string[];
 };
 
 const slugifyService = (value: string) =>
@@ -218,6 +221,126 @@ const serviceCatalog = [
 
 const servicesBySlug = new Map<string, ServicePage>();
 
+const serviceSeoKeywordsBySlug: Record<string, string[]> = {
+  "rinoplastia-mujer": [
+    "rinoplastia mujer Loja",
+    "rinoplastia femenina Loja",
+    "rinosplastia mujer Loja",
+    "rinosplastia femenina Loja",
+    "rinoseptoplastia mujer Loja",
+    "cirugía de nariz mujer Loja",
+    "cirugia de nariz mujer Loja",
+  ],
+  "rinoplastia-hombre": [
+    "rinoplastia hombre Loja",
+    "rinoplastia masculina Loja",
+    "rinosplastia hombre Loja",
+    "rinosplastia masculina Loja",
+    "rinoseptoplastia hombre Loja",
+    "cirugía de nariz hombre Loja",
+    "cirugia de nariz hombre Loja",
+  ],
+  botox: [
+    "botox en Loja",
+    "toxina botulínica Loja",
+    "toxina botulinica Loja",
+    "botox bruxismo Loja",
+    "botox hiperhidrosis Loja",
+  ],
+  "acido-hialuronico": [
+    "ácido hialurónico Loja",
+    "acido hialuronico Loja",
+    "relleno facial Loja",
+    "armonización facial Loja",
+    "armonizacion facial Loja",
+  ],
+  liposuccion: [
+    "liposucción Loja",
+    "liposuccion Loja",
+    "lipoescultura Loja",
+    "cirugía corporal Loja",
+    "cirugia corporal Loja",
+  ],
+  "lipo-papada": [
+    "lipo papada Loja",
+    "lipopapada Loja",
+    "lipo de papada Loja",
+    "papada Loja",
+  ],
+  "parpados-blefaroplastia": [
+    "blefaroplastia Loja",
+    "cirugía de párpados Loja",
+    "cirugia de parpados Loja",
+    "párpados caídos Loja",
+    "parpados caidos Loja",
+  ],
+  ritidoplastia: [
+    "ritidoplastia Loja",
+    "lifting facial Loja",
+    "rejuvenecimiento facial Loja",
+  ],
+  abdominoplastia: [
+    "abdominoplastia Loja",
+    "cirugía de abdomen Loja",
+    "cirugia de abdomen Loja",
+    "dermolipectomía Loja",
+    "dermolipectomia Loja",
+  ],
+  "aumento-de-mamas": [
+    "aumento de mamas Loja",
+    "aumento mamario Loja",
+    "implantes mamarios Loja",
+  ],
+};
+
+const serviceAlternateNamesBySlug: Record<string, string[]> = {
+  "rinoplastia-mujer": [
+    "Rinosplastia mujer",
+    "Rinoseptoplastia mujer",
+    "Cirugía de nariz mujer",
+  ],
+  "rinoplastia-hombre": [
+    "Rinosplastia hombre",
+    "Rinoseptoplastia hombre",
+    "Cirugía de nariz hombre",
+  ],
+  botox: ["Toxina botulínica", "Botox funcional"],
+  "acido-hialuronico": ["Relleno facial", "Armonización facial"],
+  liposuccion: ["Lipoescultura", "Cirugía de contorno corporal"],
+  "parpados-blefaroplastia": ["Blefaroplastia", "Cirugía de párpados"],
+  ritidoplastia: ["Lifting facial", "Rejuvenecimiento facial quirúrgico"],
+  abdominoplastia: ["Dermolipectomía", "Cirugía de abdomen"],
+  "aumento-de-mamas": ["Aumento mamario", "Implantes mamarios"],
+};
+
+const serviceLegacyPathsBySlug: Record<string, string[]> = {
+  "rinoplastia-mujer": [
+    "/rinoplastia-loja/",
+    "/rinosplastia-loja/",
+    "/rinoseptoplastia-loja/",
+    "/servicios/rinosplastia-mujer/",
+  ],
+  "rinoplastia-hombre": [
+    "/rinoplastia-hombre-loja/",
+    "/rinosplastia-hombre-loja/",
+    "/servicios/rinosplastia-hombre/",
+  ],
+  botox: ["/botox-loja/", "/toxina-botulinica-loja/"],
+  "acido-hialuronico": [
+    "/acido-hialuronico-loja/",
+    "/relleno-facial-loja/",
+  ],
+  liposuccion: ["/liposuccion-loja/", "/lipoescultura-loja/"],
+  "lipo-papada": ["/lipo-papada-loja/", "/lipopapada-loja/"],
+  "parpados-blefaroplastia": [
+    "/blefaroplastia-loja/",
+    "/cirugia-de-parpados-loja/",
+  ],
+  ritidoplastia: ["/ritidoplastia-loja/", "/lifting-facial-loja/"],
+  abdominoplastia: ["/abdominoplastia-loja/"],
+  "aumento-de-mamas": ["/aumento-de-mamas-loja/", "/aumento-mamario-loja/"],
+};
+
 for (const group of serviceCatalog) {
   for (const item of group.items) {
     const slug = slugifyService(item.label);
@@ -228,6 +351,9 @@ for (const group of serviceCatalog) {
       description: item.description,
       subitems: [...item.subitems],
       image: item.image,
+      seoKeywords: serviceSeoKeywordsBySlug[slug] ?? [],
+      alternateNames: serviceAlternateNamesBySlug[slug] ?? [],
+      legacyPaths: serviceLegacyPathsBySlug[slug] ?? [],
     });
   }
 }

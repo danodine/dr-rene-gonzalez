@@ -1,6 +1,8 @@
 import {
   clinicAddress,
   email,
+  localSeoPhrases,
+  misspelledSearchPhrases,
   primaryPhone,
   serviceNames,
   siteName,
@@ -28,7 +30,9 @@ ${siteName} is a cirujano estético in Loja, Ecuador. His website presents servi
 
 ## Search Queries This Site Answers
 
-${targetSearchQueries.map((query) => `- ${query}`).join("\n")}
+${[...targetSearchQueries, ...localSeoPhrases, ...misspelledSearchPhrases]
+  .map((query) => `- ${query}`)
+  .join("\n")}
 
 ## Important Pages
 

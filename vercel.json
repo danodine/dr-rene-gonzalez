@@ -1,0 +1,100 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/cirujano-estetico-loja/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/cirujano-plastico-loja/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/cirugia-estetica-loja/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/clinica-estetica-loja/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/rinoplastia-loja/",
+      "destination": "/servicios/rinoplastia-mujer/",
+      "permanent": true
+    },
+    {
+      "source": "/rinosplastia-loja/",
+      "destination": "/servicios/rinoplastia-mujer/",
+      "permanent": true
+    },
+    {
+      "source": "/rinoseptoplastia-loja/",
+      "destination": "/servicios/rinoplastia-mujer/",
+      "permanent": true
+    },
+    {
+      "source": "/rinoplastia-hombre-loja/",
+      "destination": "/servicios/rinoplastia-hombre/",
+      "permanent": true
+    },
+    {
+      "source": "/rinosplastia-hombre-loja/",
+      "destination": "/servicios/rinoplastia-hombre/",
+      "permanent": true
+    },
+    {
+      "source": "/botox-loja/",
+      "destination": "/servicios/botox/",
+      "permanent": true
+    },
+    {
+      "source": "/toxina-botulinica-loja/",
+      "destination": "/servicios/botox/",
+      "permanent": true
+    },
+    {
+      "source": "/acido-hialuronico-loja/",
+      "destination": "/servicios/acido-hialuronico/",
+      "permanent": true
+    },
+    {
+      "source": "/relleno-facial-loja/",
+      "destination": "/servicios/acido-hialuronico/",
+      "permanent": true
+    },
+    {
+      "source": "/liposuccion-loja/",
+      "destination": "/servicios/liposuccion/",
+      "permanent": true
+    },
+    {
+      "source": "/lipoescultura-loja/",
+      "destination": "/servicios/liposuccion/",
+      "permanent": true
+    },
+    {
+      "source": "/blefaroplastia-loja/",
+      "destination": "/servicios/parpados-blefaroplastia/",
+      "permanent": true
+    },
+    {
+      "source": "/lifting-facial-loja/",
+      "destination": "/servicios/ritidoplastia/",
+      "permanent": true
+    },
+    {
+      "source": "/abdominoplastia-loja/",
+      "destination": "/servicios/abdominoplastia/",
+      "permanent": true
+    },
+    {
+      "source": "/aumento-de-mamas-loja/",
+      "destination": "/servicios/aumento-de-mamas/",
+      "permanent": true
+    }
+  ]
+}

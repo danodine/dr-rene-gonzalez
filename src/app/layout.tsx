@@ -4,8 +4,12 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ScrollTriggerRefresh from "@/components/ScrollTriggerRefresh";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { getBlogPosts } from "@/client-sdk/getBlogPosts";
+import { BLOG_CLIENT_ID } from "@/lib/blogClient";
 import {
   doctorName,
+  localSeoPhrases,
+  misspelledSearchPhrases,
   seoKeywords,
   siteDescription,
   siteName,
@@ -21,7 +25,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description: siteDescription,
-  keywords: seoKeywords,
+  keywords: [...seoKeywords, ...localSeoPhrases, ...misspelledSearchPhrases],
   applicationName: siteName,
   authors: [{ name: doctorName, url: siteUrl }],
   creator: siteName,
@@ -77,17 +81,20 @@ export const viewport: Viewport = {
   colorScheme: "dark light",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { blogConfig, posts } = await getBlogPosts(BLOG_CLIENT_ID);
+  const hasBlogPosts = Boolean(blogConfig?.enabled) && posts.length > 0;
+
   return (
     <html lang="es" suppressHydrationWarning className="h-full antialiased">
       <body className="min-h-full flex flex-col">
         <CursorSparkle />
         <ScrollTriggerRefresh />
-        <Navbar />
+        <Navbar hasBlogPosts={hasBlogPosts} />
         <WhatsAppButton />
         {children}
         <Footer />

@@ -1,40 +1,37 @@
 'use client';
 
 import Link from "next/link";
-import { getAllPosts } from "@lib/posts";
 import { useEffect, useRef, useState } from "react";
 
-const hasBlogPosts = getAllPosts().length > 0;
+export default function Navbar({ hasBlogPosts = false }: { hasBlogPosts?: boolean }) {
+  const navItems = [
+    {
+      href: "/#inicio",
+      label: "Inicio",
+    },
+    {
+      href: "/#vision-mision",
+      label: "Visión y misión",
+    },
+    {
+      href: "/#sobre-mi",
+      label: "Perfil médico",
+    },
+    {
+      href: "/#servicios-final",
+      label: "Servicios",
+    },
+    {
+      href: "/#testimonios",
+      label: "Testimonios",
+    },
+    {
+      href: "/blog",
+      label: "Revista Digital",
+      hidden: !hasBlogPosts,
+    },
+  ];
 
-const navItems = [
-  {
-    href: "/#inicio",
-    label: "Inicio",
-  },
-  {
-    href: "/#vision-mision",
-    label: "Visión y misión",
-  },
-  {
-    href: "/#sobre-mi",
-    label: "Perfil médico",
-  },
-  {
-    href: "/#servicios-final",
-    label: "Servicios",
-  },
-  {
-    href: "/#testimonios",
-    label: "Testimonios",
-  },
-  {
-    href: "/blog",
-    label: "Revista Digital",
-    hidden: !hasBlogPosts,
-  },
-];
-
-export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
 

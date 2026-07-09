@@ -7,7 +7,9 @@ import {
   doctorImage,
   email,
   jsonLd,
+  localSeoPhrases,
   mapUrl,
+  misspelledSearchPhrases,
   primaryPhone,
   secondaryPhone,
   seoKeywords,
@@ -17,6 +19,7 @@ import {
   socialImage,
   socialProfiles,
 } from "@/lib/seo";
+import { servicePages } from "@/lib/services";
 
 export const dynamic = "force-static";
 
@@ -28,7 +31,12 @@ export const metadata: Metadata = {
     absolute: "Cirujano estético en Loja | Dr. René González Dávila",
   },
   description,
-  keywords: [...seoKeywords, "clínica estética en Loja"],
+  keywords: [
+    ...seoKeywords,
+    ...localSeoPhrases,
+    ...misspelledSearchPhrases,
+    "clínica estética en Loja",
+  ],
   alternates: {
     canonical: "/",
   },
@@ -52,6 +60,12 @@ const physicianSchema = {
   "@type": "Physician",
   "@id": `${siteUrl}/#physician`,
   name: siteName,
+  alternateName: [
+    "Dr. Rene Gonzalez Davila",
+    "Dr Rene Gonzales Davila",
+    "Cirujano estético en Loja",
+    "Cirujano estetico en Loja",
+  ],
   description:
     "Médico cirujano con sólida formación académica y un firme compromiso con la excelencia profesional. Realizó sus estudios de Medicina en la Pontificia Universidad Católica del Ecuador, donde consolidó una base científica rigurosa y competencias clínicas fundamentales.",
   url: siteUrl,
@@ -81,9 +95,12 @@ const physicianSchema = {
   telephone: [primaryPhone, secondaryPhone],
   email,
   sameAs: [...socialProfiles, mapUrl],
-  availableService: serviceNames.map((name) => ({
+  knowsAbout: [...serviceNames, ...localSeoPhrases, ...misspelledSearchPhrases],
+  availableService: servicePages.map((service) => ({
     "@type": "MedicalProcedure",
-    name,
+    name: service.label,
+    alternateName: service.alternateNames,
+    url: `${siteUrl}/servicios/${service.slug}/`,
   })),
 };
 
@@ -92,6 +109,11 @@ const clinicSchema = {
   "@type": "MedicalClinic",
   "@id": `${siteUrl}/#clinic`,
   name: siteName,
+  alternateName: [
+    "Clínica estética en Loja",
+    "Clinica estetica en Loja",
+    "Consulta de cirugía estética en Loja",
+  ],
   description:
     "Consultorio de cirugía estética en Loja, Ecuador, enfocado en rinoplastia, Botox, liposucción, ácido hialurónico y procedimientos estéticos con resultados naturales, seguros y personalizados.",
   url: siteUrl,
@@ -114,6 +136,11 @@ const clinicSchema = {
   sameAs: socialProfiles,
   priceRange: "$$",
   medicalSpecialty: "PlasticSurgery",
+  availableService: servicePages.map((service) => ({
+    "@type": "MedicalProcedure",
+    name: service.label,
+    url: `${siteUrl}/servicios/${service.slug}/`,
+  })),
 };
 
 const websiteSchema = {
@@ -122,6 +149,12 @@ const websiteSchema = {
   "@id": `${siteUrl}/#website`,
   url: siteUrl,
   name: siteName,
+  alternateName: [
+    "Cirujano estético en Loja Ecuador",
+    "Cirujano estetico Loja Ecuador",
+    "Rinoplastia en Loja",
+    "Rinosplastia en Loja",
+  ],
   description,
   inLanguage: "es-EC",
 };
@@ -131,12 +164,14 @@ const servicesSchema = {
   "@type": "ItemList",
   "@id": `${siteUrl}/#services`,
   name: "Servicios de cirugía estética y medicina estética en Loja",
-  itemListElement: serviceNames.map((name, index) => ({
+  itemListElement: servicePages.map((service, index) => ({
     "@type": "ListItem",
     position: index + 1,
     item: {
       "@type": "MedicalProcedure",
-      name,
+      name: service.label,
+      alternateName: service.alternateNames,
+      url: `${siteUrl}/servicios/${service.slug}/`,
       provider: {
         "@id": `${siteUrl}/#physician`,
       },

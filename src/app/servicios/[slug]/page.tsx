@@ -6,7 +6,10 @@ import {
   clinicAddress,
   doctorName,
   jsonLd,
+  localSeoPhrases,
+  misspelledSearchPhrases,
   primaryPhone,
+  seoKeywords,
   siteName,
   siteUrl,
   socialImage,
@@ -216,11 +219,16 @@ export async function generateMetadata({
 
   const title = `${service.label} en Loja`;
   const description = `${service.description} Valoración con ${doctorName} en Loja, Ecuador.`;
+  const pageUrl = `${siteUrl}/servicios/${service.slug}/`;
 
   return {
     title,
     description,
     keywords: [
+      ...seoKeywords,
+      ...localSeoPhrases,
+      ...misspelledSearchPhrases,
+      ...service.seoKeywords,
       `${service.label} en Loja`,
       `${service.label} Ecuador`,
       service.category,
@@ -228,12 +236,12 @@ export async function generateMetadata({
       "medicina estética en Loja",
     ],
     alternates: {
-      canonical: `/servicios/${service.slug}`,
+      canonical: `/servicios/${service.slug}/`,
     },
     openGraph: {
       type: "article",
       locale: "es_EC",
-      url: `${siteUrl}/servicios/${service.slug}`,
+      url: pageUrl,
       siteName,
       title: `${title} | ${siteName}`,
       description,
@@ -241,7 +249,7 @@ export async function generateMetadata({
         {
           ...socialImage,
           url: service.image,
-          alt: `${service.label} con ${siteName}`,
+          alt: `${service.label} en Loja, Ecuador con ${siteName}`,
         },
       ],
     },
@@ -250,6 +258,11 @@ export async function generateMetadata({
       title: `${title} | ${siteName}`,
       description,
       images: [service.image],
+    },
+    other: {
+      "geo.region": "EC-L",
+      "geo.placename": "Loja",
+      "medical-specialty": service.category,
     },
   };
 }
@@ -262,7 +275,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     notFound();
   }
 
-  const pageUrl = `${siteUrl}/servicios/${service.slug}`;
+  const pageUrl = `${siteUrl}/servicios/${service.slug}/`;
   const relatedServices = servicePages
     .filter(
       (item) => item.category === service.category && item.slug !== service.slug,
@@ -275,8 +288,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
     "@type": "MedicalProcedure",
     "@id": `${pageUrl}#procedure`,
     name: service.label,
+    alternateName: service.alternateNames,
     description: service.description,
     procedureType: service.category,
+    url: pageUrl,
+    image: `${siteUrl}${service.image}`,
+    mainEntityOfPage: pageUrl,
     provider: {
       "@id": `${siteUrl}/#physician`,
       name: siteName,
@@ -290,6 +307,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
       name: siteName,
       address: clinicAddress,
     },
+    isRelatedTo: relatedServices.map((item) => ({
+      "@type": "MedicalProcedure",
+      name: item.label,
+      url: `${siteUrl}/servicios/${item.slug}/`,
+    })),
   };
 
   const breadcrumbSchema = {

@@ -2,12 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 import BlogHeroAnimation from "@/components/BlogHeroAnimation";
 import BlogGoldDust from "@/components/BlogGoldDust";
-import { getAllPosts } from "@lib/posts";
+import { getBlogPosts } from "@/client-sdk/getBlogPosts";
+import { BLOG_CLIENT_ID } from "@/lib/blogClient";
 
 export const dynamic = "force-static";
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+function formatDate(millis) {
+  if (!millis) return "";
+  return new Date(millis).toLocaleDateString("es-EC", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+export default async function BlogPage() {
+  const { blogConfig, posts: rawPosts } = await getBlogPosts(BLOG_CLIENT_ID);
+  const fields = blogConfig?.fields || [];
+  const posts = blogConfig?.enabled ? rawPosts : [];
 
   return (
     <main className="blog-future-page">
@@ -73,74 +85,84 @@ export default function BlogPage() {
             >
               {posts.map((post, index) => (
                 <article
-                  key={`${post.slug}-${index}`}
+                  key={post.id || `${post.slug}-${index}`}
                   className="future-hover-card"
                 >
-                  <div
-                    style={{
-                      position: "relative",
-                      overflow: "hidden",
-                      borderRadius: "18px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      width={1200}
-                      height={675}
-                      style={{
-                        width: "100%",
-                        aspectRatio: "16/9",
-                        objectFit: "cover",
-                      }}
-                    />
+                  {fields.includes("coverImage") && post.coverImage && (
                     <div
                       style={{
-                        position: "absolute",
-                        top: "15px",
-                        left: "15px",
-                        background: "rgba(7, 18, 33, 0.8)",
-                        backdropFilter: "blur(5px)",
-                        padding: "4px 12px",
-                        borderRadius: "99px",
-                        fontSize: "0.7rem",
-                        color: "var(--cyan)",
-                        border: "1px solid rgba(124, 234, 255, 0.2)",
+                        position: "relative",
+                        overflow: "hidden",
+                        borderRadius: "18px",
+                        marginBottom: "20px",
                       }}
                     >
-                      {post.type}
+                      <Image
+                        src={post.coverImage}
+                        alt={post.title || ""}
+                        width={1200}
+                        height={675}
+                        style={{
+                          width: "100%",
+                          aspectRatio: "16/9",
+                          objectFit: "cover",
+                        }}
+                      />
+                      {fields.includes("tags") && post.tags?.[0] && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "15px",
+                            left: "15px",
+                            background: "rgba(7, 18, 33, 0.8)",
+                            backdropFilter: "blur(5px)",
+                            padding: "4px 12px",
+                            borderRadius: "99px",
+                            fontSize: "0.7rem",
+                            color: "var(--cyan)",
+                            border: "1px solid rgba(124, 234, 255, 0.2)",
+                          }}
+                        >
+                          {post.tags[0]}
+                        </div>
+                      )}
                     </div>
-                  </div>
+                  )}
 
-                  <small
-                    style={{ color: "var(--muted)", letterSpacing: "0.1em" }}
-                  >
-                    {post.date}
-                  </small>
-                  <h3
-                    style={{
-                      marginTop: "12px",
-                      color: "#fff",
-                      fontSize: "1.4rem",
-                      lineHeight: "1.3",
-                    }}
-                  >
-                    {post.title}
-                  </h3>
-                  <p
-                    style={{
-                      color: "var(--muted)",
-                      fontSize: "0.95rem",
-                      margin: "15px 0",
-                    }}
-                  >
-                    {post.paragraph1.substring(0, 120)}...
-                  </p>
+                  {post.publishedAt && (
+                    <small
+                      style={{ color: "var(--muted)", letterSpacing: "0.1em" }}
+                    >
+                      {formatDate(post.publishedAt)}
+                    </small>
+                  )}
+                  {fields.includes("title") && post.title && (
+                    <h3
+                      style={{
+                        marginTop: "12px",
+                        color: "#fff",
+                        fontSize: "1.4rem",
+                        lineHeight: "1.3",
+                      }}
+                    >
+                      {post.title}
+                    </h3>
+                  )}
+                  {fields.includes("excerpt") && post.excerpt && (
+                    <p
+                      style={{
+                        color: "var(--muted)",
+                        fontSize: "0.95rem",
+                        margin: "15px 0",
+                      }}
+                    >
+                      {post.excerpt}
+                    </p>
+                  )}
 
                   <div style={{ marginTop: "auto" }}>
                     <Link
-                      href={`/blog/${post.slug}`}
+                      href={`/blog/${post.slug || post.id}`}
                       prefetch={false}
                       className="future-link"
                       style={{ width: "100%" }}
