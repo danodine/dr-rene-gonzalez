@@ -150,6 +150,18 @@ export const testimonialVideos: TestimonialVideo[] = [
     treatment: "Rinoplastia",
     youtubeUrl: "https://youtube.com/shorts/UkwwfyKk1IU?feature=share",
   },
+  {
+    id: "27",
+    title: "Rinoplastia Boxeador",
+    treatment: "Rinoplastia",
+    youtubeUrl: "https://youtube.com/shorts/vxx9hmNtl64?feature=share",
+  },
+    {
+    id: "28",
+    title: "Rinoplastia Anita",
+    treatment: "Rinoplastia",
+    youtubeUrl: "https://youtube.com/shorts/I0IKhZEKtjA?feature=share",
+  },
 ];
 
 const getYoutubeId = (url: string) => {
