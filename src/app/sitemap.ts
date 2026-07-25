@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getBlogPosts } from "@/client-sdk/getBlogPosts";
 import { safeUrl } from "@/client-sdk/safeUrl";
 import { BLOG_CLIENT_ID } from "@/lib/blogClient";
+import { localSeoPages } from "@/lib/localSeoPages";
 import { doctorImage, siteUrl, socialImage } from "@/lib/seo";
 import { servicePages } from "@/lib/services";
 
@@ -60,6 +61,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           },
         ]
       : []),
+    ...localSeoPages.map((page) => ({
+      url: `${siteUrl}/${page.slug}/`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+      images: [`${siteUrl}${page.image}`],
+    })),
     ...servicePages.map((service) => ({
       url: `${siteUrl}/servicios/${service.slug}/`,
       lastModified,

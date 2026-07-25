@@ -9,6 +9,8 @@ export const clinicAddress =
   "Clínica Santa María, Av. Cuxibamba entre Latacunga y Riobamba, Loja, Ecuador";
 export const mapUrl =
   "https://www.google.com/maps/place//data=!4m2!3m1!1s0x91cb49113de9be7b:0x3ab4219d42a27722?sa=X&ved=1t:8290&ictx=111";
+export const hora32ProfileUrl =
+  "https://hora32.com.ec/rene-ricardo-gonzalez-davila-me-considero-mas-ecuatoriano-que-peruano/";
 export const primaryPhone = "+593992448076";
 export const secondaryPhone = "+593992323575";
 export const email = "renegonzalezdav@hotmail.com";
@@ -124,6 +126,39 @@ export const socialProfiles = [
   "https://www.instagram.com/dr.renegonzalezdav/",
   "https://www.tiktok.com/@dr.renegonzalezdav?_r=1&_t=ZS-95oZtyoRWlh",
 ];
+
+export const identityProfiles = [
+  {
+    label: "Google Business Profile",
+    url: mapUrl,
+    description:
+      "Perfil local en Google para ubicación, contacto y reseñas del consultorio en Loja.",
+  },
+  {
+    label: "Instagram",
+    url: "https://www.instagram.com/dr.renegonzalezdav/",
+    description:
+      "Perfil social oficial con actividad, procedimientos y comunicación directa.",
+  },
+  {
+    label: "Facebook",
+    url: "https://www.facebook.com/dr.renegonzalezdav/about/",
+    description:
+      "Página oficial con datos de formación, ubicación y contacto profesional.",
+  },
+];
+
+export const pressMentions = [
+  {
+    label: "Entrevista en HORA32",
+    url: hora32ProfileUrl,
+    description:
+      "Perfil periodístico sobre trayectoria, formación y ejercicio profesional en Loja.",
+  },
+];
+
+export const identityProfileUrls = identityProfiles.map((profile) => profile.url);
+export const pressMentionUrls = pressMentions.map((mention) => mention.url);
 
 export function jsonLd(data: unknown) {
   return JSON.stringify(data).replace(/</g, "\\u003c");

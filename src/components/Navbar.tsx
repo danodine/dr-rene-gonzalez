@@ -10,6 +10,10 @@ export default function Navbar({ hasBlogPosts = false }: { hasBlogPosts?: boolea
       label: "Inicio",
     },
     {
+      href: "/cirujano-estetico-loja/",
+      label: "Cirujano Estético",
+    },
+    {
       href: "/#vision-mision",
       label: "Visión y misión",
     },

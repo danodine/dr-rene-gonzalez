@@ -6,10 +6,12 @@ import TestimoniosSection from "@/components/TestimoniosSection";
 import {
   doctorImage,
   email,
+  identityProfileUrls,
   jsonLd,
   localSeoPhrases,
   mapUrl,
   misspelledSearchPhrases,
+  pressMentionUrls,
   primaryPhone,
   secondaryPhone,
   seoKeywords,
@@ -61,6 +63,8 @@ const physicianSchema = {
   "@id": `${siteUrl}/#physician`,
   name: siteName,
   alternateName: [
+    "René Ricardo González Dávila",
+    "Rene Ricardo Gonzalez Davila",
     "Dr. Rene Gonzalez Davila",
     "Dr Rene Gonzales Davila",
     "Cirujano estético en Loja",
@@ -94,7 +98,25 @@ const physicianSchema = {
   },
   telephone: [primaryPhone, secondaryPhone],
   email,
-  sameAs: [...socialProfiles, mapUrl],
+  sameAs: [...new Set([...socialProfiles, ...identityProfileUrls, mapUrl])],
+  subjectOf: pressMentionUrls.map((url) => ({
+    "@type": "Article",
+    url,
+  })),
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Pontificia Universidad Católica del Ecuador",
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Universidad de las Américas",
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Universidad del Conde",
+    },
+  ],
   knowsAbout: [...serviceNames, ...localSeoPhrases, ...misspelledSearchPhrases],
   availableService: servicePages.map((service) => ({
     "@type": "MedicalProcedure",
@@ -133,7 +155,7 @@ const clinicSchema = {
     name: "Loja",
   },
   hasMap: mapUrl,
-  sameAs: socialProfiles,
+  sameAs: [...new Set([...socialProfiles, ...identityProfileUrls])],
   priceRange: "$$",
   medicalSpecialty: "PlasticSurgery",
   availableService: servicePages.map((service) => ({

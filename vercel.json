@@ -2,23 +2,13 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/cirujano-estetico-loja/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
       "source": "/cirujano-plastico-loja/",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/cirugia-estetica-loja/",
-      "destination": "/",
+      "destination": "/cirujano-estetico-loja/",
       "permanent": true
     },
     {
       "source": "/clinica-estetica-loja/",
-      "destination": "/",
+      "destination": "/cirujano-estetico-loja/",
       "permanent": true
     },
     {

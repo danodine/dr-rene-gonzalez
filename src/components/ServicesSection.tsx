@@ -840,6 +840,12 @@ export default function ServicesSection() {
             Procedimientos principales del Dr. René González Dávila en Loja,
             Ecuador.
           </p>
+          <Link href="/cirujano-estetico-loja/">
+            Cirujano estético en Loja
+          </Link>
+          <Link href="/cirugia-estetica-loja/">
+            Cirugía estética en Loja
+          </Link>
           <ul>
             {servicePages.map((service) => (
               <li key={service.slug}>

@@ -45,12 +45,15 @@ export default function Header() {
                 style={{ color: mobileTextColor }}
               >
                 René González Dávila
+                <span className="sr-only">
+                  , cirujano estético en Loja, Ecuador
+                </span>
               </h1>
               <p
-                className="mt-[12px] text-[0.62rem] uppercase tracking-[0.4em]"
+                className="mt-[12px] text-[0.52rem] uppercase tracking-[0.26em] sm:text-[0.62rem] sm:tracking-[0.34em]"
                 style={{ color: mobileTextColor }}
               >
-                Cirujano Estético
+                Cirujano Estético en Loja
               </p>
             </div>
           </div>
@@ -74,12 +77,15 @@ export default function Header() {
                 style={{ color: desktopTextColor }}
               >
                 René González Dávila
+                <span className="sr-only">
+                  , cirujano estético en Loja, Ecuador
+                </span>
               </p>
               <p
-                className="mt-[5px] text-[0.3rem] uppercase tracking-[0.2em] sm:text-xs"
+                className="mt-[5px] text-[0.3rem] uppercase tracking-[0.16em] sm:text-xs sm:tracking-[0.18em]"
                 style={{ color: desktopTextColor }}
               >
-                Cirujano Estético
+                Cirujano Estético en Loja
               </p>
             </div>
           </div>
