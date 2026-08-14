@@ -79,8 +79,7 @@ export default function Page() {
           </p>
           <p>
             Este sitio web es desarrollado, alojado y mantenido en nombre del
-            responsable por <strong>HeiLabs</strong> (Luruper Hauptstraße 85,
-            22507 Hamburgo, Alemania), que actúa como{" "}
+            responsable por <strong>HeiLabs</strong> (Hamburgo, Alemania), que actúa como{" "}
             <strong>encargado del tratamiento</strong>: trata los datos
             personales únicamente siguiendo las instrucciones del responsable y
             en el marco de un acuerdo de tratamiento de datos, y no los utiliza
