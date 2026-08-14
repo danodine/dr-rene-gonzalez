@@ -115,6 +115,12 @@ export default function Footer() {
 
         <div className="flex flex-col gap-5 border-t border-white/10 pt-8 text-xs uppercase tracking-[0.28em] text-white/35 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Dr. René González Dávila</p>
+          <a
+            href="/politica-de-privacidad/"
+            className="transition-colors duration-300 hover:text-[#d4af37]"
+          >
+            Política de privacidad
+          </a>
           <p>
             Developed by <span className="text-[#d4af37]">HeiLabs</span> Germany
           </p>

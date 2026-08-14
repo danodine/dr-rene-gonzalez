@@ -61,6 +61,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           },
         ]
       : []),
+    {
+      url: `${siteUrl}/politica-de-privacidad/`,
+      lastModified,
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+    },
     ...localSeoPages.map((page) => ({
       url: `${siteUrl}/${page.slug}/`,
       lastModified,
