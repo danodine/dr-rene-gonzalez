@@ -1,0 +1,19 @@
+# Ported from vercel.json (Cloudflare ignores vercel.json). Preserves old
+# SEO URLs after the Vercel -> Cloudflare migration. Format: source dest code.
+/cirujano-plastico-loja/    /cirujano-estetico-loja/            301
+/clinica-estetica-loja/     /cirujano-estetico-loja/            301
+/rinoplastia-loja/          /servicios/rinoplastia-mujer/       301
+/rinosplastia-loja/         /servicios/rinoplastia-mujer/       301
+/rinoseptoplastia-loja/     /servicios/rinoplastia-mujer/       301
+/rinoplastia-hombre-loja/   /servicios/rinoplastia-hombre/      301
+/rinosplastia-hombre-loja/  /servicios/rinoplastia-hombre/      301
+/botox-loja/                /servicios/botox/                   301
+/toxina-botulinica-loja/    /servicios/botox/                   301
+/acido-hialuronico-loja/    /servicios/acido-hialuronico/       301
+/relleno-facial-loja/       /servicios/acido-hialuronico/       301
+/liposuccion-loja/          /servicios/liposuccion/             301
+/lipoescultura-loja/        /servicios/liposuccion/             301
+/blefaroplastia-loja/       /servicios/parpados-blefaroplastia/ 301
+/lifting-facial-loja/       /servicios/ritidoplastia/           301
+/abdominoplastia-loja/      /servicios/abdominoplastia/         301
+/aumento-de-mamas-loja/     /servicios/aumento-de-mamas/        301
