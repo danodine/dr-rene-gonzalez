@@ -113,7 +113,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 border-t border-white/10 pt-8 text-xs uppercase tracking-[0.28em] text-white/35 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-5 border-t border-white/10 pt-8 text-xs uppercase tracking-[0.28em] text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Dr. René González Dávila</p>
           <a
             href="/politica-de-privacidad/"
