@@ -1,0 +1,4 @@
+Contact: mailto:renegonzalezdav@hotmail.com
+Expires: 2027-08-17T00:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://www.renegonzalezdavila.com/.well-known/security.txt
