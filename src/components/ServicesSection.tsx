@@ -177,7 +177,7 @@ const serviceMediaLibrary = {
   "Rinoplastia Mujer": {
     media: {
       type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/nmH7XUkwsJ0?feature=share"),
+      url: toEmbedUrl("https://www.youtube.com/shorts/lBmFMmFjSX8?feature=share"),
     },
     title: "Rinoplastia Mujer",
     description:
@@ -186,7 +186,7 @@ const serviceMediaLibrary = {
   "Rinoplastia Hombre": {
     media: {
       type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/u59xtanT2To?feature=share"),
+      url: toEmbedUrl("https://www.youtube.com/shorts/dns21h4LaLk?feature=share"),
     },
     title: "Rinoplastia Hombre",
     description:
@@ -212,7 +212,7 @@ const serviceMediaLibrary = {
   Otoplastia: {
     media: {
       type: "video",
-      url: toEmbedUrl("https://youtube.com/shorts/byX_kDmYZZc?feature=share"),
+      url: toEmbedUrl("https://www.youtube.com/shorts/ivUk3mSorHc?feature=share"),
     },
     title: "Otoplastia",
     description:

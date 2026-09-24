@@ -162,6 +162,12 @@ export const testimonialVideos: TestimonialVideo[] = [
     treatment: "Rinoplastia",
     youtubeUrl: "https://youtube.com/shorts/I0IKhZEKtjA?feature=share",
   },
+      {
+    id: "29",
+    title: "Cirugía Estética",
+    treatment: "Rinoplastia",
+    youtubeUrl: "https://www.youtube.com/shorts/4P3Xm-8EQlA?feature=share",
+  },
 ];
 
 const getYoutubeId = (url: string) => {
